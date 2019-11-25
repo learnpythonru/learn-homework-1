@@ -16,7 +16,15 @@ def get_summ(num_one, num_two):
     """
     Замените pass на ваш код
     """
-    pass
+    summ = 0
+    try:
+        num_one = int(num_one)
+        num_two = int(num_two)
+        summ = num_one + num_two
+        print(f'Сумма двух чисел: {summ}')
+    except ValueError:
+        print('Не удалось сложить два чиса, так как приведение типов не сработало.')
+
     
 if __name__ == "__main__":
     print(get_summ(2, 2))

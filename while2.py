@@ -19,7 +19,14 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    ask_answer = {'Как дела ?': 'Хорошо', 'Что делаешь ?': 'Программирую'}
+    while True:
+        user_ask = input('Ваш вопрос: ')
+        if user_ask == 'Как дела ?':
+            print(ask_answer['Как дела ?'])
+        elif user_ask == 'Что делаешь ?':
+            print(ask_answer['Что делаешь ?'])
+        break
     
 if __name__ == "__main__":
     ask_user()
