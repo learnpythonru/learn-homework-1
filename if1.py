@@ -15,11 +15,21 @@
 """
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    user_num = int(input())
+
+    if user_num < 1:
+        return 'You weren\'t born yet'
+    elif 1 <= user_num <= 6:
+        return 'You should go to kindergarten'
+    elif 7 <= user_num <= 18:
+        return 'You should go to school'
+    elif 19 <= user_num <= 23:
+        return 'You should go to college'
+    elif 24 <= user_num <= 55:
+        return 'You should go to work'
+    else:
+        return 'You should retire'
 
 if __name__ == "__main__":
-    main()
+    func_cal = main()
+    print(func_cal)
