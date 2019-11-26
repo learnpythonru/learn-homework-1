@@ -9,13 +9,15 @@
    
 """
 
-
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-
-    
+    try_text = 'How are you?\nTell me: '
+    count = 0
+    while input(f'{try_text}\n') != 'Good':
+        count += 1
+        if count >= 1:
+            try_text = 'Wrong answer, try again: '
+        continue
+    print('You are finally doing well!)')
+ 
 if __name__ == "__main__":
     ask_user()
