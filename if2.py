@@ -15,12 +15,23 @@
 
 """
 
+def strcmp(first, second):
+    if not isinstance(first, str) or not isinstance(second, str):
+        return 0
+    elif first == second:
+        return 1
+    else:
+        if len(first) > len(second):
+            result = 2
+        if second == 'learn':
+            result = 3
+        return result
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
+    print(strcmp(22, True))
+    print(strcmp('Python', 'Python'))
+    print(strcmp('Hallelujah', 'Python'))
+    print(strcmp('Python', 'learn'))
+
 if __name__ == "__main__":
     main()

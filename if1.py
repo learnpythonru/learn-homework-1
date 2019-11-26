@@ -13,13 +13,22 @@
 * Вывести содержимое переменной на экран
 
 """
+def reveal_user_experience(age):
+    if age < 3 or age > 70:
+        raise ValueError('Такой возраст не обрабатывается')
+    elif age >= 3 and age < 7:
+        return 'Детский сад'
+    elif age >= 7 and age < 17:
+        return 'Школа'
+    elif age >= 17 and age < 22:
+        return 'ВУЗ'
+    else:
+        return 'Работа'
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    age = int(input("Ваш возраст: "))
+    modus_vivendi = reveal_user_experience(age)
+    print(modus_vivendi)
 
 if __name__ == "__main__":
     main()
