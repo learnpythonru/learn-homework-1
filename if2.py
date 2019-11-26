@@ -15,12 +15,32 @@
 
 """
 
+
+def string_comparison(str1, str2):
+    if not isinstance(str1, str) or not isinstance(str2, str):
+        return 0
+    else:
+        if str1 == str2:
+            return 1
+        elif len(str1) > len(str2):
+            return 2
+        elif str2 == "learn":
+            return 3
+        else:
+            return 4
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    print(string_comparison(1, "learn"))
+    print(string_comparison("learn", "learn"))        
+    print(string_comparison("learn python", "learn")) 
+    print(string_comparison("leard", "learn"))
+    print(string_comparison("hello world", "learn python"))
+
+
 if __name__ == "__main__":
     main()

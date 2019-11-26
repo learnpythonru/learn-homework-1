@@ -14,12 +14,34 @@
 
 """
 
+
+def your_profession(age):
+    if age < 3:
+        return "Возможно ясли?"
+    elif age < 8:
+        return "Вы должны ходить в детский сад!"
+    elif age < 19:
+        return "Вы школьник."
+    elif age < 24:
+        return "Вы студент!"
+    else:
+        return "Надеюсь, Вы уже нашли себе работу!"
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    while True:
+        age = int(input("Сколько Вам лет? "))
+        if 0 <= age < 100:
+            break
+        else:
+            print("Неправильный возраст, попробуйте ещё")
+    prof = your_profession(age)
+    print(prof)
+
 
 if __name__ == "__main__":
     main()
