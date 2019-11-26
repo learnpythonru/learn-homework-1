@@ -14,12 +14,16 @@
     Программа: Программирую
     
 """
+question_answer = {"Как дела": "Хорошо!", "Что делаешь": "Программирую", "Как погода": "Жара!", "Как работа": "Как всегда!"}
+
 
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+   while True:
+        question = input('Задай вопрос: ')
+        if question in question_answer: 
+            print(question_answer[question])
+            
+
+
 if __name__ == "__main__":
     ask_user()

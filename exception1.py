@@ -9,12 +9,16 @@
   и завершала работу при помощи оператора break
     
 """
+question_answer = {"Как дела": "Хорошо!", "Что делаешь": "Программирую", "Как погода": "Жара!", "Как работа": "Как всегда!"}
 
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    while True:
+        try:
+            question = input('Задай вопрос: ')
+            if question in question_answer: 
+                print(question_answer[question])
+        except KeyboardInterrupt:
+            print('  Пока')
+            break
 if __name__ == "__main__":
     ask_user()
