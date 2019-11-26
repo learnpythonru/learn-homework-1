@@ -54,21 +54,16 @@ def greet_user(bot, update):
 
 def planet_naming(bot, update):
     current_time = datetime.now().strftime('%Y/%m/%d')
-    planet = ''.join(update.message.text.split()[1]).lower()
-    const = 'i don\' know that planet'
-    
-    if planet == 'mars': const = ephem.constellation(ephem.Mars(current_time))[1]
-    if planet == 'mercuy': const = ephem.constellation(ephem.Mercury(current_time))[1] 
-    if planet == 'venus': const = ephem.constellation(ephem.Venus(current_time))[1] 
-    if planet == 'jupiter': const = ephem.constellation(ephem.Jupiter(current_time))[1] 
-    if planet == 'saturn': const = ephem.constellation(ephem.Saturn(current_time))[1]
-    if planet == 'uranus': const = ephem.constellation(ephem.Uranus(current_time))[1] 
-    if planet == 'neptune': const = ephem.constellation(ephem.Neptune(current_time))[1] 
-    if planet == 'moon': const = ephem.constellation(ephem.Moon(current_time))[1]      
-
-    update.message.reply_text(const)    
-
-
+    command,planet = update.message.text.split()
+  
+    try:   
+        const = ephem.constellation(getattr(ephem, planet.lower().capitalize())(current_time))[1]
+    except AttributeError:
+        const = 'I do not know that planet'
+        
+    update.message.reply_text(const)
+        
+        
 def main():
     mybot = Updater(settings.API_KEY, request_kwargs=settings.PROXY)
     logging.info('Я проснулся')

@@ -20,7 +20,7 @@ def main(str1, str2):
         return 0
     elif str1 == str2:
         return 1
-    elif str1 != str2 and len(str1) > len(str2):
+    elif str1 != str2 and len(str1) > len(str2) and str2 != 'learn':
         return 2
     elif str1 != str2 and str2 == 'learn':
         return 3
@@ -34,3 +34,4 @@ if __name__ == "__main__":
     print(main('longer', 'long'))
     print(main('lrn', 'learn'))
     print(main('dif', 'different'))
+    print(main('aaaaaaa','learn'))

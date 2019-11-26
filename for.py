@@ -16,13 +16,13 @@ def main():
     {'school_class': '4c', 'scores': [4,4,5,4,4]},
     {'school_class': '4d', 'scores': [4,5,5,5,4]},]
 
-    lst_total_grades = [i['scores'] for i in lst]
-    total_students = sum([len(i) for i in lst_total_grades])
+    total_grades = [i['scores'] for i in lst]
+    total_students = sum([len(i) for i in total_grades])
     
-    school_average_grade = sum([sum(i) for i in lst_total_grades]) /total_students
+    school_average_grade = sum([sum(i) for i in total_grades]) /total_students
 
     class_labels = [i['school_class'] for i in lst]
-    class_grades = [sum(i)/len(i) for i in lst_total_grades]
+    class_grades = [sum(i)/len(i) for i in total_grades]
     class_average_grade = list(zip(class_labels,class_grades))
 
     for i,j in class_average_grade:
