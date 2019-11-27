@@ -14,7 +14,11 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    flag_good = 1
+    while flag_good == 1:
+        answer_usr = input('Как дела? ')
+        if answer_usr == 'Хорошо':
+            flag_good = 0
 
     
 if __name__ == "__main__":
