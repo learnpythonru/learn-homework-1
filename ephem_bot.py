@@ -13,8 +13,10 @@
 
 """
 import logging
-
+import ephem
+import datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+ 
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -42,14 +44,34 @@ def talk_to_me(bot, update):
     print(user_text)
     update.message.reply_text(user_text)
  
+def constellation_today(bot, update):
+    user_text = update.message.text
+    text = user_text.split()
+    #now = datetime.date() 
+    if text[1] == 'Mars':
+        planet = ephem.Mars('2019/11/29')
+        const = ephem.constellation(planet)
+        print(const)
+        update.message.reply_text(const)
+    elif text[1] == 'Jupiter': 
+        planet = ephem.Jupiter('2019/11/29')
+        const = ephem.constellation(planet)
+        print(const)
+        update.message.reply_text(const)
+    else:
+        const = 'Я пока не знаю в каком созвездии эта планета' 
+        print(const)
+        update.message.reply_text(const)
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY)
+    mybot = Updater("1017943578:AAFSaBEhIBPLVK-epDLFoWpthzNNdKhkk5k", request_kwargs=PROXY)
     
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     
+    dp.add_handler(CommandHandler("planet", constellation_today))
+
     mybot.start_polling()
     mybot.idle()
        
