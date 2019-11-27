@@ -33,11 +33,16 @@ def main():
     
     #Средний балл по каждому классу:
     middle_cl = 0
+    sch_class = ''
     for school_class in school_scores:
-        for score in school_class['scores']:
-            middle_cl += score
+        for value in school_class.values():
+            if isinstance(value, list):
+                for score in value:
+                    middle_cl += score
+            else:
+                sch_class = value       
         middle_class = middle_cl/len(school_scores[0]['scores'])
-        print(middle_class)
+        print(f'Средняя оценка по классу {sch_class}: {middle_class}')
         middle_cl = 0
 
 if __name__ == "__main__":
