@@ -19,7 +19,16 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    def ask_user_dict():
+        answer_dict = {'Как дела?': 'Хорошо!', 'Что делаешь?': 'Программирую',
+                       'Ты голоден?': 'Есть немного :)', 'Как погода в Москве?': 'Мерзкая'}
+        answer_usr = input("Для начала разговора введите вопрос: ")
+        while answer_usr in answer_dict:
+            print(answer_dict[answer_usr])
+            answer_usr = input("Ещё вопросик!? ")
+        print(f"Такого ответа у меня пока нет :'( До свидания!")  
+
+    ask_user_dict()      
     
 if __name__ == "__main__":
     ask_user()
