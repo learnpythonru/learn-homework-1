@@ -47,22 +47,14 @@ def talk_to_me(bot, update):
 def constellation_today(bot, update):
     user_text = update.message.text
     text = user_text.split()
+    text1 = 'Вызван /planet'
+    print(text1)
+    update.message.reply_text(text1)
     #now = datetime.date() 
-    if text[1] == 'Mars':
-        planet = ephem.Mars('2019/11/29')
-        const = ephem.constellation(planet)
-        print(const)
-        update.message.reply_text(const)
-    elif text[1] == 'Jupiter': 
-        planet = ephem.Jupiter('2019/11/29')
-        const = ephem.constellation(planet)
-        print(const)
-        update.message.reply_text(const)
-    else:
-        const = 'Я пока не знаю в каком созвездии эта планета' 
-        print(const)
-        update.message.reply_text(const)
-
+    planet = getattr(ephem, text[1])('2019/11/29')
+    constellation_planet = ephem.constellation(planet)
+    update.message.reply_text(constellation_planet)
+    
 def main():
     mybot = Updater("1017943578:AAFSaBEhIBPLVK-epDLFoWpthzNNdKhkk5k", request_kwargs=PROXY)
     
