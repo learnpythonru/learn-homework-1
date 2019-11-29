@@ -14,11 +14,18 @@ import ephem
 import datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log'
                     )
+
+PROXY = {
+    'proxy_url': 'socks5://t1.learn.python.ru:1080',
+    'urllib3_proxy_kwargs': {
+        'username': 'learn',
+        'password': 'python'
+    }
+}
 
 
 def greet_user(bot, update):
@@ -39,9 +46,12 @@ def echo_planet(bot, update):
     if user_input == 'Mars':
         planet = ephem.Mars(datetime.datetime.now().strftime("%d/%m/%Y"))
         const = ephem.constellation(planet)
-        if const[1] == 'Aquarius':
-            const = 'Марс находится в созвездии стрельцов'
-            update.message.reply_text(const)
+        const = 'Марс находится в созвездии {}'.format(const[1])
+        update.message.reply_text(const)
+'''
+Как с пользовательского ввода подставить данные заместо модуля, например ephem.user_input
+Ругается что нет такого модуля. Оно и понятно потому что я подставляю строку.
+'''
 
 
 def main():
