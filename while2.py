@@ -14,12 +14,24 @@
     Программа: Программирую
     
 """
+dict1={
+    "Как дела?" : "Хорошо",
+    "Что делаешь?" : "Программирую"
+}
 
 def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    
+    while True:
+        message=input('Введите вопрос: ')
+
+        if message in dict1.keys():
+            print('Элемент найден!')
+            print(dict1[message])
+        else:
+            print('Элемент не найден!')
     
 if __name__ == "__main__":
     ask_user()
