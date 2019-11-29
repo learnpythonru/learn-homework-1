@@ -14,7 +14,7 @@
 """
 import logging
 import ephem
-import datetime
+from datetime import date
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
  
 
@@ -50,8 +50,9 @@ def constellation_today(bot, update):
     text1 = 'Вызван /planet'
     print(text1)
     update.message.reply_text(text1)
-    #now = datetime.date() 
-    planet = getattr(ephem, text[1])('2019/11/29')
+    now = str(date.today())
+    now = now.replace('-','/') 
+    planet = getattr(ephem, text[1])(now)
     constellation_planet = ephem.constellation(planet)
     update.message.reply_text(constellation_planet)
     
