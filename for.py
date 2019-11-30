@@ -21,20 +21,23 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    i = 0
     j = 0
     summa_school = 0
 
     for j in range(len(school)):
         summa_class = 0
 
-        for i in range(len(school[j]["scores"])):   
-            summa_class += school[j]["scores"][i]
-            diff1 = summa_class/len(school[j]["scores"])
+        # данный цикл можно переписать следующим образом, фкц sum более оптимизирована
+        # считаем сумму оценок по классу
+        summa_class = sum(school[j]['scores'])
+        # считаем среднее по классу
+        diff1 = summa_class/len(school[j]['scores'])
         print(diff1)
-        summa_school += diff1/4
+        # добавляем среднее в сумму по школе
+        summa_school += diff1
 
-    print(summa_school)
+    # здесь делим не на число, мы же не знаем сколько классов будет в школе. Нужно написать такую программу, которая будет работать на любом количестве классов
+    print(summa_school/len(school))
 
 if __name__ == "__main__":
     main()

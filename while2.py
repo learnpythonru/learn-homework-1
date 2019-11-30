@@ -27,11 +27,14 @@ def ask_user():
     while True:
         message=input('Введите вопрос: ')
 
-        if message in dict1.keys():
-            print('Элемент найден!')
-            print(dict1[message])
-        else:
-            print('Элемент не найден!')
+        # более простой способ
+        print(dict1.get(message, 'Элемент не найден!'))
+
+        # if message in dict1.keys():
+        #     print('Элемент найден!')
+        #     print(dict1[message])
+        # else:
+        #     print('Элемент не найден!')
     
 if __name__ == "__main__":
     ask_user()
