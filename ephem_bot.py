@@ -25,7 +25,7 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 
 
 PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
+    'proxy_url': 'socks5h://t1.learn.python.ru:1080',
     'urllib3_proxy_kwargs': {
         'username': 'learn', 
         'password': 'python'
@@ -45,17 +45,23 @@ def talk_to_me(bot, update):
     update.message.reply_text(user_text)
  
 def constellation_today(bot, update):
+    planets = ["Mars", "Jupiter", "Mercury", "Venus", "Uranus", "Pluton"]
+    error_text = 'Укажите название планеты с заглавной буквы!'
     user_text = update.message.text
     text = user_text.split()
-    text1 = 'Вызван /planet'
-    print(text1)
-    update.message.reply_text(text1)
-    now = str(date.today())
-    now = now.replace('-','/') 
-    planet = getattr(ephem, text[1])(now)
-    constellation_planet = ephem.constellation(planet)
-    update.message.reply_text(constellation_planet)
-    
+    if text[1] in planets:
+        text1 = 'Вызван /planet'
+        print(text1)
+        update.message.reply_text(text1)
+        now = str(date.today())
+        now = now.replace('-', '/')
+        planet = getattr(ephem, text[1])(now)
+        constellation_planet = ephem.constellation(planet)
+        update.message.reply_text(constellation_planet)
+    else:
+        print(error_text)
+        update.message.reply_text(error_text)
+
 def main():
     mybot = Updater("1017943578:AAFSaBEhIBPLVK-epDLFoWpthzNNdKhkk5k", request_kwargs=PROXY)
     
