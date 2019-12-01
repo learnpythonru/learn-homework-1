@@ -13,19 +13,19 @@
 
 def determine_age(digit):
     if digit < 0:
-        user = 'Person was not born. Wrong input. Input age from 3 to 65.'
+        text = 'Person was not born. Wrong input. Input age from 3 to 65.'
     elif 3 <= digit <= 6:
-        user = 'go to kindergarden'
+        text = 'go to kindergarden'
     elif 6 < digit <= 16:
-        user = 'go to school'
+        text = 'go to school'
     elif 16 < digit <= 23:
-        user = 'go to univercity'
+        text = 'go to univercity'
     elif 23 < digit <= 65:
-        user = 'go to work'
+        text = 'go to work'
     else:
-        user = 'Wrong input. Input age from 3 to 65.'
+        text = 'Wrong input. Input age from 3 to 65.'
 
-    return user
+    return text
 
 
 def main():

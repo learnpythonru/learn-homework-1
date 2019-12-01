@@ -11,7 +11,7 @@
 
 """
 ask_answer = {'How are u': 'Ok!',
-              'What are u doing':'Programming',
+              'What are u doing': 'Programming',
               'How old are u': 'Im 30',
               'Where are u from?': 'From Penza City'}
 
@@ -21,10 +21,12 @@ def ask_user():
 
     while point_break != 'exit':
         point_break = input('Ask your question or input "exit" for exit: > ')
-        for key in ask_answer:
-            if point_break == key:
-                answer = ask_answer[key]
-                print(answer)
+        if point_break == 'exit':
+            break
+        try:
+            print(ask_answer[point_break])
+        except:
+            print('Неверный вопрос')
 
 
 if __name__ == "__main__":

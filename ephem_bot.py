@@ -42,16 +42,13 @@ def talk_to_me(bot, update):
 
 def echo_planet(bot, update):
     text = 'Вызвана команда /planet'
+    print(text)
     user_input = update.message.text.split()[-1]
-    if user_input == 'Mars':
-        planet = ephem.Mars(datetime.datetime.now().strftime("%d/%m/%Y"))
-        const = ephem.constellation(planet)
-        const = 'Марс находится в созвездии {}'.format(const[1])
-        update.message.reply_text(const)
-'''
-Как с пользовательского ввода подставить данные заместо модуля, например ephem.user_input
-Ругается что нет такого модуля. Оно и понятно потому что я подставляю строку.
-'''
+    planet = getattr(ephem, user_input)(datetime.datetime.now().strftime("%d/%m/%Y"))
+    print(planet)
+    planet_output = ephem.constellation(planet)
+    planet_output = '{} находится в созвездии {}'.format(user_input, planet_output[1])
+    update.message.reply_text(planet_output)
 
 
 def main():

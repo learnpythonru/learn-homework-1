@@ -8,6 +8,9 @@
 """
 from random import randint, choice
 
+CLASS = int(input('How many classes in school: > '))
+LETTER = ['a', 'b', 'c', 'd', 'e']
+
 
 def students_score():
     """
@@ -19,22 +22,13 @@ def students_score():
 
 
 def main():
-    CLASS = int(input('How many classes in school: > '))
-    LETTER = ['a', 'b', 'c', 'd', 'e']
-
     school_student = []  # {'school_class': '1a', 'scores': students_score()}
 
     # Случайным образом выбираем классы и генерируем в них балы.
-    for i in range(1, CLASS + 1):
-        school_student.append({'school_class': str(i) + choice(LETTER), 'scores': students_score()})
+    school_student = [{'school_class': str(i) + choice(LETTER), 'scores': students_score()} for i in range(1, CLASS + 1)]
 
     # Посчитать и вывести средний балл по всей школе.
-    mid_school = []
-
-    for item in school_student:
-        mid_school.append(
-            sum(item['scores']) / len(item['scores']))  # наполняем массив средними оценками каждого класса
-
+    mid_school = [sum(item['scores']) / len(item['scores']) for item in school_student]
     mid_score = sum(mid_school) / len(mid_school)
     print('Средний бал в школе: {}\n'.format(mid_score))
 

@@ -8,14 +8,11 @@
 
 
 def ask_user():
-
     answer = ''
 
     while answer != 'Good!':
         print('How are U?')
         answer = input('> ')
-
-
 
 
 if __name__ == "__main__":

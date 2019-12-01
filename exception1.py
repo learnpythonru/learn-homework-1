@@ -8,21 +8,21 @@
 """
 
 ask_answer = {'How are u': 'Ok!',
-              'What are u doing':'Programming',
+              'What are u doing': 'Programming',
               'How old are u': 'Im 30',
               'Where are u from?': 'From Penza City'}
 
 
 def ask_user():
-
     while True:
         try:
             point_break = input('Ask your question or input "exit" for exit: > ')
+            if point_break == 'exit':
+                break
 
-            for key in ask_answer:
-                if point_break == key:
-                    answer = ask_answer[key]
-                    print(answer)
+            answer = ask_answer.get(point_break)
+            print(answer)
+
         except KeyboardInterrupt:
             print('Пока!')
             break
