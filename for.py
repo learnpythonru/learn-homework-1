@@ -30,7 +30,7 @@ def class_and_scores():
 
 
 def mid_score_in_school(score_list):
-    mid_school = mean([sum(item['scores']) / len(item['scores']) for item in score_list])
+    mid_school = [mean(item['scores']) for item in score_list]
     print('Средний бал в школе: {}\n'.format(mid_school))
 
 
