@@ -16,8 +16,13 @@ def get_summ(num_one, num_two):
     """
     Замените pass на ваш код
     """
-    pass
-    
+    try:
+        one = int(num_one)
+        two = int(num_two)
+        return one + two
+    except(ValueError):
+        return 'Incorrect argument'
+
 if __name__ == "__main__":
     print(get_summ(2, 2))
     print(get_summ(3, "3"))
