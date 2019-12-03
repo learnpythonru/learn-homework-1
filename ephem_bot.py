@@ -43,12 +43,16 @@ def talk_to_me(bot, update):
 def echo_planet(bot, update):
     text = 'Вызвана команда /planet'
     print(text)
-    user_input = update.message.text.split()[-1]
-    planet = getattr(ephem, user_input)(datetime.datetime.now().strftime("%d/%m/%Y"))
-    print(planet)
-    planet_output = ephem.constellation(planet)
-    planet_output = '{} находится в созвездии {}'.format(user_input, planet_output[1])
-    update.message.reply_text(planet_output)
+    user_input = update.message.text.split()[-1].capitalize()
+    try:
+        planet = getattr(ephem, user_input)(datetime.datetime.now().strftime("%d/%m/%Y"))
+        print(planet)
+        planet_output = ephem.constellation(planet)
+        planet_output = '{} находится в созвездии {}'.format(user_input, planet_output[1])
+        update.message.reply_text(planet_output)
+    except:
+        planet_output = f'Запрашивается неизвестная планета {user_input}'
+        update.message.reply_text(planet_output)
 
 
 def main():
