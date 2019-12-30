@@ -1,3 +1,4 @@
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -88,7 +89,13 @@ ipython_config.py
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
 #Pipfile.lock
-
+.idea
+.idea/.gitignore
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/learn-homework-1.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
 # celery beat schedule file
 celerybeat-schedule
 
@@ -121,3 +128,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/test/ephem_test.py
