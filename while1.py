@@ -14,8 +14,12 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    # учитываем регистр ответа.
+    while True:
+        user_say = input('Как дела?\n')
+        if user_say == 'Хорошо':
+            break
 
-    
+
 if __name__ == "__main__":
     ask_user()
