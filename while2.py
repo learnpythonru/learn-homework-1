@@ -14,12 +14,21 @@
     Программа: Программирую
     
 """
+PHRASES = {
+  "привет!": "привет!",
+  "как дела?": "хорошо!",
+  "что делаешь?": "программирую",
+  "пошли гулять!": "некогда!",
+  "а где бабуля?": "я за неё"
+}
 
-def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
+def ask_user_dict():
+  while True:
+    question = input("Ваш вопрос: ").strip().lower()
+    if question in PHRASES:
+      print(PHRASES[question].capitalize())
+    else:
+      print("Что?")
     
 if __name__ == "__main__":
-    ask_user()
+    ask_user_dict()

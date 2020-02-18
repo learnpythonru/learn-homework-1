@@ -22,15 +22,6 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 )
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn', 
-        'password': 'python'
-    }
-}
-
-
 def greet_user(bot, update):
     text = 'Вызван /start'
     print(text)
@@ -41,14 +32,22 @@ def talk_to_me(bot, update):
     user_text = update.message.text 
     print(user_text)
     update.message.reply_text(user_text)
+
+def planet_command(bot, update):
+  logging.info("planet command used")
  
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY)
+    settings = json.loads(open("settings.json").read())
+    key = settings["KEY"]
+    proxy_settings = settings["PROXY"]
+    mybot = Updater(key, request_kwargs=proxy_settings)
     
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
+
+    dp.add_handler(CommandHandler("planet", planet_command))
     
     mybot.start_polling()
     mybot.idle()

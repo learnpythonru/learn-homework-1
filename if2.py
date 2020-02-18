@@ -15,12 +15,28 @@
 
 """
 
+def compare_two_strings(str1, str2):
+  if type(str1) != str or type(str2) != str:
+    result = 0
+  elif str1 == str2:
+    result = 1
+  elif len(str1) > len(str2):
+    result = 2
+  elif str2 == "learn":
+    result = 3
+  else:
+    # непонятно, что делать, если вторая строка больше первой и не равна 'learn'
+    result = None
+  return result
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    print(compare_two_strings('string', {'one': 1}))
+    print(compare_two_strings(0, 1))
+    print(compare_two_strings([], 'string'))
+    print(compare_two_strings('equal', 'equal'))
+    print(compare_two_strings('this string is longer', 'qwerty'))
+    print(compare_two_strings('lrn', 'learn'))
+    print(compare_two_strings('now', 'second string is longer'))
     
 if __name__ == "__main__":
     main()

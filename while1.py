@@ -11,9 +11,7 @@
 
 
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
+  while input("Как дела? ").strip().lower() != "хорошо":
     pass
 
     
