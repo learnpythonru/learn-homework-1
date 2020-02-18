@@ -29,3 +29,4 @@ if __name__ == "__main__":
     print(get_summ("4", "4"))
     print(get_summ("five", 5))
     print(get_summ("six", "шесть"))
+
