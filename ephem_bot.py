@@ -13,6 +13,8 @@
 
 """
 import logging
+import json
+import ephem
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -29,12 +31,30 @@ def greet_user(bot, update):
 
 
 def talk_to_me(bot, update):
-    user_text = update.message.text 
-    print(user_text)
+    user_text = update.message.text
     update.message.reply_text(user_text)
 
 def planet_command(bot, update):
-  logging.info("planet command used")
+  command, planet_name = update.message.text.split()
+  logging.info(f"Planet command used, the planet is {planet_name}.")
+  planet_dict = {
+    "Moon": ephem.Moon,
+    "Mercury": ephem.Mercury,
+    "Venus": ephem.Venus,
+    "Mars": ephem.Mars,
+    "Jupiter": ephem.Jupiter,
+    "Saturn": ephem.Saturn,
+    "Uranus": ephem.Uranus,
+    "Neptune": ephem.Neptune,
+    "Pluto": ephem.Neptune
+  }
+  planet_class = planet_dict.get(planet_name)
+  if planet_class is not None:
+    p = planet_class()
+    p.compute()
+    update.message.reply_text(ephem.constellation(p)[1])
+  else:
+    update.message.reply_text("Неизвестная планета")
  
 
 def main():
@@ -45,9 +65,9 @@ def main():
     
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
-    dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-
     dp.add_handler(CommandHandler("planet", planet_command))
+
+    dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     
     mybot.start_polling()
     mybot.idle()
