@@ -13,13 +13,32 @@
 * Вывести содержимое переменной на экран
 
 """
+def who_are_you(age):
+    if age < 0:
+        return "Вы ещё не родились"
+    elif age == 0:
+        return "Зачатие? о_О"
+    elif age < 2:
+        return "Вы младенец"
+    elif age < 7:
+        return "Вы ходите в детский сад"
+    elif 7 <= age < 18:
+        return "Вы учитесь в школе"
+    elif 18 <= age < 23:
+        return "Вы учитесь в ВУЗе"
+    else:
+        return "Вы работаете"
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    try:
+      age = int(input('Введите возраст:'))
+      print(who_are_you(age))
+    except ValueError:
+      print('Необходимо ввести целое число')
 
 if __name__ == "__main__":
     main()
