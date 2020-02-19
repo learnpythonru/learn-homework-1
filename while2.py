@@ -19,7 +19,11 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    question_answer = {'Как дела?': 'Хорошо!', 'Что делаешь?': 'Программирую', 'Какая сегодня погода?': 'Хорошая'}
+    while True:
+        user_says = input('Введите вопрос ')
+        if user_says in question_answer:
+            print(question_answer[user_says])
     
 if __name__ == "__main__":
     ask_user()
