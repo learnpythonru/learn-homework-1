@@ -16,10 +16,20 @@
 """
 
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
+
+    dictionary = {"Как дела?": "Хорошо!", "Что делаешь?": "Программирую", "Как долго?": "Почти целый час"}
+    while True:
+        ask_me = input("Спроси у меня? ")
+        for key in dictionary:
+            if key == ask_me:
+                print(dictionary.get(key))
+                print("Ну, ты это… заходи, если что")
+                return False
+        else:
+            print("Я не понимаю о чем ты, спроси что нибудь о другом")
+            return ask_user()
+
+
     
 if __name__ == "__main__":
     ask_user()
