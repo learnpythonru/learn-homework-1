@@ -5,29 +5,30 @@
 Условный оператор: Сравнение строк
 
 * Написать функцию, которая принимает на вход две строки
-* Проверить, является ли то, что передано функции, строками. 
+* Проверить, является ли то, что передано функции, строками.
   Если нет - вернуть 0
 * Если строки одинаковые, вернуть 1
 * Если строки разные и первая длиннее, вернуть 2
 * Если строки разные и вторая строка 'learn', возвращает 3
-* Вызвать функцию несколько раз, передавая ей разные праметры 
+* Вызвать функцию несколько раз, передавая ей разные праметры
   и выводя на экран результаты
-
 """
 
+
 def compare_two_strings(str1, str2):
-  if type(str1) != str or type(str2) != str:
-    result = 0
-  elif str1 == str2:
-    result = 1
-  elif len(str1) > len(str2):
-    result = 2
-  elif str2 == "learn":
-    result = 3
-  else:
-    # непонятно, что делать, если вторая строка больше первой и не равна 'learn'
-    result = None
-  return result
+    if not (isinstance(str1, str) and isinstance(str2, str)):
+        return 0
+    elif str1 == str2:
+        result = 1
+    elif len(str1) > len(str2):
+        result = 2
+    elif str2 == "learn":
+        result = 3
+    else:
+        # непонятно, что делать, если str2 > str1 и str2 != 'learn'
+        result = None
+    return result
+
 
 def main():
     print(compare_two_strings('string', {'one': 1}))
@@ -37,6 +38,7 @@ def main():
     print(compare_two_strings('this string is longer', 'qwerty'))
     print(compare_two_strings('lrn', 'learn'))
     print(compare_two_strings('now', 'second string is longer'))
-    
+
+
 if __name__ == "__main__":
     main()
