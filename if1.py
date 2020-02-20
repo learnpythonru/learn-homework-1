@@ -16,23 +16,18 @@
 
 
 def age_check(raw_age):
+    answers = {tuple(i for i in range(2, 7)): 'Вы должны учиться в детском саду',
+               tuple(i for i in range(7, 18)): 'Вы должны учиться в школе',
+               tuple(i for i in range(18, 23)): 'Вы должны учиться в ВУЗе',
+               tuple(i for i in range(23, 61)): 'Вы должны работать',
+               }
     try:
         age = abs(int(raw_age))
+        for key in answers:
+            if age in key:
+                return answers[key]
     except ValueError:
         return 'Введено некорректное значение! Запустите программу повторно.'
-
-    if 2 <= age <= 60:
-        if 2 <= age <= 7:
-            career = 'Вы должны учиться в детском саду'
-        elif 7 < age < 18:
-            career = 'Вы должны учиться в школе'
-        elif 18 <= age <= 23:
-            career = 'Вы должны учиться в ВУЗе'
-        else:
-            career = 'Вы должны работать'
-    else:
-        career = 'Вы слишком молод(а) или уже пенсионер(ка) :)'
-    return career
 
 
 def main():

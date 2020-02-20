@@ -17,7 +17,7 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    school = dict()
+    school = {}
     school_literal = ['a', 'b']
     rating_list = [{'school_class': str(randint(1, 12)) + choice(school_literal),
                     'scores': [randint(1, 5) for x in range(12)]} for x in range(20)]
