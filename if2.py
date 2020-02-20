@@ -14,13 +14,29 @@
   и выводя на экран результаты
 
 """
+first_input = input("Введите строку 1: ")
+second_input = input("Введите строку 2: ")
 
-def main():
+def main(x, y):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    if isinstance(x, str) == False or isinstance(y, str) == False:
+        # print('0')
+        return 0
+    elif x == y:
+        # print('1')
+        return 1
+    elif x != y and len(str(x)) > len(str(y)) and not "learn" in y.lower():
+        # print('2')
+        return 2
+    elif x != y and "learn" in y.lower():
+        # print('3')
+        return 3
+    else:
+        print('Ошибка')
+
+
 if __name__ == "__main__":
-    main()
+    print(main(first_input, second_input))

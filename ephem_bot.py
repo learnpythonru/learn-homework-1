@@ -13,6 +13,9 @@
 
 """
 import logging
+import settings
+import ephem
+import arrow
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -22,13 +25,23 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 )
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn', 
-        'password': 'python'
-    }
-}
+def body(bot, update):
+
+    try:
+        bodies_list = [x[-1] for x in ephem._libastro.builtin_planets()]
+        p = update.message.text
+        body_name = p.split(' ')[-1]
+        date = str(arrow.now().date()).replace('-','/')
+        calc_data = getattr(ephem, body_name)(date)
+        final = ephem.constellation(calc_data)
+        while True:
+            for x in bodies_list:
+                if x.replace("'","") == body_name:
+                    update.message.reply_text(f"Планета находится в созвездии {final}")
+                    return False
+    except AttributeError:
+        update.message.reply_text("Повторите название планеты.")
+
 
 
 def greet_user(bot, update):
@@ -44,10 +57,11 @@ def talk_to_me(bot, update):
  
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY)
+    mybot = Updater(settings.API_KEY, request_kwargs=settings.PROXY)
     
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", body))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     
     mybot.start_polling()
