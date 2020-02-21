@@ -14,13 +14,28 @@
   и выводя на экран результаты
 
 """
+a = "string1"
+b = "learn"
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+
+def main(a, b):
+
+    if(type(a) != str) and (type(b) != str):
+        return 0
+    # elif a == b:
+    #     return 1
+    # elif len(a) > len(b) or a != b:
+    #     return 2
+    # elif a != b or b == 'learn':
+    #     return 3
+    else:
+        return 404
+
+print(main(a, b))
+
+
+#     if discount >= max_discount or "iphone" in name.lower() or not name:
+
     
 if __name__ == "__main__":
-    main()
+    main(a, b)
