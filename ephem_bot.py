@@ -13,7 +13,9 @@
 
 """
 import logging
-
+import datetime
+import settings
+import ephem
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
@@ -21,20 +23,20 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     filename='bot.log'
 )
 
-
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn', 
-        'password': 'python'
-    }
-}
-
-
 def greet_user(bot, update):
     text = 'Вызван /start'
-    print(text)
     update.message.reply_text(text)
+
+
+def get_planet(bot, update):
+    answer = 'Не знаю такую планету'
+    today = datetime.datetime.now().strftime('%Y/%d/%m')
+    planet = update.message.text.split()
+    if len(planet) > 1 and planet[1].lower() == 'mars':
+        mars = ephem.Mars(today)
+        update.message.reply_text('{} :: {}'.format(today, ephem.constellation(mars)))
+    else:
+        update.message.reply_text(answer)
 
 
 def talk_to_me(bot, update):
@@ -44,10 +46,12 @@ def talk_to_me(bot, update):
  
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY)
+    mybot = Updater(settings.BOT_TOKEN, request_kwargs=settings.PROXY)
     
-    dp = mybot.dispatcher
+    dp = mybot.dispatcher  
+    dp = mybot.dispatcher  
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
     
     mybot.start_polling()
