@@ -14,20 +14,21 @@
   и выводя на экран результаты
 
 """
-a = "string1"
-b = "learn"
+
 
 
 def main(a, b):
 
     if(type(a) != str) and (type(b) != str):
         return 0
-    # elif a == b:
-    #     return 1
-    # elif len(a) > len(b) or a != b:
-    #     return 2
-    # elif a != b or b == 'learn':
-    #     return 3
+    # раскомментила код 
+    elif a == b:
+        return 1
+    # если условие выше невыполнилось и мы идем дальше по коду, то a и b не совпали => здесь и далее условие a != b - избыточно
+    elif len(a) > len(b):
+        return 2
+    elif b == 'learn':
+        return 3
     else:
         return 404
 
@@ -38,4 +39,7 @@ print(main(a, b))
 
     
 if __name__ == "__main__":
+    # обычно переменные объявляем внутри функций, если они не влияют на другие функции 
+    a = "string1"
+    b = "learn"
     main(a, b)

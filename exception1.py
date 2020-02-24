@@ -16,6 +16,7 @@ def ask_user():
 
     try:
         while True:
+                # исправить получение значений из словаря аналогично как в файле while2
                 user_ask = input('Задайте вопрос: ')
                 if user_ask == "Как дела":
                     print(dict["Как дела"])
@@ -24,6 +25,14 @@ def ask_user():
     except(KeyboardInterrupt):
         print("Пока")
     # зачем тут завершение через break ?
+    # здесь подразумевалось, что в try-except ты обернешь функцию получения данных из консоли, тогда нужен был бы break чтобы выйти из цикла
+    # вот пример как бы это выглядело
+    # while..
+    #   try:
+    #       a = input()
+    #     except...
+    #         print('Пока!')
+    #         break
 
 if __name__ == "__main__":
     ask_user()
