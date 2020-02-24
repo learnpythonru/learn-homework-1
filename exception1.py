@@ -11,10 +11,19 @@
 """
 
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    dict = {"Как дела": "Хорошо!", "Что делаешь?": "Программирую"}
+
+
+    try:
+        while True:
+                user_ask = input('Задайте вопрос: ')
+                if user_ask == "Как дела":
+                    print(dict["Как дела"])
+                elif user_ask == "Что делаешь?":
+                    print(dict["Что делаешь?"])
+    except(KeyboardInterrupt):
+        print("Пока")
+    # зачем тут завершение через break ?
+
 if __name__ == "__main__":
     ask_user()
