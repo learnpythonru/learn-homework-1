@@ -15,12 +15,25 @@
 
 """
 
+
+def is_strings(s1, s2):
+    if not (isinstance(s1, str) and isinstance(s2, str)):
+        return 0
+    if s1 == s2:
+        return 1
+    if len(s1) > len(s2):
+        return 2
+    if s1 != s2 and s2 == 'learn':
+        return 3
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    print(is_strings('abc', 'learn'))
+
+
 if __name__ == "__main__":
     main()
