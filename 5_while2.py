@@ -15,11 +15,21 @@
     
 """
 
+
 def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    answer_dict = {
+        'Как дела?': 'Хорошо',
+        'Что делаешь?': 'Программирую',
+        'Как погода?': 'Солнечно',
+        'Что программируешь?': 'Дз по Python',
+    }
+    while True:
+        answer = input('Введите сообщение: ')
+        try:
+            return answer_dict[answer]
+        except:
+            continue
+
+
 if __name__ == "__main__":
-    ask_user()
+    print(ask_user())

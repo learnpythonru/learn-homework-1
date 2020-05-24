@@ -14,12 +14,32 @@
 
 """
 
+
+def how_old_are_you():
+    while True:
+        try:
+            age = int(input('Введите возраст: '))
+        except:
+            print('Введите целое число!')
+            continue
+        if age < 7:
+            return f'Вам {age}. Вам нужно учиться в детском саду.'
+        elif 7 < age < 18:
+            return f'Вам {age}. Вам нужно учиться в школе.'
+        elif 7 < age < 18:
+            return f'Вам {age}. Вам нужно учиться в вузе.'
+        else:
+            return f'Вам {age}. Вам нужно работать.'
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    # age = input()
+    print(how_old_are_you())
+
 
 if __name__ == "__main__":
     main()
