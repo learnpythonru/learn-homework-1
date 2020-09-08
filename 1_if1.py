@@ -14,42 +14,36 @@
 
 """
 
+#функция для добавления правильного окончания к возрасту:
+def age_ending(age_input):
+  age_int = int(age_input)%10
+  if age_int == 0 or 5 <= age_int<= 9 or 10 <= age_int <= 20:
+    return 'лет'
+  if age_int == 1:
+    return 'год'
+  if 2 <= age_int <= 4:
+    return 'года'
+  
+def get_age_status(age_input):
+  if age_input.isdigit():
+    age_input = int(age_input)
+    if 1 <= age_input <= 5:
+      return f'Ваш полный возраст: {age_input} {age_ending(age_input)}.\nВы должны учиться в детском саду.'
+    elif 5 < age_input <= 17:
+      return f'Ваш  полный возраст: {age_input} {age_ending(age_input)}.\nВы должны учиться в школе.'
+    elif 17 < age_input <= 150:
+      return f'Ваш полный возраст: {age_input} {age_ending(age_input)}.\nВы должны учиться в ВУЗе или работать.'
+    elif age_input > 150:
+      return f'Ваш полный возраст: {age_input} {age_ending(age_input)}.\nУкажите ваш настоящий возраст!.'
+    elif age_input == 0:
+      return f'Ваш полный возраст: {age_input} {age_ending(age_input)}.\nВы должны вырасти, чтобы пойти учиться в детский сад.'
+  else:
+    return ('Возраст указан неверно. Должно быть целое и положительное число.')
+
+
 def main():
-    age = input('Введите ваш возраст:') 
-
-    def your_destiny(age):
-
-      
-      #функция для добавления правильного окончания к возрасту:
-      def age_ending(age):
-
-        if len(str(age)) == 1 and int(age) == 0:
-          return 'лет'
-        if len(str(age)) == 1 and int(age) == 1:
-          return 'год'
-        elif len(str(age)) == 1 and 2 <= int(age) <= 4:
-          return 'года'
-        elif len(str(age)) == 1 and 5 <= int(age) <= 9:
-          return 'лет'
-        elif 2 <= len(str(age)) and 10 <= int(age) <= 20:
-          return 'лет'
-        elif 2 <= len(str(age)):
-          return age_ending(int(age)%10)
-
-      if age.isdigit() or type(age) == int:
-        if 1 <= int(age) <= 5:
-          return print(f'Ваш полный возраст: {age} {age_ending(age)}.\nВам суждено учиться в детском саду')
-        elif 5 < int(age) <= 17:
-          return print(f'Вашage  полный возраст: {age} {age_ending(age)}.\nВам суждено учиться в школе')
-        elif 17 < int(age) <= 150:
-          return print(f'Ваш полный возраст: {age} {age_ending(age)}.\nВам суждено учиться в ВУЗе или работать')
-        elif int(age) > 150:
-          return print(f'Ваш полный возраст: {age} {age_ending(age)}.\nУкажите ваш настоящий возраст!')
-        elif int(age) == 0:
-          return print(f'Ваш полный возраст: {age} {age_ending(age)}.\nВаша судьба неопределена')
-      else:
-        return print('Возраст указан неверно. Должно быть целое и положительное число')
-    your_destiny(age)
+    age_input = input('\nВведите ваш возраст:\n') 
+    print(get_age_status(age_input))
 
 if __name__ == "__main__":
     main()
