@@ -27,5 +27,5 @@ def check_string(str1, str2):
 
 if __name__ == '__main__':
         str1 = 'lol'
-        str2 = 'learn'
+        str2 = 'lol'
         check_string(str1, str2)
