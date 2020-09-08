@@ -19,7 +19,7 @@ def your_age(age):
             return 'go to garden'
         elif 6 <= age <= 18:
             return 'go to shcool'
-        elif 18 <= age <= 70:
+        elif 18 <= age <= 69:
             return "go to work"
         else:
             return 'go home,and die'
