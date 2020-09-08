@@ -15,12 +15,17 @@
 
 """
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
-if __name__ == "__main__":
-    main()
+def check_string(str1, str2):
+        if isinstance(str1, str) is False or isinstance(str2, str) is False:
+            print('0')
+        elif str1 == str2:
+            print('1')
+        elif str1 != str2 and len(str1) > len(str2):
+            print('2')
+        elif str1 != str2 and str2 == 'learn':
+            print('3')
+
+if __name__ == '__main__':
+        str1 = 'lol'
+        str2 = 'learn'
+        check_string(str1, str2)
