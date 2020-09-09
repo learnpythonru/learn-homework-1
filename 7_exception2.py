@@ -13,10 +13,17 @@
 """
 
 def get_summ(num_one, num_two):
-    """
-    Замените pass на ваш код
-    """
-    pass
+  try:
+    num_one = int(num_one)
+    try:
+      num_two = int(num_two)
+      x = int(num_one) + int(num_two)
+      return x
+    except ValueError:
+      return f'{num_two} нельзя привести к целому числу'
+  except ValueError:
+    return f'{num_one} нельзя привести к целому числу'
+      
     
 if __name__ == "__main__":
     print(get_summ(2, 2))
