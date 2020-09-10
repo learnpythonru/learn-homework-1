@@ -15,11 +15,22 @@
     
 """
 
+
 def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    answers = {
+        'Как дела?': 'Восхитительно!',
+        'Что делаешь?': 'Прокрастинирую',
+        'Как тебя зовут?': 'Антошка'  
+    }
     
+    while True: 
+        question = input("Спроси меня\n")
+        for answer in answers:
+            if answer == question:
+                print(answers[question])
+
 if __name__ == "__main__":
     ask_user()
