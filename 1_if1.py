@@ -40,7 +40,6 @@ def get_age_status(age_input):
   else:
     return ('Возраст указан неверно. Должно быть целое и положительное число.')
 
-
 def main():
     age_input = input('\nВведите ваш возраст:\n') 
     print(get_age_status(age_input))
