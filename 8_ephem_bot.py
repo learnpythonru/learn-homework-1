@@ -31,6 +31,8 @@ PROXY = {
         'password': 'python'
     }
 }
+planets = ["Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"]
+
 
 def greet_user(bot, update):
     text = 'Вызван /start'
