@@ -15,27 +15,11 @@
 """
 
 def main():
-    def occupation(age):
-        if age >= 0 and age <= 2:
-            return 'Слишком маленький возраст'
-        if age >= 3 and age <= 6:
-            return 'Вы должны учиться в детском саду'
-        elif age > 6 and age <=17:
-            return 'Вы должны учиться в школе'
-        elif age > 17 and age <=23:
-            return 'Вы должны учиться в ВУЗе'
-        elif age > 23 and age <=60:
-            return 'Вы должны работать'
-        elif age > 60:
-            return 'Вы должны быть на пенсии'
-        else:
-            return 'Некорректно введен возраст'
-
-    try:
-        x = occupation(int(input('Введите Ваш возраст: ')))
-        print(x)
-    except ValueError:
-        print('Ошибка ввода, введите число')
+    """
+    Эта функция вызывается автоматически при запуске скрипта в консоли
+    В ней надо заменить pass на ваш код
+    """
+    pass
 
 if __name__ == "__main__":
     main()
