@@ -16,16 +16,31 @@
 """
 
 def check_string(str1, str2):
-        if isinstance(str1, str) is False or isinstance(str2, str) is False:
-            print('0')
+        if not isinstance(str1, str) or not isinstance(str2, str):
+            return 0
         elif str1 == str2:
-            print('1')
-        elif str1 != str2 and len(str1) > len(str2):
-            print('2')
-        elif str1 != str2 and str2 == 'learn':
-            print('3')
+            return 1
+        elif str1 != str2:
+            if len(str1) > len(str2):
+                return 2
+            elif str2 == 'learn':
+                return 3
 
 if __name__ == '__main__':
         str1 = 'lol'
+        str2 =  1
+        print(check_string(str1, str2))
+        str1 = 'lol'
         str2 = 'lol'
-        check_string(str1, str2)
+        print(check_string(str1, str2))
+        str1 = 'lolll'
+        str2 = 'lol'
+        print(check_string(str1, str2))
+        str1 = 'lol'
+        str2 = 'learn'
+        print(check_string(str1, str2))
+        str1 = 'lol'
+        str2 = 'lldldl'
+        print(check_string(str1, str2))
+        #как обрабатывать исключения?
+
