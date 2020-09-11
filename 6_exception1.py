@@ -11,19 +11,10 @@
 """
 
 def ask_user():
-    x = input('Задайте вопрос: \n')
-    qa = {"Как дела?": "Хорошо", \
-          "Что делаешь?": "Программирую", \
-          "Что изучаешь?": "Python", \
-          "Какое сейчас время года?": "Осень"}
-    while x in qa:
-        try:  
-          print(qa[x], '\n')
-          x = input('Задайте вопрос: \n')
-        except KeyboardInterrupt:
-            print('Пока!')
-            break
-    
+    """
+    Замените pass на ваш код
+    """
+    pass
     
 if __name__ == "__main__":
     ask_user()
