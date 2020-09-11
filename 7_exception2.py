@@ -16,17 +16,7 @@ def get_summ(num_one, num_two):
     """
     Замените pass на ваш код
     """
-    try:
-      var1 = int(num_one)
-      #print('a')
-      var2 = int(num_two)
-      #print('b')
-      return var1 + var2
-    except ValueError:
-      return 'Мы ожидаем тут целые числа!'
-        
-
-    
+    pass
     
 if __name__ == "__main__":
     print(get_summ(2, 2))

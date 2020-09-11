@@ -19,19 +19,7 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    questions = {"Как тебя зовут?": "while2.py", "Как дела?": "Хорошо!", "Что делаешь?": "Программирую", "Какой сейчас год?": "2020"}
-
+    pass
     
-    def ask_user_dict():
-      user_message = 0
-      
-      while True:
-        user_message = input('Спроси меня что-нибудь ')
-        for i in questions: 
-          if user_message == i:
-            print(questions[i])
-            
-    ask_user_dict()
-             
 if __name__ == "__main__":
     ask_user()

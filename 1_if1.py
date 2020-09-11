@@ -19,26 +19,7 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    user_age = int(float((input("How old are you? "))))
-
-    def what_you_do(age):
-      if age <= 0:
-        return "Let's wait till this user will born"
-      elif 0 < age <= 6:
-        return "User is in kindergarden"
-      elif 6 < age <= 16:
-        return "User studies at school"
-      elif 16 < age <= 21:
-        return "User studies at university"
-      else:
-        return "User works"
-      
-    result = what_you_do (user_age)
-    print(result)
-
-
-
-
+    pass
 
 if __name__ == "__main__":
     main()
