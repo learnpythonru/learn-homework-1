@@ -18,7 +18,7 @@ def ask_user():
           "Какое сейчас время года?": "Осень"}
     while x in qa:
         try:  
-          print(qa[x], '\n')
+          print(qa[x])
           x = input('Задайте вопрос: \n')
         except KeyboardInterrupt:
             print('Пока!')
