@@ -44,7 +44,7 @@ def talk_to_me(bot, update):
  
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY)
+    mybot = Updater("1298937246:AAHCJdakcIz-BPw-0CLkHMqnKIyWEgw7ax0", request_kwargs=PROXY)
     
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
