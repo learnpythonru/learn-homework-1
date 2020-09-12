@@ -14,7 +14,17 @@ def ask_user():
     """
     Замените pass на ваш код
     """
-    pass
+    while True:
+      try:
+        user_say = input('Скажи что-нибудь: ')
+      except KeyboardInterrupt:
+          print("Пока!")
+          break
+      if user_say == 'Пока':
+        print('Ну пока')
+        break
+      else:
+        print('Сам ты {}'.format(user_say))
     
 if __name__ == "__main__":
     ask_user()
