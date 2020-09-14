@@ -33,13 +33,13 @@ PROXY = {
 def greet_user(update, context):
     text = 'Вызван /start'
     print(text)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text)
+    update.message.reply_text(text)
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    context.bot.send_message(chat_id=update.effective_chat.id, text=user_text)
+    update.message.reply_text(text)
 
 
 def main():
