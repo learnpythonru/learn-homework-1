@@ -4,17 +4,17 @@
 
 Исключения: KeyboardInterrupt
 
-* Перепишите функцию ask_user() из задания while2, чтобы она 
+* Перепишите функцию hello_user() из задания while1, чтобы она 
   перехватывала KeyboardInterrupt, писала пользователю "Пока!" 
   и завершала работу при помощи оператора break
     
 """
 
-def ask_user():
+def hello_user():
     """
     Замените pass на ваш код
     """
     pass
     
 if __name__ == "__main__":
-    ask_user()
+    hello_user()

@@ -4,23 +4,25 @@
 
 Исключения: приведение типов
 
-* Напишите функцию get_summ(num_one, num_two), которая принимает 
-  на вход два целых числа (int), складывает их и возвращает результат 
-  сложения
-* Оба аргумента нужно приводить к целому числу при помощи int() и 
-  перехватывать исключение ValueError если приведение типов не сработало
+* Перепишите функцию discounted(price, discount, max_discount=20)
+  из урока про функции так, чтобы она перехватывала исключения,
+  когда переданы некорректные аргументы.
+* Первые два нужно приводить к вещественному числу при помощи float(),
+  а третий - к целому при помощи int() и перехватывать исключения
+  ValueError и TypeError, если приведение типов не сработало.
     
 """
 
-def get_summ(num_one, num_two):
+def discounted(price, discount, max_discount=20)
     """
     Замените pass на ваш код
     """
     pass
     
 if __name__ == "__main__":
-    print(get_summ(2, 2))
-    print(get_summ(3, "3"))
-    print(get_summ("4", "4"))
-    print(get_summ("five", 5))
-    print(get_summ("six", "шесть"))
+    print(discounted(100, 2))
+    print(discounted(100, "3"))
+    print(discounted("100", "4.5"))
+    print(discounted("five", 5))
+    print(discounted("сто", "десять"))
+    print(discounted(100.0, 5, "10"))
