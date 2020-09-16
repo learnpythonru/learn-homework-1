@@ -1,25 +1,14 @@
-"""
+def ask_user_dict():
+    questions = {'qst': 'how are you?', 'ans': 'good!', 'qst1': 'what are you doing?', 'ans1': 'I slepping'}
 
-Домашнее задание №1
+    while True:
+        say = input('input your questions:')
+        if say.lower() == questions['qst']:
+            print(questions['ans'])
+        elif say.lower() == questions['qst1']:
+            print(questions['ans1'])
+        else:
+            print('i don\'t know')
 
-Цикл while: ask_user со словарём
-
-* Создайте словарь типа "вопрос": "ответ", например: 
-  {"Как дела": "Хорошо!", "Что делаешь?": "Программирую"} и так далее
-* Напишите функцию ask_user_dict() которая с помощью input() просит 
-  пользователя ввести вопрос, а затем, если вопрос есть в словаре, 
-  программа давала ему соотвествующий ответ. Например:
-
-    Пользователь: Что делаешь?
-    Программа: Программирую
-    
-"""
-
-def ask_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
 if __name__ == "__main__":
-    ask_user()
+    ask_user_dict()
