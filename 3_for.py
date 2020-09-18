@@ -35,7 +35,7 @@ if __name__ == "__main__":
     for mark in marks:
         scores = mark['scores']
         avg_value = calc_avg(scores)
-        print('Results for class {1} = {0}'.format(avg_value, mark['school_class']))
+        print('Results for class {0} = {1}'.format(mark['school_class'], avg_value))
         avg_marks.append(avg_value)
     avg_school_value = calc_avg(avg_marks)
     print('The average score for the whole school {0}' .format(round(avg_school_value,1)))
