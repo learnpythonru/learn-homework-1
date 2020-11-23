@@ -14,14 +14,23 @@
     Программа: Программирую
     
 """
+from datetime import datetime
 
-questions_and_answers = {}
+
+questions_and_answers = {'привет': 'Прифки, как дела?',
+                         'хорошо': 'Ну и отлично!',
+                         'что делаешь?': 'Общаюсь с тобой)',
+                         'расскажи анекдот': '-Knock-knock, -Who is there?, -Police!, -Police, who?,-There is cold. '
+                                             'Please open up!',
+                         'скажи время?': datetime.now()}
+
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    question = str(input("Привет, введи вопрос? "))
+    for que, ans in answers_dict.items():
+         if que == question:
+            return ans
+
+
 if __name__ == "__main__":
-    ask_user(questions_and_answers)
+    print(ask_user(questions_and_answers))
