@@ -33,4 +33,4 @@ def ask_user(answers_dict):
 
 
 if __name__ == "__main__":
-    print(ask_user(questions_and_answers))
+    ask_user(questions_and_answers)
