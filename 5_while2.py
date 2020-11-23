@@ -16,7 +16,6 @@
 """
 from datetime import datetime
 
-
 questions_and_answers = {'привет': 'Прифки, как дела?',
                          'хорошо': 'Ну и отлично!',
                          'что делаешь?': 'Общаюсь с тобой)',
@@ -28,7 +27,7 @@ questions_and_answers = {'привет': 'Прифки, как дела?',
 def ask_user(answers_dict):
     question = str(input("Привет, введи вопрос? "))
     for que, ans in answers_dict.items():
-         if que == question:
+        if que == question:
             return ans
 
 
