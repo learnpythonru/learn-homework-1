@@ -9,20 +9,42 @@
   когда переданы некорректные аргументы.
 * Первые два нужно приводить к вещественному числу при помощи float(),
   а третий - к целому при помощи int() и перехватывать исключения
-  ValueError и TypeError, если приведение типов не сработало.
+  ValueError и , если приведение типов не сработало.
     
 """
 
-def discounted(price, discount, max_discount=20)
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+
+def discounted(price, discount, max_discount=20):
+    try:
+        price = abs(float(price))
+        discount = abs(float(discount))
+        max_discount = abs(int(max_discount))
+
+        if max_discount > 99:
+            return 'Слишком большая максимальная сделка!'
+        elif discount >= max_discount:
+            return price
+        else:
+            return price - (price * discount / 100)
+    except ValueError:
+        return 'Не могу преобразовать строку в число!'
+    except TypeError:
+        return 'Неверный тип данных!'
+
+    # if max_discount > 99:
+    #    raise ValueError('Слишком большая максимальная сделка')
+    # if discount >= max_discount:
+    #    return price
+    # else:
+    #    return price - (price * discount / 100)
+
+
 if __name__ == "__main__":
-    print(discounted(100, 2))
+    print(discounted('100x', 2))
     print(discounted(100, "3"))
     print(discounted("100", "4.5"))
     print(discounted("five", 5))
     print(discounted("сто", "десять"))
+    print(discounted(100.0, 5, 1100))
     print(discounted(100.0, 5, "10"))
+    print(discounted(100.0, 5, ['xyz']))
