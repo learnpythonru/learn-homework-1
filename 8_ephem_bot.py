@@ -42,7 +42,7 @@ def talk_to_me(update, context):
     update.message.reply_text(text)
 
 
-def main():
+def run():
     mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
@@ -54,4 +54,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run()
