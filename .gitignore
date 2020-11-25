@@ -1,5 +1,11 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+bot_settings.py
+main.py
+price.py
+mars.py
+pyvenv.cfg
+telega_bot.log
 *.py[cod]
 *$py.class
 

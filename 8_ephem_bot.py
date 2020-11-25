@@ -20,6 +20,7 @@ from telegram.ext.callbackqueryhandler import CallbackQueryHandler
 from telegram.callbackquery import CallbackQuery
 import bot_settings
 import sys
+import datetime
 
 if not sys.warnoptions:
     import warnings
@@ -29,6 +30,10 @@ if not sys.warnoptions:
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
+
+#Чтобы вывести весь список планет!
+#pprint(ephem._libastro.builtin_planets())
+#pprint([name for _0, _1, name in ephem._libastro.builtin_planets()])
 
 PROXY = {
     'proxy_url': bot_settings.PROXY_URL,
@@ -40,28 +45,16 @@ PROXY = {
 
 
 def planet(update, context):
-    user_text = update.message.text
-    print(type(user_text))
-    print(type(user_text.split('')))
+    user_planet = update.message.text.split()
 
-    planets = {
-        'mercury': ephem.Mercury('2020'),
-        'venus': ephem.Venus('2020'),
-        'mars': ephem.Mars('2020'),
-        'jupiter': ephem.Jupiter('2020'),
-        'saturn': ephem.Saturn('2020'),
-        'uranus': ephem.Uranus('2020'),
-        'neptune': ephem.Neptune('2020')
-    }
+    try:
+        planet = getattr(ephem, user_planet[1])()
+        planet.compute(ephem.Date(datetime.date.today()))
+        result = ephem.constellation(planet)
+        update.message.reply_text(f'Планета {user_planet[1]} в созвездии {result[1]}.')
 
-    def ask_user(answers_dict, text):
-        user_text = text
-        for que, ans in answers_dict.items():
-            if que == user_text:
-                return ans
-
-    const = ephem.constellation(ask_user(planets, user_text))
-    update.message.reply_text(const)
+    except:
+        update.message.reply_text(f'Планета {user_planet[1]} не найдена.')
 
 
 def greet_user(update, context):
