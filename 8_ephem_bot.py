@@ -13,40 +13,65 @@
 
 """
 import logging
+import ephem
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
-                    filename='bot.log')
+                    filename=('foxysnow_bot'))
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
+
+def get_planet(update, context):
+    user_text = update.message.text
+    print("Команда: " + user_text)
+
+    planet_name = user_text.split(' ')[1]
+    print(planet_name)
+
+    planet = ''
+    if planet_name == 'Moon':
+      planet = ephem.Moon('2020/01/31')
+
+    if planet_name == 'Mars':
+      planet = ephem.Mars('2020/01/31')
+
+    if planet_name == 'Saturn':
+      planet = ephem.Saturn('2020/01/31')
+
+    if planet_name == 'Venus':
+      planet = ephem.Venus('2020/01/31')
+
+    if planet_name == 'Pluto':
+      planet = ephem.Pluto('2020/01/31')
+
+    if planet_name == 'Jupiter':
+      planet = ephem.Jupiter('2020/01/31')
+
+    if planet:
+      const = ephem.constellation(planet)
+      update.message.reply_text(f'Планета {planet_name} находится в созвездии {const}')
+    else:
+      update.message.reply_text('Повторите запрос позднее')
 
 
 def greet_user(update, context):
     text = 'Вызван /start'
-    print(text)
     update.message.reply_text(text)
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
-    print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text("Повторюшка: " + user_text)
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater("1496717731:AAFCYx_KGLUCQAf_q0QRJFrKnKIbL51Iqug", use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()

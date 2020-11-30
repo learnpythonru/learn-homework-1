@@ -14,7 +14,11 @@
 
 """
 
-def main(age):
+def main():
+  try:
+    age = input('Пожалуйста, введите ваш возраст: ')
+    age = int(age)
+
     if 4 < age <=6:
       print('Вы должно быть посещаете детсад?')
     if 6 <= age <=17:
@@ -23,8 +27,9 @@ def main(age):
       print('Полагаю, вы студент вуза')
     elif 25 <= age <=50:
       print('Да на вас пахать надо!!!')
+  except ValueError:
+    print('Некорректный ввод')
     
-age = input('Пожалуйста, введите ваш возраст ')
-age = int(age)
+
 if __name__ == "__main__":
-  main(age)
+  main()

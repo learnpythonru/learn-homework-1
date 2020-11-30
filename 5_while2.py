@@ -15,12 +15,16 @@
     
 """
 
-questions_and_answers = {'Как дела?': 'Хорошо!','Что делаешь?': 'Программирую', 'Как успехи?': 'Превосходно!'}
+questions_and_answers = {
+  'как дела?': 'Хорошо!',
+  'что делаешь?': 'Программирую',
+  'как успехи?': 'Превосходно!'
+}
 
 def ask_user(answers_dict):
-  while True:
-      if user_question =='Как дела?':
-        print('хрошо!')
+  user_say = input('Спроси меня: ')
+  user_say = user_say.lower()
+  print(answers_dict.get(user_say, 'прощаемся!'))
         
     
     

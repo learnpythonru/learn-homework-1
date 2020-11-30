@@ -10,24 +10,38 @@
 * Посчитать и вывести средний балл по каждому классу.
 """
 
-def main(school_scores):
-  for clas in school_scores:
-    print(clas)
-
 scores =  [
-  {'school_class': '4a', 'scores': [3,4,4,5,2,3,5,4,5,5,4,3,5]},
-  {'school_class': '5b', 'scores': [5,4,5,3,3,4,2,4,5,4,3,5,4]},
-  {'school_class': '7a', 'scores': [4,4,4,5,3,3,4,5,4,3,2,5,4]}
+  {
+    'school_class': '4a', 
+    'scores': [3,4,4,5,2,3,5,4,5,5,4,3,5]
+  },
+  {
+    'school_class': '5b', 
+    'scores': [5,4,5,3,3,4,2,4,5,4,3,5,4]
+  },
+  {
+    'school_class': '7a', 
+    'scores': [4,4,4,5,3,3,4,5,4,3,2,5,4]
+  }
 ]
 
-school_scores = [3,4,4,5,2,3,5,4,5,5,4,3,5]
-scores_sum = 0
-for score in school_scores:
-		scores_sum += score
-		print(scores_sum)
+def main(school_scores):
+  classes_scores = []
+  for clas in school_scores:
+    clas_avg_score = get_avg_scores(clas['scores'])
+    print(f'Средняя оценка класса {clas["school_class"]} равна {clas_avg_score}')
+    classes_scores.append(clas_avg_score)
+  print('Средняя оценка школы ' + str(get_avg_scores(classes_scores)))
 
-scores_avg = scores_sum / len(school_scores)
-print(f"Средняя оценка {scores_avg}")
-		
+
+def get_avg_scores(school_scores):
+    scores_sum = 0
+    for score in school_scores:
+        scores_sum += score
+
+    scores_avg = scores_sum / len(school_scores)
+    return scores_avg
+
+
 if __name__ == "__main__":
     main(scores)
