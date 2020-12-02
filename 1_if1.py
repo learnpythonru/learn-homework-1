@@ -20,7 +20,7 @@ def main():
     В ней надо заменить pass на ваш код
     """
     "test commit"
-    
+    "test commit2"
 
 if __name__ == "__main__":
     main()
