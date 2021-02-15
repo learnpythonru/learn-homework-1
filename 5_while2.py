@@ -14,14 +14,37 @@
     Программа: Программирую
     
 """
+import requests
+from pprint import pprint
+import requests
+from lxml import etree
 
-questions_and_answers = {}
+
+def get_kurs(valute='Доллар США'):
+    url = 'http://www.cbr.ru/scripts/XML_daily.asp'
+    response = requests.get(url)
+    root = etree.fromstring(response.content)
+    for elem in root.getchildren():
+        if elem[3].text == valute:
+            current_course = float(elem[4].text.replace(',', '.'))
+            break
+    return current_course
+
+
+questions_and_answers = {
+    'Как дела?': 'Хорошо',
+    'Что делаешь?': 'Ничего',
+    'Курс доллара?': get_kurs(),
+    'nothing': 'Не понял вопроса',
+    'Курс фунта?': get_kurs('Фунт стерлингов Соединенного королевства')}
+
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    while True:
+        question = input()
+        answer = questions_and_answers.get(question, "Не понял вопроса")
+        print(answer)
+
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)
