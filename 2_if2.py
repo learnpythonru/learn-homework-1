@@ -15,12 +15,35 @@
 
 """
 
+#вопрос что делать если это строки разной длины и вторая не learn?
+
+import random
+
+
+def is_it_strings(str1, str2):
+    if not (isinstance(str1, str) and isinstance(str2, str)):
+        return 0
+    else:
+        if str1 == str2:
+            return 1
+        elif len(str1) > len(str2):
+            return 2
+        elif 'learn' == str2:
+            return 3
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    strings = ['learn', 'python', 'some', 'words', 3, 5, 7, {'name': 1}]
+
+    # for i in range(20):
+    #     str1 = random.choice(strings)
+    #     str2 = random.choice(strings)
+    #     print(str1, str2, is_it_strings(str1, str2))
+    print('some', 'words', is_it_strings('some', 'words'))
+
 if __name__ == "__main__":
     main()
