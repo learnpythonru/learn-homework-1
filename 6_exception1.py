@@ -10,11 +10,29 @@
     
 """
 
+
 def hello_user():
     """
-    Замените pass на ваш код
+    почему то не работает :-(
+    не реагирует на ctrl+c и на delete не реагирует
+
     """
-    pass
-    
+
+    answer = ''
+    while answer != 'хорошо':
+        try:
+            answer = input('Как дела?\n').lower()
+            answer = float(answer)
+        except Exception as exp:
+            # этот вот работает если ввести строку например
+            print(exp)
+            break
+        except KeyboardInterrupt as exp:
+            # а вот этот не ловится. не могу понять почему?
+            print(exp)
+            break
+
+
+
 if __name__ == "__main__":
     hello_user()
