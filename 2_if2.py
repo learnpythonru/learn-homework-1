@@ -39,11 +39,13 @@ def main():
     """
     strings = ['learn', 'python', 'some', 'words', 3, 5, 7, {'name': 1}]
 
-    # for i in range(20):
-    #     str1 = random.choice(strings)
-    #     str2 = random.choice(strings)
-    #     print(str1, str2, is_it_strings(str1, str2))
-    print('some', 'words', is_it_strings('some', 'words'))
+    for i in range(20):
+        str1 = random.choice(strings)
+        str2 = random.choice(strings)
+        print(is_it_strings(str1, str2))
+
+    # print('some', 'words', is_it_strings('some', 'words'))
+
 
 if __name__ == "__main__":
     main()
