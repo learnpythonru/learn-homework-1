@@ -31,7 +31,6 @@ def main():
         print("Учится в ВУЗе")
     if age >= 24:
         print("Работает")
-        test
 
 if __name__ == "__main__":
     main()
