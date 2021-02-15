@@ -14,12 +14,30 @@
 
 """
 
+
+def who_is_user(age):
+    if age < 7:
+        return 'детсад'
+    elif age < 17:
+        return 'школа'
+    elif age < 22:
+        return 'студент'
+    elif age < 65:
+        return 'работает'
+    else:
+        return 'пенсионер'
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    user_age = int(input('Please, input your age:'))
+    user_profession = who_is_user(user_age)
+    print(user_profession)
+
+
 
 if __name__ == "__main__":
     main()
