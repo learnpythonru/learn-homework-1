@@ -121,3 +121,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#my py files
+settings.py

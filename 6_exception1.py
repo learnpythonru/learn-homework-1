@@ -9,12 +9,17 @@
   и завершала работу при помощи оператора break
     
 """
-
 def hello_user():
     """
     Замените pass на ваш код
     """
-    pass
-    
+    itr=1
+    try:
+      while input("\nКак дела?\n") != "Хорошо":
+        itr+=1
+      print("\nПока")
+    except KeyboardInterrupt:
+      print("Пока!")
+      
 if __name__ == "__main__":
     hello_user()
