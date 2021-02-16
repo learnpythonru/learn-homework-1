@@ -8,11 +8,19 @@
   пользователя “Как дела?”, пока он не ответит “Хорошо”
    
 """
+import re
+
+regexp = r'\w+'
+reg_compiled = re.compile(regexp)
+
+
+def normalize_answer(answer):
+    return reg_compiled.findall(answer.lower())
 
 
 def hello_user():
     answer = ''
-    while answer != 'хорошо':
+    while 'хорошо' not in normalize_answer(answer):
         answer = input('Как дела?\n').lower()
 
 

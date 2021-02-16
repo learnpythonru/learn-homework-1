@@ -42,9 +42,7 @@ def main():
     for i in range(20):
         str1 = random.choice(strings)
         str2 = random.choice(strings)
-        print(is_it_strings(str1, str2))
-
-    # print('some', 'words', is_it_strings('some', 'words'))
+        print(is_it_strings(str1, str2)) # None как раз там где две строки но вторая не learn
 
 
 if __name__ == "__main__":

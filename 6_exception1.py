@@ -9,29 +9,24 @@
   и завершала работу при помощи оператора break
     
 """
+import re
+
+regexp = r'\w+'
+reg_compiled = re.compile(regexp)
+
+
+def normalize_answer(answer):
+    return reg_compiled.findall(answer.lower())
 
 
 def hello_user():
-    """
-    почему то не работает :-(
-    не реагирует на ctrl+c и на delete не реагирует
-
-    """
-
     answer = ''
-    while answer != 'хорошо':
+    while 'хорошо' not in normalize_answer(answer):
         try:
             answer = input('Как дела?\n').lower()
-            answer = float(answer)
-        except Exception as exp:
-            # этот вот работает если ввести строку например
-            print(exp)
+        except KeyboardInterrupt:
+            print('Пока-пока')
             break
-        except KeyboardInterrupt as exp:
-            # а вот этот не ловится. не могу понять почему?
-            print(exp)
-            break
-
 
 
 if __name__ == "__main__":

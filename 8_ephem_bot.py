@@ -13,9 +13,9 @@
 
 """
 import datetime
-
 import ephem
 import logging
+import re
 from settings import TOKEN
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -32,6 +32,27 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 #     }
 # }
 
+PLANETS = ['Mercury', 'Venus', 'Earth', 'Mars', 'Saturn', 'Jupiter', 'Uranus', 'Neptune']
+regexp = r'\w+'
+regexp_compile = re.compile(regexp)
+
+
+def get_user_planets(user_text):
+    """
+    функция собирает в список все планеты указанные пользователем в запросе
+    :param user_text:
+    :return:
+    """
+    # user_text = user_text.split(', ')
+    user_text = regexp_compile.findall(user_text)
+    user_text = [word.capitalize() for word in user_text]
+
+    user_planets = []
+    for word in user_text:
+        if word in PLANETS:
+            user_planets.append(word)
+    return user_planets
+
 
 def greet_user(update, context):
     text = 'Вызван /start'
@@ -47,30 +68,33 @@ def talk_to_me(update, context):
 
 def planet(update, context):
     print('Вызван /planet')
-    user_text = update.message.text.split()
-    # # print(user_text)
-    user_planet = user_text[1].capitalize()
+    user_text = update.message.text
     tomorrow = (datetime.datetime.today() + datetime.timedelta(days=1)).strftime('%Y/%m/%d')
-    if user_planet == 'Mercury':
-        constellation = ephem.constellation(ephem.Mercury(tomorrow))
-    elif user_planet == 'Venus':
-        constellation = ephem.constellation(ephem.Venus(tomorrow))
-    elif user_planet == 'Earth':
-        constellation = ephem.constellation(ephem.Earth(tomorrow))
-    elif user_planet == 'Mars':
-        constellation = ephem.constellation(ephem.Mars(tomorrow))
-    elif user_planet == 'Jupiter':
-        constellation = ephem.constellation(ephem.Jupiter(tomorrow))
-    elif user_planet == 'Saturn':
-        constellation = ephem.constellation(ephem.Saturn(tomorrow))
-    elif user_planet == 'Uranus':
-        constellation = ephem.constellation(ephem.Uranus(tomorrow))
-    elif user_planet == 'Neptune':
-        constellation = ephem.constellation(ephem.Neptune(tomorrow))
-    else:
-        constellation = f'I dont know planet {user_planet}!'
 
-    update.message.reply_text(constellation)
+    user_planets = get_user_planets(user_text)
+    answer = []
+    for planet in user_planets:
+
+        if planet == 'Mercury':
+            constellation = ephem.constellation(ephem.Mercury(tomorrow))
+        elif planet == 'Venus':
+            constellation = ephem.constellation(ephem.Venus(tomorrow))
+        elif planet == 'Earth':
+            constellation = ephem.constellation(ephem.Earth(tomorrow)) # Земли походу нет?
+        elif planet == 'Mars':
+            constellation = ephem.constellation(ephem.Mars(tomorrow))
+        elif planet == 'Jupiter':
+            constellation = ephem.constellation(ephem.Jupiter(tomorrow))
+        elif planet == 'Saturn':
+            constellation = ephem.constellation(ephem.Saturn(tomorrow))
+        elif planet == 'Uranus':
+            constellation = ephem.constellation(ephem.Uranus(tomorrow))
+        elif planet == 'Neptune':
+            constellation = ephem.constellation(ephem.Neptune(tomorrow))
+        else:
+            constellation = ['no data!']
+        answer = f'Planet {planet}: ' + ', '.join(constellation)
+        update.message.reply_text(answer)
 
 
 def main():

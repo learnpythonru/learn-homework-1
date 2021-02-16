@@ -16,7 +16,13 @@ from pprint import pprint
 
 
 def generate_data():
+    """
+    функция генерирует классы школы и оценки учеников
+    классов в школе 10 каждый класс по три буквы
+    учеников в классе может быть от 10 до 20
 
+    :return: student_scores
+    """
     literals = ['a', 'b', 'c']
     digits = range(1, 11, 1)
     classes = []
@@ -26,7 +32,9 @@ def generate_data():
 
     student_scores = []
     for cls in classes:
-        scores = [random.randint(1, 5) for i in range(random.randint(10, 20))]
+        #scores = [random.randint(1, 5) for i in range(random.randint(10, 20))]
+        # сделаем средний балл более реальным, все таки вероятность получить 1 не так высока как 3 или 4
+        scores = [random.choice([1, 2, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5]) for i in range(random.randint(10,20))]
         current_class_dict = {'school_class': cls, 'scores': scores}
         student_scores.append(current_class_dict)
 
@@ -35,7 +43,7 @@ def generate_data():
 
 def get_class_mean(current_class):
     """
-    функция вычисляет средний балл по переданному ей классу школы\
+    функция вычисляет средний балл по переданному ей классу школы
     """
 
     class_scores = sum(current_class['scores'])
@@ -45,6 +53,11 @@ def get_class_mean(current_class):
 
 
 def get_school_mean(student_scores):
+    """
+    функция вычисляем средний балл школы
+    :param student_scores:
+    :return: school_mean
+    """
     scores_sum = 0
     students = 0
     for cls in student_scores:
@@ -52,13 +65,15 @@ def get_school_mean(student_scores):
         class_students = len(cls['scores'])
         scores_sum += class_sum
         students += class_students
-    return round(scores_sum / students, 2)
+        school_mean = round(scores_sum / students, 2)
+    return school_mean
 
 
 def get_school_mean_v2(school_scores):
     """
     если научиться сразу читать задание целиком, а не по пунктам, то можно было бы понять, что
     второй пункт можно сделать частью первого
+    Эта функция вычисляет среднее школы но с использованием функции которая вычисляет средний балл класса
     """
 
     class_counts = 0

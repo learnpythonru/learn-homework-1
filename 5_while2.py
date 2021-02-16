@@ -32,17 +32,22 @@ def get_kurs(valute='Доллар США'):
 
 
 questions_and_answers = {
-    'Как дела?': 'Хорошо',
-    'Что делаешь?': 'Ничего',
-    'Курс доллара?': get_kurs(),
+    'как дела?': 'Хорошо',
+    'что делаешь?': 'Ничего',
+    'курс доллара?': get_kurs(),
     'nothing': 'Не понял вопроса',
-    'Курс фунта?': get_kurs('Фунт стерлингов Соединенного королевства')}
+    'курс фунта?': get_kurs('Фунт стерлингов Соединенного королевства'),
+    'какая погода завтра?': "Здесь мог бы быть прогноз, но с вероятностью > 90% погода на завтра бывает такой же как сегодня :-)",
+}
 
 
 def ask_user(answers_dict):
     while True:
-        question = input()
-        answer = questions_and_answers.get(question, "Не понял вопроса")
+        question = input('Введите вопрос:\n')
+        if '?' not in question:
+            question = question + '?'
+
+        answer = questions_and_answers.get(question.lower(), "Не понял вопроса")
         print(answer)
 
 

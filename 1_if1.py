@@ -33,10 +33,13 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    user_age = int(input('Please, input your age:'))
-    user_profession = who_is_user(user_age)
-    print(user_profession)
-
+    while True:
+        try:
+            user_age = int(input('Please, input your age:'))
+            user_profession = who_is_user(user_age)
+            print(user_profession)
+        except ValueError:
+            print('Введите полное число лет')
 
 
 if __name__ == "__main__":
