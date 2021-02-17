@@ -18,7 +18,7 @@
 def main():
 
     def check_strings(first_string, second_string):
-        if first_string != str or second_string != str:
+        if not type(first_string) == str or not type(second_string) == str:
             return 0
         elif first_string == second_string: 
             return 1
@@ -30,7 +30,12 @@ def main():
             return 'Unknown result'
 
     print(check_strings('hello', 4))
-    print(check_strings('hello', 'hello')
-    
+    print(check_strings('hello', 'hello'))
+    print(check_strings('hello', 'hi'))
+    print(check_strings('hello', 'learn'))
+    print(check_strings('hi', 'hello'))
+
+
+
 if __name__ == "__main__":
     main()
