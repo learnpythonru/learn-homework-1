@@ -25,7 +25,7 @@ def main(string1, string2):
         elif string2 == "learn":
           return 3
     else:
-        return "0"
+        return 0
     
 string1 = input("Введите строку " )
 string2 = input("Введите строку " )
