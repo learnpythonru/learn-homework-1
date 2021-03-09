@@ -21,22 +21,24 @@ def main():
 
     def count_avrg_school_grade(info):
         total_grade = 0
+        amount_of_grades = 0
 
         for clas in info:
             total_grade += sum(clas['grades'])
+            amount_of_grades += len(clas['grades'])
 
-        average_grade = total_grade / len(info)
+        average_grade = total_grade / amount_of_grades
         return f'Cредний школый балл: {average_grade}'
 
     def count_avrg_class_grade(info):
-        class_grades = ''
+        class_grades = []
 
         for clas in info:
             average_grade = sum(clas['grades']) / len(clas['grades'])
             class_name = clas['school_class']
-            class_grades += f'Средняя оценка класса {class_name}: {average_grade} \n'
-            
-        return class_grades
+            class_grades.append(f'Средняя оценка класса {class_name}: {average_grade}')
+        
+        return '\n'.join(class_grades)
 
     print(count_avrg_school_grade(school_info))
     print(count_avrg_class_grade(school_info))

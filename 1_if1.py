@@ -14,25 +14,19 @@
 
 """
 
+user_age = int(input('Введите ваш возраст: '))
+    
+def define_place_by_age(age):
+    if 0 <= age <= 6:
+        return 'Вы должны посещать детский сад.'
+    elif 7 <= age <= 18:
+        return 'Вы должны учиться в школе.'
+    elif 19 <= age <= 23:
+        return 'Вы должны учиться в ВУЗе.'
+    elif 24 <= age <= 120 : 
+        return 'Вы должны работать.'
+    else:
+        return 'Неверно введен возраст.'
 
-def main():
-
-    user_age = int(input('Введите ваш возраст: '))
-  
-    def evaluate_user(age):
-        if 0 <= age <= 6:
-            return 'Вы должны посещать детский сад.'
-        elif 7 <= age <= 18:
-            return 'Вы должны учиться в школе.'
-        elif 10 <= age <= 23:
-            return 'Вы должны учиться в ВУЗе.'
-        elif 24 <= age <= 120 : 
-            return 'Вы должны работать.'
-        else:
-            return 'Неверно введен возраст.'
-
-    user_path = evaluate_user(user_age)
-    print(user_path)
-
-if __name__ == "__main__":
-    main()
+user_direction = define_place_by_age(user_age)
+print(user_direction)
