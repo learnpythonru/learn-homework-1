@@ -22,7 +22,7 @@ def main():
     score_avg = 0
   
     for i in school:
-        score_avg += sum(school[i]{'scores'}) / len(school[i]{'scores'})
+        score_avg += sum(school[i]['scores']) / len(school[i]['scores'])
     print(score_avg)
 
 
