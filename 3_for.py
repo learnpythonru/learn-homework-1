@@ -10,12 +10,22 @@
 * Посчитать и вывести средний балл по каждому классу.
 """
 
+
+
+school = [
+{'school_class': '4a', 'scores': [3,4,4,5,2]}, 
+{'school_class': '4b', 'scores': [3,3,4,4,2]},
+{'school_class': '4c', 'scores': [2,3,3,4,1]},
+]
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    score_avg = 0
+  
+    for i in school:
+        score_avg += sum(school[i]{'scores'}) / len(school[i]{'scores'})
+    print(score_avg)
+
+
     
 if __name__ == "__main__":
     main()
