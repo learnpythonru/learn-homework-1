@@ -15,12 +15,24 @@
 
 """
 
-def main():
+def main(s1, s2):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
     
+    if type(s1) == str and type(s2) == str:
+        if s1 == s2:
+            return 1
+        elif s1 != s2 and len(s1) > len(s2):
+            return 2
+        elif s1 != s2 and s2 == 'learn':
+            return 3
+    else:
+        return 0
+
 if __name__ == "__main__":
-    main()
+    main('Test', 'Test')
+    main('Test1', 'test')
+    main('Test', 'learn')
+    main('test', 42)
