@@ -27,22 +27,20 @@ def main(school_avg, class_avg):
             else:
                 continue 
     school_avg_score = sum(school_avg_score) / len(school_avg_score)   
-    print(f'Средний бал по всей школе: {school_avg_score}')
+    print(f'Средний балл по всей школе: {school_avg_score}')
     
     score_avg = 0
     class_name =''
     for i in school_avg:
         for j in i.values():
+
             if type(j) == list:
                 score_avg += sum(j) / len(j)
-                print(f'Средний бал класса {class_name} равен {score_avg}')
+                print(f'Средний балл класса {class_name} равен {score_avg}')
                 score_avg = 0
 
             elif type(j) == str:
                 class_name = j
-
-            else:
-                continue 
 
 if __name__ == "__main__":
     main(school, school)
