@@ -14,13 +14,22 @@
   и выводя на экран результаты
 
 """
+def compare_strings(first, second):
+    if not (isinstance(first, str) and isinstance(second, str)):
+        print(0)
+    elif first == second:
+        print(1)
+    elif len(first) > len(second):
+        print(2)
+    elif second == 'learn':
+        print(3)
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    compare_strings('999999', 'learn')
     
 if __name__ == "__main__":
     main()

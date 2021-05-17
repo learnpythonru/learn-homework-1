@@ -14,12 +14,28 @@
 
 """
 
+def guess_occupation(age):
+    if age < 0:
+        return 'Неправильный ввод'
+    elif age < 7:
+        return 'Пользователь в детском саду'
+    elif age < 18:
+        return 'Пользователь учится в школе'
+    elif age < 23:
+        return 'Пользователь учится в вузе'
+    elif age < 65:
+        return 'Пользователь работает'
+    elif age >= 65:
+        return 'Пользователь на пенсии'
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age = int(input('Введите возраст: '))
+    occupation = guess_occupation(age)
+    print(f'Magic ball says:\n{occupation}')
 
 if __name__ == "__main__":
     main()
