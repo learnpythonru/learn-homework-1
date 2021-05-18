@@ -1,6 +1,6 @@
 """
 
-Домашнее задание №1
+Домашнее задание №2
 
 Условный оператор: Сравнение строк
 
@@ -14,13 +14,33 @@
   и выводя на экран результаты
 
 """
+def string_compare(str1, str2):
+    if isinstance(str1, str) and isinstance(str2, str):
+        if str1 == str2:
+            return 1
+        elif str1 != str2 and str2 == 'learn':
+            return 3
+        elif len(str1) > len(str2):
+            return 2
+        else:
+            pass
+
+    else:
+        return 0
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    print(string_compare([1,2], 'tttx'))
+    print(string_compare('python', 'python'))
+    print(string_compare('learn', 'learn'))
+    print(string_compare('python', 'pyon'))
+    print(string_compare('python', 'learn'))
+    assert string_compare(10, 'learn') == 0
+    assert string_compare('learn', 'learn') == 1
+    assert string_compare('hello', 'hell') == 2
+    assert string_compare('learn3', 'learn') == 3
+
+
+
     
 if __name__ == "__main__":
     main()
