@@ -12,13 +12,40 @@
   ValueError и TypeError, если приведение типов не сработало.
     
 """
+phone1 = {'name': 'iPhone Xs Plus', 'stock': 24, 'price': 65432.1, 'discount': 15}
+phone2 = {'name': 'Samsung Galaxy S10', 'stock': 8, 'price': 50000.0, 'discount': 10}
+phone3 = {'name': '', 'stock': 18, 'price': 10000.0, 'discount': 10}
 
-def discounted(price, discount, max_discount=20)
-    """
-    Замените pass на ваш код
-    """
-    pass
+
+
+
+def discounted(price, discount, max_discount=50, name=''):
+    try:
+        price = abs(float(price))
+        discount = abs(float(discount))
+        max_discount = abs(int(max_discount))
     
+    except(ValueError, TypeError):
+        print('Введены неверные параметры')
+
+    
+    
+    try:
+        if max_discount > 99:
+            raise ValueError('Максимальная скидка не может быть больше 99%')
+
+        if discount >= max_discount or 'iphone' in name.lower() or not name:
+            price_with_discount = price
+    
+        else:    
+            price_with_discount = price - (price * discount / 100)
+        return(price_with_discount)
+
+    except(TypeError, ValueError):
+        print('Введены неверные параметры')
+        
+             
+
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))
