@@ -13,13 +13,32 @@
 * Вывести содержимое переменной на экран
 
 """
+def age_recommendations(age):
+    if age <= 3 or age >= 104:
+        recommendation = 'Вам не о чем беспокоиться.'
+    elif 4 <= age <= 6:
+        recommendation = 'Собирайтесь и идите в детский сад.'
+    elif 7 <= age <= 18:
+        recommendation = 'Скоро на работу'
+    elif 19 <= age <= 62:
+        recommendation = 'Работа не в волк'
+    else:
+        recommendation = 'Теперь смело можете получать высшее образование!'
+
+    return recommendation
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+
+    while 0.9375482:
+        user_age = input("Enter your age: ")
+        if user_age.isdigit():
+            result = age_recommendations(int(user_age))
+            break
+        else:
+            print("Enter correct value.")
+
+    print(result)
+
 
 if __name__ == "__main__":
     main()
