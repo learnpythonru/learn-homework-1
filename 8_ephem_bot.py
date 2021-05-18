@@ -13,6 +13,8 @@
 
 """
 import logging
+import ephem
+from datetime import datetime
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -39,7 +41,35 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+
+def get_planet_info(update, context):
+    text = update.message.text
+    planet_name = text.split()[1]
+    if planet_name == 'Moon':
+      planet = ephem.Moon(datetime.today())
+
+    if planet_name == 'Mars':
+      planet = ephem.Mars(datetime.today())
+
+    if planet_name == 'Saturn':
+      planet = ephem.Saturn(datetime.today())
+
+    if planet_name == 'Venus':
+      planet = ephem.Venus(datetime.today())
+
+    if planet_name == 'Pluto':
+      planet = ephem.Pluto(datetime.today())
+
+    if planet_name == 'Jupiter':
+      planet = ephem.Jupiter(datetime.today())
+
+    if planet:
+      const = ephem.constellation(planet)
+      update.message.reply_text(f'Планета {planet_name} находится в созвездии {const}')
+    else:
+      update.message.reply_text('Повторите запрос')
 
 
 def main():
@@ -47,6 +77,7 @@ def main():
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_planet_info))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
