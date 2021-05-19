@@ -47,42 +47,17 @@ def talk_to_me(update, context):
 def planet(update, context):
     user_text = update.message.text   
     
-    if user_text.lower() == '/planet марс' or user_text.lower() == '/planet mars':
-      mars = ephem.Mars(date.today())
-      constellation = ephem.constellation(mars)
+    planet_dict = {
+      '/planet марс': ephem.Mars(date.today()), '/planet венера': ephem.Venus(date.today()),
+      '/planet меркурий': ephem.Mercury(date.today()), '/planet юпитер': ephem.Jupiter(date.today()),
+      '/planet сатурн': ephem.Saturn(date.today()), '/planet уран': ephem.Uranus(date.today()),
+      '/planet нептун': ephem.Neptune(date.today()) 
+     }
+    
+    if user_text in planet_dict:
+      constellation = ephem.constellation(planet_dict[user_text])
       update.message.reply_text(constellation)
-
-    if user_text.lower() == '/planet венера' or user_text.lower() == '/planet venus':
-      venus = ephem.Venus(date.today())
-      constellation = ephem.constellation(venus)
-      update.message.reply_text(constellation) 
-
-    if user_text.lower() == '/planet меркурий' or user_text.lower() == '/planet mercury':
-      mercury = ephem.Mercury(date.today())
-      constellation = ephem.constellation(mercury)
-      update.message.reply_text(constellation)
-
-    if user_text.lower() == '/planet юпитер' or user_text.lower() == '/planet jupiter':
-      jupiter = ephem.Jupiter(date.today())
-      constellation = ephem.constellation(jupiter)
-      update.message.reply_text(constellation)
-
-    if user_text.lower() == '/planet сатурн' or user_text.lower() == '/planet saturn':
-      saturn = ephem.Saturn(date.today())
-      constellation = ephem.constellation(saturn)
-      update.message.reply_text(constellation)
-     
-    if user_text.lower() == '/planet уран' or user_text.lower() == '/planet uranus':
-      uranus = ephem.Uranus(date.today())
-      constellation = ephem.constellation(uranus)
-      update.message.reply_text(constellation)
-
-    if user_text.lower() == '/planet нептун' or user_text.lower() == '/planet neptune':
-      neptune = ephem.Neptune(date.today())
-      constellation = ephem.constellation(neptune)
-      update.message.reply_text(constellation)
-   
-
+ 
 
 def main():
     mybot = Updater("1821940905:AAFnxRktxDNd3hMSmGnN-M2BmQrhymnfdME", request_kwargs=PROXY, use_context=True)
