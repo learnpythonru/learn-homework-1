@@ -27,14 +27,15 @@ def discounted(price, discount, max_discount=50, name=''):
     except(TypeError, ValueError):
         print('Введены неверные параметры')
         price = 0
+    
     try:
         discount = abs(float(discount))
     except(TypeError, ValueError):
         print('Введены неверные параметры')
         discount = 0        
+    
     try:    
         max_discount = abs(int(max_discount))
-    
     except(TypeError, ValueError):
         print('Введены неверные параметры')
         max_discount = 0
@@ -43,13 +44,14 @@ def discounted(price, discount, max_discount=50, name=''):
     
     
     if max_discount > 99:
-            raise ValueError('Максимальная скидка не может быть больше 99%')
+        raise ValueError('Максимальная скидка не может быть больше 99%')
 
     if discount >= max_discount or 'iphone' in name.lower() or not name:
-            price_with_discount = price
+        price_with_discount = price
     
     else:    
-            price_with_discount = price - (price * discount / 100)
+        price_with_discount = price - (price * discount / 100)
+    
     return(price_with_discount)
 
 
