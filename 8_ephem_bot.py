@@ -52,43 +52,12 @@ def find_planet(update, context):
         print(inpt)
 
         
-        if inpt == 'Sun':
-            space_object = ephem.Sun(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
+        try:
 
-        elif inpt == 'Mercury':
-            space_object = ephem.Mercury(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-                
-        elif inpt == 'Venus':
-            space_object = ephem.Venus(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
+            space_object = getattr(ephem, inpt)(date.today())
+            message = f'Вы выбрали планету {inpt}. Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
 
-        elif inpt == 'Mars':
-            space_object = ephem.Mars(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-
-        elif inpt == 'Jupiter':
-            space_object = ephem.Jupiter(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-
-        elif inpt == 'Saturn':
-            space_object = ephem.Saturn(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-                
-        elif inpt == 'Uranus':
-            space_object = ephem.Uranus(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-
-        elif inpt == 'Neptune':
-            space_object = ephem.Neptune(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-
-        elif inpt == 'Pluto':
-            space_object = ephem.Pluto(date.today())
-            message = f'Вы выбрали планету "{inpt}". Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
-
-        else:
+        except (AttributeError):
             message = f'Вы должны указать название планеты из списка:  {planets}'
 
     else:
