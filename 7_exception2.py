@@ -24,12 +24,20 @@ def discounted(price, discount, max_discount=50, name=''):
 
     try:
         price = abs(float(price))
+    except(TypeError, ValueError):
+        print('Введены неверные параметры')
+        price = 0
+    try:
         discount = abs(float(discount))
+    except(TypeError, ValueError):
+        print('Введены неверные параметры')
+        discount = 0        
+    try:    
         max_discount = abs(int(max_discount))
     
-    except:
+    except(TypeError, ValueError):
         print('Введены неверные параметры')
-
+        max_discount = 0
 
     
     
