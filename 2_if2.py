@@ -16,13 +16,14 @@
 """
 def compare_strings(first, second):
     if not (isinstance(first, str) and isinstance(second, str)):
-        print(0)
+        reply = 0
     elif first == second:
-        print(1)
+        reply = 1
     elif len(first) > len(second):
-        print(2)
+        reply = 2
     elif second == 'learn':
-        print(3)
+        reply = 3
+    print(reply)
 
 def main():
     """

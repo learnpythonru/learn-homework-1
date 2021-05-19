@@ -49,20 +49,18 @@ def talk_to_me(update, context):
 def get_constellation_name(update, context):
     user_text = update.message.text
     user_text = user_text.split()[-1]
-    if user_text.lower() == 'mercury':
-        planet = ephem.Mercury()
-    if user_text.lower() == 'venus':
-        planet = ephem.Venus()
-    if user_text.lower() == 'mars':
-        planet = ephem.Mars()
-    if user_text.lower() == 'jupiter':
-        planet = ephem.Jupiter()
-    if user_text.lower() == 'saturn':
-        planet = ephem.Saturn()
-    if user_text.lower() == 'uranus':
-        planet = ephem.Uranus()
-    if user_text.lower() == 'neptune':
-        planet = ephem.Neptune()
+    planets = {
+        'mercury': ephem.Mercury,
+        'venus': ephem.Venus,
+        'mars': ephem.Mars,
+        'jupiter': ephem.Jupiter,
+        'saturn': ephem.Saturn,
+        'uranus': ephem.Uranus,
+        'neptune': ephem.Neptune
+        }
+
+    if user_text.lower() in planets:
+        planet = planets.get(user_text)()
 
     planet.compute()
     constellation = ephem.constellation(planet)[1]
