@@ -22,7 +22,9 @@ phone3 = {'name': '', 'stock': 18, 'price': 10000.0, 'discount': 10}
 def discounted(price, discount, max_discount=50, name=''):
     try:
         price = abs(float(price))
+    try:
         discount = abs(float(discount))
+    try:
         max_discount = abs(int(max_discount))
     
     except(ValueError, TypeError):
@@ -41,7 +43,7 @@ def discounted(price, discount, max_discount=50, name=''):
             price_with_discount = price - (price * discount / 100)
         return(price_with_discount)
 
-    except(TypeError, ValueError):
+    except ValueError:
         print('Введены неверные параметры')
         
              

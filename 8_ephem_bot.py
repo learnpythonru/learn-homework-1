@@ -16,6 +16,7 @@ import logging
 import ephem
 from datetime import date
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import settings
 
 
 
@@ -60,7 +61,7 @@ def planet(update, context):
  
 
 def main():
-    mybot = Updater("1821940905:AAFnxRktxDNd3hMSmGnN-M2BmQrhymnfdME", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
