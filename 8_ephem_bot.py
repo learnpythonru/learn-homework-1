@@ -34,7 +34,8 @@ PROXY = {
 }
 
 greetings = """
-Hi! This is Ephem bot.
+Hi there!
+This is Ephem bot.
 You can specify a planet with
 /planet <planet_name>
 command and get the constellation where this planet resides now
