@@ -29,7 +29,9 @@ def ask_user(answers_dict):
 
     while question in answers_dict:
         print(answers_dict[question])
-        question = input('Введите вопрос: ')
+        question = input('Введите вопрос(q - если вопросов нет): ')
+        if question == 'q':
+            break
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)
