@@ -10,6 +10,18 @@
 * Посчитать и вывести средний балл по каждому классу.
 """
 
+from typing import Dict
+
+
+def generate_marks() -> list:
+  pass
+
+def middle_class_mark() -> int:
+  pass
+
+def middle_school_mark() -> int:
+  pass
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
