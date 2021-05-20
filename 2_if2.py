@@ -17,17 +17,23 @@
 
 
 def main(string1, string2):
-    if type(string1) == str and type(string2) == str:  # является ли то, что передано функции, строками
-        if string1 != string2:  # Если строки разные
-            if string2 == 'learn':  # Если вторая строка 'learn', возвращает 3
+    # Является ли то, что передано функции, строками
+    if isinstance(string1, str) and isinstance(string2, str):
+        # Если строки разные
+        if string1 != string2:
+            # Если вторая строка 'learn', возвращает 3
+            if string2 == 'learn':
                 return 3
-            elif string1 != string2 and len(string1) > len(string2):  # И первая длиннее, вернуть 2
+            # Если первая длиннее, вернуть 2
+            elif string1 != string2 and len(string1) > len(string2):
                 return 2
-            else:  # В условии не сказано, что выводить в данному случае, поэтому, пусть будет так
+            # В условии не сказано, что выводить в данному случае, поэтому, пусть будет так
+            else:
                 return 'Строки разные'
         else:
             return 1
-    else:  # Если переданные значения не строки - вернуть 0
+    # Иначе - вернуть 0
+    else:
         return 0
 
 
