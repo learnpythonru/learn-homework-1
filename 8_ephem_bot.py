@@ -14,6 +14,8 @@
 """
 import logging
 import ephem
+from ephem import *
+from datetime import datetime
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -39,9 +41,16 @@ def greet_user(update, context):
 
 def planet_user(update, context):
     text = 'Вызван /planet'
-    print(text + "sadasdplanet here")
-    update.message.reply_text(text)
-
+    user_text = update.message.text
+    planet_user = user_text.split(sep=" ")
+    all_planets = [name for _0, _1, name in ephem._libastro.builtin_planets()]
+    if planet_user[1] in all_planets :
+        planet = getattr(ephem, planet_user[1])() 
+        planet.compute(datetime.now())
+        res = ephem.constellation(planet)
+        update.message.reply_text(res)
+    else:
+        update.message.reply_text("Please enter correct planet or star")
 
 
 def talk_to_me(update, context):
