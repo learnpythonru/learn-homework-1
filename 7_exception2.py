@@ -25,26 +25,26 @@ def discounted(price, discount, max_discount=20):
         price = abs(float(price))
     except (ValueError, TypeError) as e:
         stderr_log("Illegal price argument: " + e.args[0])
-        return -1
+        return None
 
     try:
         discount = abs(float(discount))
     except (ValueError, TypeError) as e:
         stderr_log("Illegal discount argument " + e.args[0])
-        return -1
+        return None
 
     try:
         max_discount = abs(int(max_discount))
     except (ValueError, TypeError) as e:
         stderr_log("Illegal max_discount argument " + e.args[0])
-        return -1
+        return None
 
     try:
         if max_discount > 99:
             raise ValueError('Discount is too high')
     except ValueError as e:
         stderr_log(e.args[0])
-        return -1
+        return None
 
     if discount >= max_discount:
         return price

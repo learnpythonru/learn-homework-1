@@ -10,14 +10,18 @@
     
 """
 
-def hello_user3():
-    while input('Как дела? ') != 'Хорошо':
-        pass
-    print('Рад за Вас')
+
+def hello_user():
+    answer = ''
+    while answer != 'Хорошо':
+        try:
+            answer = input('Как дела? ')
+        except KeyboardInterrupt:
+            print('Пока!')
+            break
+    else:
+        print('Рад за Вас')
 
 
 if __name__ == "__main__":
-    try:
-        hello_user3()
-    except KeyboardInterrupt:
-        print('\nПока!')
+    hello_user()

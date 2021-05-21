@@ -15,9 +15,7 @@
 import logging
 import settings
 import ephem
-import datetime
 
-from ephem import *
 from datetime import datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -69,7 +67,7 @@ def get_planet(update, context):
 
 def get_constellation(planet, current_city):
     try:
-        observer = city(current_city)
+        observer = ephem.city(current_city)
     except KeyError:
         raise ValueError('Unknown city specified')
     observer.date = datetime.now()
