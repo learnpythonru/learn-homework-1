@@ -28,11 +28,12 @@ def get_constellation(update, context):
     text = update.message.text.split()
     if len(text) != 2:
         update.message.reply_text('Введите запрос в формате: /planet "имя планеты".') 
+    request, planet = text
     try:
         date = datetime.now().date()
-        set_planet = getattr(ephem, text[1])
+        set_planet = getattr(ephem, planet)
         mars = set_planet(date)
-        update.message.reply_text(ephem.constellation(mars)[1])
+        update.message.reply_text(ephem.constellation(mars))
     except AttributeError:
         update.message.reply_text('Такой планеты нет в списке.')
     
