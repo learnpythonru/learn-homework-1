@@ -12,7 +12,7 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
-import logging, settings, ephem
+import logging, settings, ephem, difflib
 from datetime import date
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -20,7 +20,7 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
-planets = ('Sun', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto')
+planets = ['Sun', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
 
 
 PROXY = {
@@ -51,6 +51,16 @@ def find_planet(update, context):
         inpt = context.args[0].title()
         print(inpt)
 
+        test_word = difflib.get_close_matches(inpt, planets, n=1, cutoff = 0.6)
+
+        if len(test_word) == 0:
+            print('+')
+        else:
+            inpt = test_word[0]
+        
+        # inpt = test_word[0]
+        # print(inpt)
+
         
         try:
 
@@ -58,7 +68,7 @@ def find_planet(update, context):
             message = f'Вы выбрали планету {inpt}. Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
 
         except (AttributeError):
-            message = f'Вы должны указать название планеты из списка:  {planets}'
+            message = f'Планеты {inpt} -  не существует. Вы должны указать название планеты из списка:  {planets}'
 
     else:
 
