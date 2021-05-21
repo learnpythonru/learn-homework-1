@@ -14,13 +14,17 @@
   и выводя на экран результаты
 
 """
-
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+def string_compar(string1, string2):
+    
+    if type(string1) != str and type(string2) != str:
+        return 0
+    elif string1 == string2:
+        return 1
+    elif string1 != string2 and len(string1) > len(string2):
+        if string2 == 'learn':
+            return 3
+        else:
+            return 2
     
 if __name__ == "__main__":
-    main()
+    print(string_compar("asb ddsss", "learns"))

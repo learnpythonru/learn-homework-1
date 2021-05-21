@@ -14,12 +14,26 @@
 
 """
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+def definition_occupation():
+
+    age = int(input("How old are you? \n"))
+    if age <= 0:
+        conclusion = "You have not yet been born."
+    elif age > 0 and age < 3:
+        conclusion = "You are too young to go to kindergarten. You are still with your parents."
+    elif age >= 3 and age < 7:
+        conclusion = "You are a student of a kindergarten."
+    elif age >=7 and age < 17:
+        conclusion = "You are a school student."
+    elif age >=17 and age < 22:
+        conclusion = "You are a student."
+    elif age >=22 and age < 60:
+        conclusion = "You work somewhere."
+    else:
+        conclusion = "You are a retiree"
+    return conclusion
+
 
 if __name__ == "__main__":
-    main()
+    print(definition_occupation())
+    
