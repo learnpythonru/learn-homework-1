@@ -14,12 +14,15 @@
 """
 import logging
 
+from datetime import datetime
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+import ephem
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
-
 
 PROXY = {
     'proxy_url': 'socks5://t1.learn.python.ru:1080',
@@ -36,10 +39,21 @@ def greet_user(update, context):
     update.message.reply_text(text)
 
 
+def planet_constellation(update, context):
+    text = update.message.text.split()
+    try:
+        planet_info = getattr(ephem, text[1].title())(datetime.now().date())
+        update.message.reply_text(ephem.constellation(planet_info)[1])
+    except AttributeError:
+        update.message.reply_text("Такой планеты нет")
+    except IndexError:
+        update.message.reply_text("Вы не ввели название планеты")
+
+
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
 
 
 def main():
@@ -47,6 +61,7 @@ def main():
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", planet_constellation))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
