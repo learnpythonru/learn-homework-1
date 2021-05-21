@@ -16,7 +16,7 @@ raiting = [{'school_class': '4a',
           {'school_class': '6a', 
           'scores': [5,2,4,3,2]},
           ]
-def average_class_raiting():
+def get_average_class_raiting():
   average_scores = []
   for value in raiting:
     average = value["average_score"] = sum(value["scores"]) / len(value["scores"])  # добавляем в словарь среднюю оценку
@@ -24,14 +24,14 @@ def average_class_raiting():
   return average_scores
     
 
-def average_school_raiting():
+def get_average_school_raiting():
   average_scores = []   # заморочиться и попробовать создать список одним списочным выражением
   for score in raiting:
       average_scores.extend(score['scores'])      # идем по словарю, находим оценки и добавляем их в список.
   return round(sum(average_scores) / len(average_scores), 2)
 
 def main():
-    print("Средний балл по школе", average_school_raiting())
-    print("Средний балл по каждому классу", *average_class_raiting())
+    print("Средний балл по школе", get_average_school_raiting())
+    print("Средний балл по каждому классу", *get_average_class_raiting())
 if __name__ == "__main__":
     main()

@@ -8,7 +8,7 @@ from datetime import datetime
 PROXY = {'proxy_url': settings.PROXY_URL,
     'urllib3_proxy_kwargs': {'username': settings.PROXY_USERNAME, 'password': settings.PROXY_PASSWORD}}
 
-logging.basicConfig(filename='F:\\learn_python\\mybot\\bot.log', level=logging.INFO)
+logging.basicConfig(filename='bot.log', level=logging.INFO)
 
 def greet_user(update, context):
     
@@ -25,20 +25,17 @@ def talk_to_me(update, context):
 def get_constellation(update, context):
    
     print("Вызван /planet")
-    
+    text = update.message.text.split()
+    if len(text) != 2:
+        update.message.reply_text('Введите запрос в формате: /planet "имя планеты".') 
     try:
-        text = update.message.text.split()
-        if len(text) > 2:
-            update.message.reply_text('Введите запрос в формате: /planet "имя планеты".')
-        elif len(text) == 1 and '/planet' in text:
-                update.message.reply_text('После /planet нужно ввести имя планеты.')
         date = datetime.now().date()
         set_planet = getattr(ephem, text[1])
         mars = set_planet(date)
         update.message.reply_text(ephem.constellation(mars)[1])
     except AttributeError:
         update.message.reply_text('Такой планеты нет в списке.')
-       
+    
 
 def main():
     
