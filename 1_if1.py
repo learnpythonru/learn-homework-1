@@ -20,8 +20,8 @@ def main():
     В ней надо заменить pass на ваш код
     """
 age = int(input())
-
-def distribution(age):
+# test
+def distribution(age): 
     if 2 <= age <= 6:
         return 'Kindergarten Education'
     elif  6 < age <= 17:
