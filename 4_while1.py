@@ -11,9 +11,11 @@
 
 
 def hello_user():
-    print("Как дела ?")
-    while input() != "Хорошо":
-      print("Как дела ?")
+  answer = input('Как дела?\n')
+  while answer != "Хорошо":
+    print("Как дела?")
+    answer = input()
+
 
     
 if __name__ == "__main__":
