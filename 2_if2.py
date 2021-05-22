@@ -14,13 +14,22 @@
   и выводя на экран результаты
 
 """
-
+def compare(a, b):
+  if not (isinstance(a, str) and isinstance(b, str)):
+    return 0
+  if a == b:
+    return 1
+  if a != b and len(a) > len(b):
+    return 2
+  if a != b and b == 'learn':
+    return 3
+  
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    print(compare(123, 'ads'))
+    print(compare('qwerty', 'qwerty'))
+    print(compare('asdfghjkl', 'qwer'))
+    print(compare('fdas', 'learn'))
+    print(compare('fds', 'adfasdfsas'))
     
 if __name__ == "__main__":
     main()

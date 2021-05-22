@@ -14,14 +14,21 @@
     Программа: Программирую
     
 """
+# не понятно при чём тут цикл while, задание в такой формулировке без него делается
 
-questions_and_answers = {}
+questions_and_answers = {
+    "Как дела?": "Хорошо!", 
+    "Что делаешь?": "Программирую",
+    "В чём смысл жизни?": "42",
+    "Это канал про аниме?": "Иди сам разбирайся",
+}
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    question = input()
+    if question in answers_dict:
+        print(answers_dict[question])
+    else:
+        print("На такой вопрос у меня нет ответа.")
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)
