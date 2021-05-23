@@ -15,14 +15,14 @@
 
 """
 def compare(a, b):
-  if not (isinstance(a, str) and isinstance(b, str)):
-    return 0
-  if a == b:
-    return 1
-  if a != b and len(a) > len(b):
-    return 2
-  if a != b and b == 'learn':
-    return 3
+    if not (isinstance(a, str) and isinstance(b, str)):
+        return 0
+    if a == b:
+        return 1
+    if a != b and len(a) > len(b):
+        return 2
+    if a != b and b == 'learn':
+        return 3
   
 def main():
     print(compare(123, 'ads'))

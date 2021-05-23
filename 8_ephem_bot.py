@@ -33,15 +33,17 @@ PROXY = {
     }
 }
 
+GREET_TEXT = '''Привет!
+Напиши мне /planet и название планеты, а я скажу в каком она созвездии.
+Или /help для вывода списка планет.'''
+
 planets = ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
 
 def greet_user(update, context):
     text = 'Вызван /start'
     print(text)
-    update.message.reply_text('''Привет!
-Напиши мне /planet и название планеты, а я скажу в каком она созвездии.
-Или /help для вывода списка планет.''') # что через \n, что так, всё равно выглядит стрёмно...
-
+    update.message.reply_text(GREET_TEXT)
+     
 def help(update, context):
     text = 'Вызван /help'
     print(text)

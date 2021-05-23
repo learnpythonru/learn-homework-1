@@ -14,7 +14,6 @@
     Программа: Программирую
     
 """
-# не понятно при чём тут цикл while, задание в такой формулировке без него делается
 
 questions_and_answers = {
     "Как дела?": "Хорошо!", 
@@ -24,11 +23,14 @@ questions_and_answers = {
 }
 
 def ask_user(answers_dict):
-    question = input()
-    if question in answers_dict:
-        print(answers_dict[question])
-    else:
-        print("На такой вопрос у меня нет ответа.")
+    flag = True
+    while flag:
+        question = input()
+        if question in answers_dict:
+            print(answers_dict[question])
+            flag = False
+        else:
+            print("На такой вопрос у меня нет ответа. Задай другой")
 
 if __name__ == "__main__":
     ask_user(questions_and_answers)
