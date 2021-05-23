@@ -47,29 +47,14 @@ def talk_to_me(update, context):
 def get_planet_info(update, context):
     text = update.message.text
     planet_name = text.split()[1]
-    if planet_name == 'Moon':
-      planet = ephem.Moon(datetime.today())
-
-    if planet_name == 'Mars':
-      planet = ephem.Mars(datetime.today())
-
-    if planet_name == 'Saturn':
-      planet = ephem.Saturn(datetime.today())
-
-    if planet_name == 'Venus':
-      planet = ephem.Venus(datetime.today())
-
-    if planet_name == 'Pluto':
-      planet = ephem.Pluto(datetime.today())
-
-    if planet_name == 'Jupiter':
-      planet = ephem.Jupiter(datetime.today())
+    planet_obj = getattr(ephem, planet_name)
+    planet = planet_obj(datetime.today())
 
     if planet:
-      const = ephem.constellation(planet)
-      update.message.reply_text(f'Планета {planet_name} находится в созвездии {const}')
+        const = ephem.constellation(planet)
+        update.message.reply_text(f'Планета {planet_name} находится в созвездии {const[1]}')
     else:
-      update.message.reply_text('Повторите запрос')
+        update.message.reply_text('Повторите запрос позже')
 
 
 def main():

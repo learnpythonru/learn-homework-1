@@ -22,8 +22,7 @@ def string_comparison(string1, string2):
             return 2
         elif string1 != string2 and string2 == 'learn':
             return 3
-    else:
-        return 0
+    return 0
 
 
 def main():
