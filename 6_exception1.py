@@ -17,7 +17,7 @@ def hello_user():
     while True:
 
         try:
-            hello = str(input('Как дела чувак? =)'))
+            hello = input('Как дела чувак? =)')
 
             if hello != 'Хорошо':
                 print('Я буду задавать вопрос, пока не получу нужный ответ, - "Хорошо"')

@@ -12,7 +12,7 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
-import logging, settings, ephem, difflib
+import logging, settings, ephem, difflib, re
 from datetime import date
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -61,7 +61,6 @@ def find_planet(update, context):
         # inpt = test_word[0]
         # print(inpt)
 
-        
         try:
 
             space_object = getattr(ephem, inpt)(date.today())
@@ -79,6 +78,29 @@ def find_planet(update, context):
     
     update.message.reply_text(message)
 
+def bot_math(update, context):
+
+    if context.args:
+        
+        inpt = context.args[0]
+        result = 0
+        if bool(re.match('^[1234567890.+-/*]+$',inpt)):
+            try:
+                result = eval(inpt)
+                message = str(result)
+            except (ZeroDivisionError):
+                message = 'на ноль делить нельзя'
+        else:
+            message = 'Вы ввели недопустимые символы в математическое выражение'
+            
+
+    else: 
+        message  = 'Введите строку формата 2+2'
+
+    print("Вызов /calc")
+    update.message.reply_text(message)
+
+
 
 def main():
     mybot = Updater(settings.API_KEY, request_kwargs=PROXY, use_context=True)
@@ -86,6 +108,7 @@ def main():
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", find_planet))
+    dp.add_handler(CommandHandler("calc", bot_math))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
