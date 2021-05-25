@@ -40,10 +40,11 @@ def greet_user(update, context):
 
 
 def planet_constellation(update, context):
-    text = update.message.text.split()
+    command, planet = update.message.text.split()
     try:
-        planet_info = getattr(ephem, text[1].title())(datetime.now().date())
-        update.message.reply_text(ephem.constellation(planet_info)[1])
+        planet_info = getattr(ephem, planet.title())(datetime.now().date())
+        cons, constellation = ephem.constellation(planet_info)
+        update.message.reply_text(constellation)
     except AttributeError:
         update.message.reply_text("Такой планеты нет")
     except IndexError:
@@ -57,8 +58,8 @@ def talk_to_me(update, context):
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
-
+    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather",
+                    request_kwargs=PROXY, use_context=True)
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", planet_constellation))

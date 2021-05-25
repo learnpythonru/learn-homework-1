@@ -30,7 +30,8 @@ def main(age):
         return "Пенсия, наверно=)"
 
 
-age = int(input("Введи Ваш возрост: "))
+
 
 if __name__ == "__main__":
+    age = int(input("Введи Ваш возрост: "))
     print(main(age))
