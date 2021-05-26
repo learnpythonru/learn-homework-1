@@ -15,14 +15,12 @@
  тест
 """
 def string_compare(str1, str2):
-  first_string = str(str1)
-  second_string = str(str2)
-  if first_string.isalpha() and second_string.isalpha():
-    if first_string == second_string:
+  if isinstance(str1, str) and isinstance(str2, str):
+    if str1 == str2:
       return 1
-    elif first_string != second_string and len(first_string) > len(second_string):
+    elif str1 != str2 and len(str1) > len(str2):
       return 2
-    elif first_string != second_string and second_string == 'learn':
+    elif str1 != str2 and str2 == 'learn':
       return 3
   else:
     return 0  

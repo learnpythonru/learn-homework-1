@@ -23,10 +23,7 @@ questions_and_answers = {"Как дела?": "Хорошо!",
 
 def ask_user(answers_dict):
     answer = input("Задай вопрос\n")
-    if questions_and_answers.get(answer) is None:
-      print('Спроси что-нибудь другое.')
-    else:
-      print(questions_and_answers.get(answer))
+    print(questions_and_answers.get(answer, 'Спроси что-нибудь другое.'))
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)

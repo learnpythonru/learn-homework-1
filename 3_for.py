@@ -20,7 +20,7 @@ def get_average_class_raiting():
   average_scores = []
   for value in raiting:
     average = value["average_score"] = sum(value["scores"]) / len(value["scores"])  # добавляем в словарь среднюю оценку
-    average_scores.append(f'{value["school_class"]} = {str(average)}')
+    average_scores.append(f'{value["school_class"]} = {average}')
   return average_scores
     
 
