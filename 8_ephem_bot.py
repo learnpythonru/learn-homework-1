@@ -19,6 +19,10 @@ from datetime import datetime
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
+from decouple import config
+
+TOKEN = config('TOKEN')
+
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
@@ -60,7 +64,7 @@ def talk_to_me(update, context):
 
 
 def main():
-    mybot = Updater("1771883104:AAFRyAm2yxQsLi86cqbqjoG8c2CF9Fm2Qjc", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(TOKEN, request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("planet", planet_user))

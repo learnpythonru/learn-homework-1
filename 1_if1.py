@@ -31,7 +31,8 @@ def main():
     В ней надо заменить pass на ваш код
     """
     age = input("Please enter yours age: ")
-    print (check_age(int(age)))
+    result = check_age(int(age))
+    print (result)
 
 if __name__ == "__main__":
     main()

@@ -16,7 +16,7 @@
 """
 
 def check_parameters_strings(string1:str, string2:str):
-   if not isinstance(string1, str) and not isinstance(string2, str):
+   if not isinstance(string1, str) or not isinstance(string2, str):
       return 0
    else:
       if string1 == string2:

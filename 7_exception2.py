@@ -22,8 +22,6 @@ def discounted(price, discount, max_discount=20):
         raise ValueError('Слишком большая максимальная скидка')
     else:
         try:
-             price1 = float(price)
-             discount1 = float(discount)
              return price1 - (price1 * discount1 / 100)
         except TypeError:
              return "не те данные"
