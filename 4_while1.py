@@ -12,7 +12,7 @@
 
 def hello_user():
     while True:
-        a = str(input('Как дела?'))
+        a = str(input('Как дела?\n'))
         if a != 'Хорошо':
             continue
         else:
