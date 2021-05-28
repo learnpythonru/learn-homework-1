@@ -46,6 +46,7 @@ def in_which_constellation(update, context):
     update.message.reply_text(f'Планета {user_text} в созвездии {constellation}')
 
 
+# Следующее полнолуние
 def next_full_moon(update, context):
     try:
         user_text = update.message.text.split()[1]
@@ -55,6 +56,7 @@ def next_full_moon(update, context):
         update.message.reply_text(f'Следующее полнолуние {ephem.next_full_moon(date_now)}')
 
 
+# Калькулятор
 def calculate(update, context):
     user_text = update.message.text.split(' ')
     str_expr = ''.join(user_text[1:])
@@ -83,6 +85,7 @@ cities_list = create_cities_list()
 last_letter_bot_city = '0'
 
 
+# Города
 def cities(update, context):
     user_city = update.message.text.split()[1].capitalize()
     global last_letter_bot_city
@@ -97,7 +100,6 @@ def cities(update, context):
             last_letter_user_city = 'и'
         elif last_letter_user_city in ['ь', 'ы']:
             last_letter_user_city = user_city[-2]
-        # update.message.reply_text(f'Тебе на "{last_letter_bot_city.upper()}"')
         cities_list.remove(user_city)
         li_lit = []
         for i in cities_list:
