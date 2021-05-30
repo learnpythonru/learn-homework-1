@@ -35,5 +35,6 @@ def definition_occupation():
 
 
 if __name__ == "__main__":
-    print(definition_occupation())
+    ocupp = definition_occupation()
+    print(ocupp)
     
