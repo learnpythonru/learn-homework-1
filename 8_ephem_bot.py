@@ -39,9 +39,9 @@ def greet_user(update, context):
     update.message.reply_text(text)
 
 
-def planet_constellation(update, context):
-    command, planet = update.message.text.split()
+def planet_constellation(update, context): 
     try:
+        command, planet = update.message.text.split()
         planet_info = getattr(ephem, planet.title())(datetime.now().date())
         cons, constellation = ephem.constellation(planet_info)
         update.message.reply_text(constellation)
