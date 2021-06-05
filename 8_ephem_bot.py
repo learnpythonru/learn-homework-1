@@ -1,3 +1,11 @@
+import logging
+import ephem
+import numexpr as ne
+from random import randint
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from datetime import date, datetime
+from settings import TOKEN, PROXY
+
 """
 Домашнее задание №1
 
@@ -12,13 +20,7 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
-import logging
-import ephem
-import numexpr as ne
-from random import randint
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from datetime import date, datetime
-from settings import TOKEN, PROXY
+
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -81,41 +83,68 @@ def create_cities_list():
         return li
 
 
-cities_list = create_cities_list()
-last_letter_bot_city = '0'
+players = {}
+
+
+def cities_game(update, user_data):
+    """
+    Основная часть игры в города.
+    """
+    global players
+    user_id = user_data.get('user_id')
+    user_city = user_data.get('text')
+    last_letter = players.get(user_id)['last_letter']
+    if user_city.lower() == 'stop':
+        players.pop(user_id)
+        update.message.reply_text('Игра окончена!')
+    elif (user_city in players.get(user_id).get('cities_list') and user_city[0] == last_letter) or last_letter == '0':
+        players.get(user_id)['last_letter'] = get_last_letter(user_city).upper()
+        players.get(user_id).get('cities_list').remove(user_data.get('text'))
+        temp_list_cities = []
+        for city in players.get(user_id)['cities_list']:
+            if city[0] == players.get(user_id)['last_letter']:
+                temp_list_cities.append(city)
+        bot_city = temp_list_cities[randint(0, len(temp_list_cities))]
+        players.get(user_id)['last_letter'] = get_last_letter(bot_city).upper()
+        update.message.reply_text(bot_city)
+        update.message.reply_text(f'Тебе на "{players.get(user_id)["last_letter"]}"')
+        players.get(user_id).get('cities_list').remove(bot_city)
+    else:
+        update.message.reply_text(f'Не не, тебе на "{players.get(user_id)["last_letter"]}"')
+
+
+def check_players(user_data):
+    """
+    Проверяем наличие пользователя в списке игроков, если в списке его нет, добавляем.
+    """
+    global players
+    if user_data.get('user_id') not in players:
+        players[user_data.get('user_id')] = {'city': user_data.get('text'),
+                                             'last_letter': '0', 'cities_list': create_cities_list()}
+
+
+def get_last_letter(word):
+    """
+    Получаем последнюю букву города
+    """
+    if word[-1] == 'й':
+        result = 'и'
+    elif word[-1] in ['ь', 'ы']:
+        result = word[-2]
+    else:
+        result = word[-1]
+    return result
 
 
 # Города
 def cities(update, context):
-    user_city = update.message.text.split()[1].capitalize()
-    global last_letter_bot_city
-    global cities_list
-    if user_city.lower() == 'stop':
-        cities_list = create_cities_list()
-        last_letter_bot_city = '0'
-        update.message.reply_text('Игра окончена!')
-    elif (user_city in cities_list and user_city[0] == last_letter_bot_city.upper()) or last_letter_bot_city == '0':
-        last_letter_user_city = user_city[-1]
-        if last_letter_user_city == 'й':
-            last_letter_user_city = 'и'
-        elif last_letter_user_city in ['ь', 'ы']:
-            last_letter_user_city = user_city[-2]
-        cities_list.remove(user_city)
-        li_lit = []
-        for i in cities_list:
-            if i[0] == last_letter_user_city.upper():
-                li_lit.append(i)
-        print(li_lit)
-        bot_city = li_lit[randint(0, len(li_lit))]
-        update.message.reply_text(bot_city)
-        last_letter_bot_city = bot_city[-1]
-        if last_letter_bot_city == 'й':
-            last_letter_bot_city = 'и'
-        elif last_letter_bot_city in ['ь', 'ы']:
-            last_letter_bot_city = bot_city[-2]
-        update.message.reply_text(f'Тебе на "{last_letter_bot_city.upper()}"')
-    else:
-        update.message.reply_text(f'Неа, тебе на "{last_letter_bot_city.upper()}"')
+    """
+     По команде /cities <Название города> начинается игра с ботом в "Города"
+    """
+    global players
+    user_data = {'user_id': update.message.chat.id, 'text': context.args[0].capitalize()}
+    check_players(user_data)
+    cities_game(update, user_data)
 
 
 def wordcount(update, context):
