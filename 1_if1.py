@@ -13,13 +13,25 @@
 * Вывести содержимое переменной на экран
 
 """
+def get_user_age():
+    user_age = int(input('Введите возраст: '))
+    user_age = abs(user_age)
+    if 0 < user_age < 7:
+      return 'Ходи пешком под стол.'
+    elif 7 <= user_age <= 17:
+      return 'Делай уроки!'
+    elif 18 <= user_age <= 24:
+      return 'Учись, студент!'
+    else:
+      return 'Пора работу работать.'
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    user_age = get_user_age()
+    print(user_age)
 
 if __name__ == "__main__":
     main()
