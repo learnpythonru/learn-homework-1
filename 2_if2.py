@@ -14,13 +14,28 @@
   и выводя на экран результаты
 
 """
+running = True
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+def main(line_1,line_2):
+    if type(line_1) != str and type(line_2) != str:
+        print(0)
+    elif len(line_1) == len(line_2) and line_2 != 'learn':
+        print(1)
+    elif len(line_1) > len(line_2):
+        print(2)
+    elif len(line_1) != len(line_2) and line_2 == 'learn':
+        print(3)
+    else:
+        print('неизвестно')
     
-if __name__ == "__main__":
-    main()
+
+while running:
+    line_1 = input('Введите первую строку: ')
+    line_2 = input('Введите вторую строку: ')
+    if line_1 == 'STOP':
+        break
+    elif line_2 == 'STOP':
+        break
+    else:
+        main(line_1, line_2)
+
