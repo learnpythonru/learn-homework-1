@@ -11,11 +11,34 @@
 """
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
+    class_dict = [ 
+         {'school_class': '4a', 'scores': [3,4,4,5,2]},
+         {'school_class': '4b', 'scores': [5,4,1,5,4]},
+         {'school_class': '4c', 'scores': [1,3,1,2,4]}
+    ]
+
+    def avg_school():
+        ttl = 0
+        counter = 0 
+        for i in range(len(class_dict)): 
+            for score in class_dict[i]['scores']:
+                ttl = ttl + score
+                counter += 1
+        return f"School avg is {ttl/counter}"
+
+    def avg_class():
+        answer=''
+        for i in range(len(class_dict)):
+            ttl = 0
+            counter = 0
+            for score in class_dict[i]['scores']:
+                ttl = ttl + score
+                counter += 1
+            avg = ttl/counter
+            answer =answer+ f"Class {class_dict[i]['school_class']} avg is {avg} \n"
+        return answer 
+
+    print (avg_school())
+    print (avg_class())
 if __name__ == "__main__":
     main()
