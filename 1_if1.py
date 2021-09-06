@@ -48,6 +48,6 @@ def main():
     while exit_code != 1:
         user_age=input('Пожалуйста введите свой возраст: ')
         exit_code=check_age(user_age)
-
+ 
 if __name__ == "__main__":
     main()
