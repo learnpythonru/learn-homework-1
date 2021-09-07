@@ -13,6 +13,9 @@
 
 """
 import logging
+import sys
+import ephem
+from datetime import datetime
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -31,22 +34,45 @@ PROXY = {
 
 
 def greet_user(update, context):
-    text = 'Вызван /start'
-    print(text)
+    text = '''Это астрономический бот! Введите /planet <planet> и узнаете в каком созвездии расположена планета сегодня! Например /planet mars'''
     update.message.reply_text(text)
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+def get_constellation(update, context):
+    planets = {
+        "mercury":ephem.Mercury,
+        "venus":ephem.Venus,
+        "mars":ephem.Mars,
+        "jupiter":ephem.Jupiter,
+        "saturn":ephem.Saturn,
+        "uranus":ephem.Uranus,
+        "neptune":ephem.Neptune
+    }
+    try:
+        planet = update.message.text.split()[1].lower()
+    except IndexError:
+        update.message.reply_text("введите планету в формате /planet <planet>")
+    
+    if planet not in planets:
+        update.message.reply_text("неизвестная планета")
+    
+    today_planet = planets[planet](datetime.today().strftime("%Y/%m/%d"))
+    constellation = ephem.constellation(today_planet)
+    update.message.reply_text(constellation)
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(sys.argv[1],
+                    request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_constellation))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
