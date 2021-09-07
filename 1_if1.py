@@ -13,13 +13,38 @@
 * Вывести содержимое переменной на экран
 
 """
+try:
+  user_age = int(input('Введите Ваш возраст: '))
+  while user_age < 1:
+    user_age = int(input('Введите целое, положительное число!: '))
+except TypeError:
+  user_age = int(input('Введите целое, положительное число!: '))
+
+
+
+def check_age(age):
+  if 1 <= age < 7:
+    return "Вы должны учиться в детском саду!"
+  elif 7 <= age < 17:
+    return "Вы должны учиться школе"
+  elif 17 <= age < 23:
+    return "Вы должны учиться в ВУЗе"
+  elif 23 <= age < 65:
+    return "Вы должны работать"
+  else:
+    return "Пора на пенсию"
+
+  
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    answer = check_age(user_age)
+    print(answer)
+    
+
 
 if __name__ == "__main__":
     main()

@@ -15,12 +15,39 @@
 
 """
 
+def compare_strings(string1, string2):
+  if string1 != str(string1) or string2 != str(string2):
+    return 0
+  else:
+    if string1 == string2:
+      return 1
+    else:
+      if len(string1) > len(string2):
+        return 2
+      elif string2 == "learn":
+        return 3
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    first = compare_strings(5, 5)
+    print(first)
+    second = compare_strings('3', 5)
+    print(second)
+    third = compare_strings(5, '3')
+    print(third)
+    fourth = compare_strings('5', '5')
+    print(fourth)
+    fifth = compare_strings('3', '5')
+    print(fifth)
+    sixth = compare_strings('hey', 'hey')
+    print(sixth)
+    seventh = compare_strings('hey', 'learn')
+    print(seventh)
+    eighth = compare_strings('learn', 'hey')
+    print(eighth)
 if __name__ == "__main__":
     main()
