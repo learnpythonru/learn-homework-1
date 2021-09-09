@@ -14,24 +14,25 @@ groups = [{'school_class' : '4A', 'scores' : [5,3,4,5,5]},
     {'school_class' : '4C', 'scores' : [4,5,5,2,2]}]
 
 def class_score():
-  total_score = 0
-  for group in groups:
+    total_score = 0
+    total_students = 0
+    for group in groups: # для каждой группы в группах
         name = group['school_class']
         scores = group['scores']
         average_group_rating = (sum(scores))/(len(scores))
         print(f'Средний бал класса {name}: {average_group_rating}')
-        for score in group['scores']:
-            total_score += score
-            average_school_rating = total_score/(len(scores)*len(groups))
+        total_score += sum(scores)
+        total_students += len(scores)
 
-  print(f'Средний бал всей школы {average_school_rating}')
+    average_school_rating = total_score/total_students
+    print(f'Средний бал всей школы {average_school_rating}')
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    class_score()
 
 if __name__ == "__main__":
     main()
