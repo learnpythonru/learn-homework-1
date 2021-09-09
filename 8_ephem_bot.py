@@ -63,7 +63,7 @@ def planet_status(update, context):
 
 
 def main():
-    mybot = Updater("1962105317:AAGFT9CJFj4B9PF8mKkWilHOg3WQcU9aoQM", request_kwargs=PROXY, use_context=True)
+    mybot = Updater("ТУТ БЫЛ КЛЮЧ", request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
