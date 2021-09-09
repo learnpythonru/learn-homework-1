@@ -14,8 +14,8 @@ def hello_user():
     """
     Замените pass на ваш код
     """
-    answer = input("Как дела?: ")
-    while answer != 'Хорошо':
+    answer = ''
+    while answer.capitalize() != 'Хорошо':
       answer = input("Как дела?: ")
 
     
