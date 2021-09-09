@@ -15,13 +15,22 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {'Как дела?':'Хорошо!',
+    'Что делаешь?':'Программирую',
+    'И как?':'Ну так',
+    'Что так?': 'Юзер-абузер',
+    'Почему?': 'По кочану',
+    ':,(':'xP'}
+    
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+  while True:
+    user_say = input('Задайте вопрос: ')
+    if answers_dict.get(user_say.capitalize()) != None:
+      print(answers_dict[user_say.capitalize()])
+    else:
+      print('Неверный вопрос!')
+      break
+     
 if __name__ == "__main__":
     ask_user(questions_and_answers)
