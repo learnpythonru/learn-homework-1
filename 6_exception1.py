@@ -10,15 +10,14 @@
     
 """
 
-
 def hello_user():
-    return input('Как дела ? \n')
+    while True:
+        try:
+            if input('Как дела ? \n') == 'Хорошо':
+                break
+        except KeyboardInterrupt:
+            print('\nПока')
+            break
 
-while True:
-    if hello_user() != 'Хорошо':
-        continue
-    else:
-        break
-    
 if __name__ == "__main__":
     hello_user()

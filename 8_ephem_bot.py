@@ -13,8 +13,10 @@
 
 """
 import logging
-
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import config
+import time
+import ephem
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -41,12 +43,22 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(text)
 
+def where_is_planet(update, context):
+    user_text = update.message.text
+    mars = user_text.split()[1]
+    today = time.strftime('%Y/%m/%d')
+    mars = ephem.Mars(today)
+    constellation = ephem.constellation(mars)
+    print(constellation)
+    update.message.reply_text(text)
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    #mybot = Updater(config.TOKEN, request_kwargs=PROXY, use_context=True)
+    mybot = Updater(config.TOKEN, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("Mars", where_is_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()

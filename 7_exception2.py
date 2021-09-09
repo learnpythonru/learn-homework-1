@@ -12,13 +12,26 @@
   ValueError и TypeError, если приведение типов не сработало.
     
 """
+def discounted(price, discount, max_discount=20):
+    try:
+        price = float(abs(price))
+        discount = float(abs(discount))
+        max_discount = int(abs(max_discount))
+    except TypeError:
+        print('price, discount, max_discount должны быть числами')
+    try:
+        if max_discount >= 100:
+            raise ValueError('Слишком большая максимальная скидка')
+    except TypeError:
+        print('max_discount должно быть числом')
+    try:
+        if discount >= max_discount:
+             return price
+        else:
+             return price - (price * discount / 100)
+    except TypeError:
+        print('discount, max_discount должны быть числами')
 
-def discounted(price, discount, max_discount=20)
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))

@@ -9,15 +9,10 @@
    
 """
 
-def hello_user():
-    def hello_user():
-        return input('Как дела ? \n')
 
-    while True:
-        if hello_user() != 'Хорошо':
-            continue
-        else:
-            break
+def hello_user():
+    while input('Как дела ? \n') != 'Хорошо':
+        continue
     
 if __name__ == "__main__":
     hello_user()
