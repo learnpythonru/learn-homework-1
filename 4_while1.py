@@ -15,7 +15,7 @@ def hello_user():
         hello_user = input('Как дела?: ')
         if hello_user == 'Хорошо':
             return'Это супер!'
-            break
+            #break
         else:
             print('Нет,', '"', format(hello_user), '"', 'не подходит:(')
 
