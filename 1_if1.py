@@ -13,13 +13,30 @@
 * Вывести содержимое переменной на экран
 
 """
+def persons_task(age):
+    if age < 0 or age > 200:
+      return 'Please inpute correct age'
+    elif age < 3:
+      return 'baby with her mom all time'
+    elif age < 7:
+      return 'Kindergarten'
+    elif age < 17:
+      return 'School'
+    elif age < 22:
+      return 'Higher education'
+    elif age >= 22:
+      return 'Work'
+
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age = int(input('Please type your age '))
+    answer = (persons_task(age))
+    print(answer)
+
 
 if __name__ == "__main__":
     main()
