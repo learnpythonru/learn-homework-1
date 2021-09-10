@@ -20,19 +20,21 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
+    def compare_string():
+        first_string = input()
+        second_string = input()
+        if not type(first_string or second_string) is str:
+            print('0')
+        elif first_string == second_string:
+            print('1')
+        elif first_string != second_string and first_string > second_string:
+            print('2')
+        elif first_string != second_string and second_string == 'learn':
+            print('3')
+        else:
+            print('''Let's try again''')
 
-    first_string = input()
-    second_string = input()
-    if not type(first_string or second_string) is str:
-        print('0')
-    elif first_string == second_string:
-        print('1')
-    elif first_string != second_string and first_string > second_string:
-        print('2')
-    elif first_string != second_string and second_string == 'learn':
-        print('3')
-    else:
-        print('''Let's try again''')
+    compare_string()
 
 if __name__ == "__main__":
     main()
