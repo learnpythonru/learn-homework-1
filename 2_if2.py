@@ -15,7 +15,7 @@
 
 """
 def str_fuck(str1, str2):
-      if type(str1) is not str or type(str2) is not str:
+      if not isinstance(str1, str) or not isinstance(str2, str):
         return 0
       if str1 == str2:
         return 1
@@ -23,6 +23,8 @@ def str_fuck(str1, str2):
         return 2
       elif str2 == 'learn':
         return 3
+      else:
+        return 4
 
 
 def main():
