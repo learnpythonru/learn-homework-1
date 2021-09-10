@@ -9,6 +9,8 @@
 * Посчитать и вывести средний балл по всей школе.
 * Посчитать и вывести средний балл по каждому классу.
 """
+import numpy as np
+
 
 def main():
     """
@@ -21,11 +23,9 @@ def main():
     total_summ = 0
     count_students = 0
     for s_class in class_list:
-      class_summ = 0
-      for score in s_class['scores']:
-        class_summ += score
-        total_summ += score
-      s_class['mean'] = round(class_summ / len(s_class['scores']), 2)
+      class_summ = sum(s_class['scores'])
+      total_summ += class_summ
+      s_class['mean'] = round(np.mean(s_class['scores']), 2)
       count_students += len(s_class['scores'])
       print(f"Средняя оценка для класса {s_class['school_class']}: {s_class['mean']}")
     print(f"Средняя оценка для школы: {round(total_summ / count_students , 2)}")
