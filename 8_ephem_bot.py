@@ -31,12 +31,10 @@ PROXY = {
     }
 }
 
-
 def greet_user(update, context):
     text = 'Вызван /start'
     print(text)
     update.message.reply_text(text)
-
 
 def talk_to_me(update, context):
     user_text = update.message.text
@@ -44,26 +42,30 @@ def talk_to_me(update, context):
     update.message.reply_text(text)
 
 def where_is_planet(update, context):
-    user_text = update.message.text
-    mars = user_text.split()[1]
     today = time.strftime('%Y/%m/%d')
-    mars = ephem.Mars(today)
-    constellation = ephem.constellation(mars)
-    print(constellation)
-    update.message.reply_text(text)
+    user_text = update.message.text
+    print(user_text)
+    planet = (user_text.split()[1])
+    update.message.reply_text(user_text.split()[1])
+    if planet in ['Mars', 'Jupiter', 'Mercury', 'Pluto']:
+        if planet == 'Mars': planet = ephem.Mars(today)
+        elif planet == 'Jupiter': planet = ephem.Jupiter(today)
+        elif planet == 'Mercury': planet = ephem.Mercury(today)
+        elif planet == 'Pluto': planet = ephem.Pluto(today)
+        constellation = ephem.constellation(planet)
+        print(constellation)
+        update.message.reply_text(constellation)
 
 def main():
-    #mybot = Updater(config.TOKEN, request_kwargs=PROXY, use_context=True)
-    mybot = Updater(config.TOKEN, use_context=True)
+    mybot = Updater(config.TOKEN, request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
-    dp.add_handler(CommandHandler("Mars", where_is_planet))
+    dp.add_handler(CommandHandler('planet', where_is_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
     mybot.idle()
-
 
 if __name__ == "__main__":
     main()
