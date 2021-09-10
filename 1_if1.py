@@ -19,21 +19,49 @@
 # when he died - so I took it
 # as a boundary value
 
-user_age = input('How old are you?')
+# возраст берется из ввода пользователя +
+# user_age = input('How old are you?')
 
-def main(user_age):
-  # this works only one time
-  # if user enter not valid arguments secong time 
-  # it falls anyway
-  try: 
-    int(user_age)
-  except ValueError:
-    print('It is not a number')
-    user_age = input('How old are you?')
-  else: 
-    print('It is not a number')
-    user_age = input('How old are you?')
+# asking user in separate function
+def ask_use_age():
+  while True:
+    try:
+      user_age = input('How old are you?')
+      return int(user_age)
+    except ValueError:
+      print('It is npt a number (func output)')
+
+# верно заданя ветвления условного оператора +
+# и подобраны ответы + 
+# как сделать так, чтобы значение переменной,
+# которое получается в одной функции
+# сохранялось в глобальной области?
+# например main(user_age) не видит user age 
+# хотя у нас есть return user_age in ask_user_age ?
+def main():
+  
+  # не конвертируется в int
+  # try: 
+  #   int(user_age)
+  # except ValueError:
+  #   print('It is not a number')
+  #   user_age = input('How old are you?')
+  # else: 
+  #   print('It is not a number')
+  #   user_age = input('How old are you?')
+  
+  # run until user_age won't be an int
+  # can we run it until user_age won't be 
+  # an int within a specific range of numbers
+  # while not isinstance(user_age, int):
+  #   try: 
+  #     user_age = int(user_age)
+  #   except ValueError:
+  #     print('Is is not a number')
+  #     user_age = input('Please enter valid value between 0 and 122. How old are you?')
     
+  user_age = ask_use_age()
+  
   if 0 <= user_age <= 2:
       print(f'You are {user_age} years old')
       print('Oh, you such a baby')
@@ -57,5 +85,6 @@ def main(user_age):
   else: 
     print('Invalid argument, please type a number within 0 - 122 range')
 
+# why do we see "None" after the function output? 
 if __name__ == "__main__":
-  print(main(user_age))
+  print(main())
