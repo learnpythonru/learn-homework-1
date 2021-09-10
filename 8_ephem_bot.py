@@ -65,7 +65,7 @@ def get_planet(update, context):
     }
     
     if planet not in dict_of_planets.keys():
-        update.message.reply_text('Я не знаю такую планету :(')
+        update.message.reply_text('К сожалению, я не знаю такую планету :(')
     else:
         constellation = ephem.constellation(dict_of_planets[planet])[1]
         update.message.reply_text(f'Сегодня: {data_day}. Планета {planet} в созвездии {constellation}.')
