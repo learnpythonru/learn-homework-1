@@ -14,9 +14,7 @@
 
 """
 def persons_task(age):
-    if age < 0 or age > 200:
-      return 'Please inpute correct age'
-    elif age < 3:
+    if age < 3 and age > 0:
       return 'baby with her mom all time'
     elif age < 7:
       return 'Kindergarten'
@@ -24,8 +22,11 @@ def persons_task(age):
       return 'School'
     elif age < 22:
       return 'Higher education'
-    elif age >= 22:
+    elif age >= 22 and age < 200:
       return 'Work'
+    else:
+      return 'Please inpute correct age'
+
 
 
 def main():
@@ -33,9 +34,13 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    age = int(input('Please type your age '))
-    answer = (persons_task(age))
-    print(answer)
+    try:
+      age = int(input('Please type your age '))
+      answer = persons_task(age)
+      print(answer)
+    except ValueError:
+      print('Пожалуйста введите возраст цифрами')
+
 
 
 if __name__ == "__main__":
