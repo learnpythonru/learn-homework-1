@@ -43,7 +43,7 @@ def greet_user(update, context):
 def planet_constellation(update, context):
     user_text = update.message.text
     planet = user_text.split(' ')[1]
-    date = datetime.now().date()
+    date = datetime.now()
     ephem_planet = getattr(ephem, planet)(date)
     const = ephem.constellation(ephem_planet)
     print(const)
