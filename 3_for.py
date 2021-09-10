@@ -89,11 +89,11 @@ def get_avg_class_score(scores, avg_class_scores = None):
   print(f'The average class scores are { avg_class_scores }')
   return(avg_class_scores)
      
-# def get_avg_school_score(scores):
+def get_avg_school_score(scores):
   # why cannot we get avg of average class scores?
   
   # scores = (get_avg_class_score(scores1))
-  # print(scores)
+  print(scores)
   # print(sum(scores))
   # print(len(scores))
   # return(f'The average score within school is: {sum(scores) / len(scores)}')
