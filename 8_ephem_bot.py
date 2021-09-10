@@ -13,9 +13,10 @@
 
 """
 import logging
-import sys
+import os
 import ephem
 from datetime import datetime
+from dotenv import load_dotenv
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -23,12 +24,13 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
+load_dotenv()
 
 PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
+    'proxy_url': os.getenv('PROXY_URL'),
     'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
+        'username': os.getenv('PROXY_USERNAME'),
+        'password': os.getenv('PROXY_PASSWORD')
     }
 }
 
@@ -67,7 +69,7 @@ def get_constellation(update, context):
 
 
 def main():
-    mybot = Updater(sys.argv[1],
+    mybot = Updater(os.getenv('KEY'),
                     request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
