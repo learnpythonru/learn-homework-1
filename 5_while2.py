@@ -24,8 +24,9 @@ def ask_user(answers_dict):
     ques = ''
     while ques != 'exit':
       ques = input('Введите ваш вопрос! ')
-      if ques in answers_dict.keys():
-        print(answers_dict[ques])
+      answer = answers_dict.get(ques)
+      if answer:
+        print(answer)
       elif ques == 'exit':
         break
       else:
