@@ -17,14 +17,14 @@
 
 
 def main(string, string2):
-    if type(string) != str and type(string2) != str:
+    if not (isinstance(string, str) and isinstance(string2, str)):
         return 0
     elif string == string2:
         return 1
-    elif len(string) > len(string2):
-        return 2
     elif string2 == 'learn':
         return 3
+    elif len(string) > len(string2):
+        return 2
 
 
 if __name__ == "__main__":
