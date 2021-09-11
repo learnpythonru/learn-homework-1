@@ -19,7 +19,7 @@
 def main(string, string2):
     if not (isinstance(string, str) and isinstance(string2, str)):
         return 0
-    elif string == string2:
+    elif len(string) == len(string2):
         return 1
     elif string2 == 'learn':
         return 3
