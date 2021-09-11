@@ -11,10 +11,11 @@
 
 
 def hello_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
+    n = input('Как дела?').strip().capitalize()
+    while n != 'Хорошо':
+        n = input('Как дела?').strip().capitalize()
+    else:
+        print('И это хорошо!')
 
     
 if __name__ == "__main__":
