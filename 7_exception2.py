@@ -25,7 +25,7 @@ def discounted(price, discount, max_discount=20):
             return price
         else:
             return price - (price * discount / 100)
-    except ValueError or TypeError:
+    except (ValueError, TypeError):
         print('Переданно некорректное значение переменных.')
 
 
