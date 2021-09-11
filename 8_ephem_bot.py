@@ -40,19 +40,17 @@ def greet_user(update, context):
 
 def find_planet(update, context):
     text = update.message.text.split()
+    planet = text[1].lower().capitalize()
     if len(text) == 1:
         update.message.reply_text("Введите планету")
-
-    else:
-        try:
-            planet = text[1].lower().capitalize()
-            obj_planet = getattr(ephem, planet)
-            print("Задана планета")
-        except:
-            update.message.reply_text("Введите настоящую планету после /planet")
+    elif hasattr(ephem, planet):
+        obj_planet = getattr(ephem, planet)
+        print("Задана планета")
         location = obj_planet(datetime.now().date())
         const = ephem.constellation(location)
         update.message.reply_text(const)
+    else:
+        update.message.reply_text("Введите настоящую планету после /planet")
 
 
 def talk_to_me(update, context):
