@@ -28,7 +28,10 @@ def main(string, string2):
 
 
 if __name__ == "__main__":
-    string = input()
-    string2 = input()
-    compare = main(string, string2)
-    print(compare)
+    print(main(1, 2))
+    print(main("привет", 2))
+    print(main("hello", "привет"))
+    print(main("Пойдём", "Гулять"))
+    print(main("learn", "learn"))
+    print(main("lesson", "Learn"))
+    print(main("Python", "learn"))
