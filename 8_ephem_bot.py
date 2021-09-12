@@ -48,39 +48,32 @@ def talk_to_me(update, context):
 
 
 def get_constellation(update, context):
-    planets = {
-        "mercury": ephem.Mercury,
-        "venus": ephem.Venus,
-        "mars": ephem.Mars,
-        "jupiter": ephem.Jupiter,
-        "saturn": ephem.Saturn,
-        "uranus": ephem.Uranus,
-        "neptune": ephem.Neptune
-    }
+    raw_planet = None
     try:
-        planet = update.message.text.split()[1].lower()
+        raw_planet = update.message.text.split()[-1].strip().capitalize()
     except IndexError:
         update.message.reply_text("введите планету в формате /planet <planet>")
 
-    if planet not in planets:
+    planet = getattr(ephem, raw_planet, None)
+    if not planet:
         update.message.reply_text("неизвестная планета")
-
-    today_planet = planets[planet](datetime.today().strftime("%Y/%m/%d"))
-    constellation = ephem.constellation(today_planet)
-    update.message.reply_text(constellation)
+    else:
+        today_planet = planet(datetime.today().strftime("%Y/%m/%d"))
+        constellation = ephem.constellation(today_planet)
+        update.message.reply_text(constellation)
 
 
 def main():
-    mybot = Updater(os.getenv('KEY'),
-                    request_kwargs=PROXY, use_context=True)
+    ephem_bot = Updater(os.getenv('KEY'),
+                        request_kwargs=PROXY, use_context=True)
 
-    dp = mybot.dispatcher
+    dp = ephem_bot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", get_constellation))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
-    mybot.start_polling()
-    mybot.idle()
+    ephem_bot.start_polling()
+    ephem_bot.idle()
 
 
 if __name__ == "__main__":
