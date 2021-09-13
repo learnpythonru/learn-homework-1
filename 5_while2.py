@@ -12,16 +12,24 @@
 
     Пользователь: Что делаешь?
     Программа: Программирую
-    
+
 """
 
-questions_and_answers = {}
+questions_and_answers = {
+            "How are you?": "Thanks, I'm fine :)",
+            "Where are you from?": "I'm from Siberia!",
+            "How old are you?": "I'm 28 years old",
+            "What are you doing?": "I'm coding :)",
+            "Where are you?": "I'm in a business trip",
+            }
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
-if __name__ == "__main__":
-    ask_user(questions_and_answers)
+def ask_user(self):
+    while True:
+        user_answer = input("Enter your question, please ")
+        if user_answer in questions_and_answers:
+            print(questions_and_answers[user_answer])
+        else:
+            print("Good bye!")
+            break
+
+ask_user(questions_and_answers)
