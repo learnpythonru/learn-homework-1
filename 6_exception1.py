@@ -4,17 +4,21 @@
 
 Исключения: KeyboardInterrupt
 
-* Перепишите функцию hello_user() из задания while1, чтобы она 
-  перехватывала KeyboardInterrupt, писала пользователю "Пока!" 
+* Перепишите функцию hello_user() из задания while1, чтобы она
+  перехватывала KeyboardInterrupt, писала пользователю "Пока!"
   и завершала работу при помощи оператора break
-    
+
 """
 
 def hello_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
-if __name__ == "__main__":
-    hello_user()
+    while True:
+        hello = input("How are you? ")
+        try:
+            hello == "Fine"
+            print("Ok, I'm glad")
+
+        except KeyboardInterrupt:
+            print("Bye!")
+        break
+
+hello_user()
