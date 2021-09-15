@@ -14,12 +14,23 @@
 
 """
 
+user_name = int(input('How old are you: '))
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    if user_name < 7:
+      print('Kindergarten')
+    elif user_name >=7 and user_name <= 18:
+      print('Shoolkid')
+    elif user_name > 18 and user_name <= 23:
+      print('Student')
+    elif user_name > 23:
+      print('Employee')
+    else:
+      print(''' let's try again.''')
 
 if __name__ == "__main__":
     main()
