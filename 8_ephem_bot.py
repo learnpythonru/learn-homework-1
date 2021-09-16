@@ -41,6 +41,18 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(text)
 
+def wordcount(update, context):
+    user_text = update.message.text
+    print(user_text)
+    user_text = user_text.strip('/wordcount ').split()
+    text = f'{len(user_text)} слова'
+    if len(user_text) == 0:
+        text = 'Нет слов'
+        print("Нет слов")
+    print(text)
+    update.message.reply_text(text)
+
+
 def where_is_planet(update, context):
     today = time.strftime('%Y/%m/%d')
     user_text = update.message.text
@@ -62,6 +74,7 @@ def main():
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler('planet', where_is_planet))
+    dp.add_handler(CommandHandler('wordcount', wordcount))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
