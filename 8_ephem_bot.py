@@ -104,6 +104,22 @@ def game_cities(update, context):
     if user_text.split()[1] == 'Заново':
         return update.message.reply_text(f'Начинаем заново')
 
+def calc(update, context):
+    user_text = update.message.text
+    user_text = (user_text.split()[1])
+    print(user_text)
+    if user_text[1] == '+':
+        result = int(user_text[0]) + int(user_text[2])
+        update.message.reply_text(result)
+    elif user_text[1] == '-':
+        result = int(user_text[0]) - int(user_text[2])
+        update.message.reply_text(result)
+    elif user_text[1] == '*':
+        result = int(user_text[0]) * int(user_text[2])
+        update.message.reply_text(result)
+    elif user_text[1] == '/':
+        result = int(user_text[0]) / int(user_text[2])
+        update.message.reply_text(result)
 
 
 def main():
@@ -116,6 +132,7 @@ def main():
     dp.add_handler(CommandHandler('next_full_moon', next_full_moon))
     dp.add_handler(CommandHandler('cities', game_cities))
     dp.add_handler(CommandHandler('wordcount', wordcount))
+    dp.add_handler(CommandHandler('calc', calc))
 
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
