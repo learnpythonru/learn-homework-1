@@ -14,6 +14,8 @@
 """
 import logging
 import os
+import re
+
 import ephem
 from datetime import datetime
 from dotenv import load_dotenv
@@ -37,7 +39,8 @@ PROXY = {
 
 def greet_user(update, context):
     text = '''Это астрономический бот! Введите /planet <planet> и узнаете\
-     в каком созвездии расположена планета сегодня! Например /planet mars'''
+    в каком созвездии расположена планета сегодня! Например /planet mars\
+    Так же можно узнать про следующую полную фазу луны формате /next_full_moon гггг-мм-дд'''
     update.message.reply_text(text)
 
 
@@ -63,6 +66,18 @@ def get_constellation(update, context):
         update.message.reply_text(constellation)
 
 
+def get_fool_moon(update, context):
+    raw_date = update.message.text.split()[-1]
+    if not re.fullmatch(r'\d\d\d\d-\d\d-\d\d', raw_date):
+        update.message.reply_text("введите дату в формате /next_full_moon гггг-мм-дд")
+    else:
+        full_moon_date = ephem.next_full_moon(raw_date)
+        try:
+            update.message.reply_text(str(full_moon_date.datetime()))
+        except ValueError:
+            update.message.reply_text("введите корректную дату в формате /next_full_moon гггг-мм-дд")
+
+
 def main():
     ephem_bot = Updater(os.getenv('KEY'),
                         request_kwargs=PROXY, use_context=True)
@@ -70,6 +85,7 @@ def main():
     dp = ephem_bot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", get_constellation))
+    dp.add_handler(CommandHandler("next_full_moon", get_fool_moon))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     ephem_bot.start_polling()
