@@ -96,7 +96,7 @@ def game_cities(update, context):
     for answer_city in current_game_known_cities:
         if answer_city[0].lower() == city[-1].lower():
             update.message.reply_text(f'{answer_city}. Твой ход')
-        update.message.reply_text(f'Больше не знаю городов на {city[-1]}. Надо бы узнать. Пиши /cities Заново и начнём сначала. ')
+        #update.message.reply_text(f'Больше не знаю городов на {city[-1]}. Надо бы узнать. Пиши /cities Заново и начнём сначала. ')
 
     if current_game_known_cities == []:
         update.message.reply_text(f'Мы больше не знаем никаких городов. Напиши город Заново и начнём сначала')
