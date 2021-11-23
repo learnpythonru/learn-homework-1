@@ -14,12 +14,29 @@
 
 """
 
+from typing import Type
+
+
+def guess_business(age):
+  try:
+    age = int(age)
+    if 0 < age < 7:
+      return 'Kindergarten'
+    elif 7 <= age <= 17:
+      return 'School'
+    elif 18 < age < 23:
+      return 'University'
+    elif age >= 23:
+      return 'Job'
+    else:
+      raise ValueError('Wrong age')
+  except (ValueError, TypeError):
+    return 'Wrong age'
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    age = input('Enter your age: ')
+    result = guess_business(age)
+    print(result)
 
 if __name__ == "__main__":
     main()
