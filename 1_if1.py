@@ -14,12 +14,30 @@
 
 """
 
+def chose_activity(age: int) -> str:
+    if age < 0:
+        return 'ждать своего рождения'
+    if age < 2:
+        return 'учиться ползать дома'
+    if age < 6:
+        return 'учиться в детском саду'
+    if age < 18:
+        return 'учиться в школе'
+    if age < 24:
+        return 'учиться в вузе'
+    return 'работать'
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    flag = True
+    while flag:
+        flag = False
+        try:
+            age = int(input("Введите ваш возраст: "))
+            activity = chose_activity(age)
+            print(f'Вы должны {activity}!')
+        except:
+            print('Вводи возраст нормально!!! Целым десятичным числом.')
+            flag = True
 
 if __name__ == "__main__":
     main()

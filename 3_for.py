@@ -17,11 +17,23 @@
 """
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
+    journal = [
+        {'school_class': '4-А', 'scores': [5, 5, 4]}, 
+        {'school_class': '7-А', 'scores': [2, 3, 5, 2, 4]}, 
+        {'school_class': '7-Б', 'scores': [3, 2, 2, 2, 2]}, 
+        {'school_class': '8-А', 'scores': [4, 3, 4, 4, 3]}, 
+        {'school_class': '9-А', 'scores': [5, 4, 4, 5, 5]}, 
+    ]
+    sum_school = 0
+    count_school = 0
+    for item in journal:
+        sum_school += sum(item['scores'])
+        count_school += len(item['scores'])
+        avg = sum(item['scores']) / len(item['scores'])
+        print(f'Средний балл {item["school_class"]} составляет {avg:.3}')
+    print('=' * 10)
+    avg_school = sum_school / count_school
+    print(f'Средний балл по школе составляет {avg_school:.3}')
+
 if __name__ == "__main__":
     main()
