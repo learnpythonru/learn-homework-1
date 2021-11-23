@@ -13,13 +13,22 @@
 * Вывести содержимое переменной на экран
 
 """
+def labor_by_age(age):
+
+  if age <= 6:
+    return "Детский сад"
+  elif 7 <= age <= 18:
+    return "Школа"
+  elif 18 <= age <= 25:
+    return "ВУЗ"
+  else:
+    return "Работа"
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-
+    
+    age = int(input("Сколько вам лет?\n"))
+    labor = labor_by_age(age)
+    print(labor)
+    
 if __name__ == "__main__":
     main()

@@ -12,15 +12,24 @@
 * Если строки разные и вторая строка 'learn', возвращает 3
 * Вызвать функцию несколько раз, передавая ей разные праметры 
   и выводя на экран результаты
-
+ тест
 """
+def string_compare(str1, str2):
+  if isinstance(str1, str) and isinstance(str2, str):
+    if str1 == str2:
+      return 1
+    elif str1 != str2 and len(str1) > len(str2):
+      return 2
+    elif str1 != str2 and str2 == 'learn':
+      return 3
+  else:
+    return 0  
+
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    
+    str1, str2 = input(), input()
+    print(string_compare(str1, str2))
     
 if __name__ == "__main__":
     main()
