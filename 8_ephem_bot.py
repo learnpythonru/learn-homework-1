@@ -14,7 +14,12 @@
 """
 import logging
 
+import ephem 
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from datetime import datetime
+
+import settings
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -42,13 +47,40 @@ def talk_to_me(update, context):
     update.message.reply_text(text)
 
 
-def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+def get_planet(update, context): 
+    
+    user_text = update.message.text
+    planet =  user_text.split()[1]
+    today = datetime.today() 
+    data_day = "{year}/{month}/{day}".format(year = today.year, month = today.month, day = today.day)
+    
+    dict_of_planets ={
+        'Mercury': ephem.Mercury(data_day),
+        'Venus': ephem.Venus(data_day),
+        'Mars': ephem.Mars(data_day),
+        'Jupiter': ephem.Jupiter(data_day),
+        'Saturn': ephem.Saturn(data_day),
+        'Uranus': ephem.Uranus(data_day),
+        'Neptune': ephem.Neptune(data_day),
+    }
+    
+    if planet not in dict_of_planets.keys():
+        update.message.reply_text('К сожалению, я не знаю такую планету :(')
+    else:
+        constellation = ephem.constellation(dict_of_planets[planet])[1]
+        update.message.reply_text(f'Сегодня: {data_day}. Планета {planet} в созвездии {constellation}.')
 
+
+def main():
+    mybot = Updater(settings.API_KEY, use_context=True, request_kwargs=PROXY)
+    
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-
+    logging.info("Бот стартовал")
+    
+    
     mybot.start_polling()
     mybot.idle()
 
