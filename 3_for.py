@@ -16,12 +16,13 @@
 * Посчитать и вывести среднее количество продаж всех товаров
 """
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
-if __name__ == "__main__":
-    main()
+classroom_scores = [
+    {'school_class': '4a', 'scores': [3, 4, 4, 5, 2]},
+    {'school_class': '4b', 'scores': [2, 3, 4, 5, 5]},
+    {'school_class': '4c', 'scores': [3, 3, 2, 5, 1]},
+    {'school_class': '4d', 'scores': [3, 1, 2, 2, 4]}
+]
+
+classroom_sum = (sum(classroom_scores[0::1]['scores']) / len(classroom_scores[0::1]['scores']))
+print(classroom_sum)
+
