@@ -14,12 +14,32 @@
 
 """
 
-def main():
+def main(age):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+
+    occupation = ''
+
+    if age < 2:
+      occupation = "Ясельки"
+    elif age < 7:
+      occupation = "Детский сад"
+    elif age < 18:
+      occupation = "Школа"
+    elif age < 24:
+      occupation = "ВУЗ"
+    else:
+      extra_question = input("А еще одно образование случайно не получаете? ")
+      if extra_question.lower() in ["нет", "не получаю", "неа", "ни за что", "да ну нафиг", "а зачем?", "какой там", "я слишком стар для этого"]:
+        occupation = "Работа"
+      else: 
+        occupation = "Вечный студент"
+
+    print(occupation)
+
 
 if __name__ == "__main__":
-    main()
+    age = int(input("Сколько вам полных лет? "))
+    main(age)
