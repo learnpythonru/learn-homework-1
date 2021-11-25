@@ -1,3 +1,4 @@
+#!/usr/bin/python3.8
 """
 
 Домашнее задание №1
@@ -15,12 +16,21 @@
 
 """
 
+def str_compare(str1,str2):
+    if not (type(str1) == str and type(str2) == str):
+        return 0
+    elif str1 == str2:
+        return 1
+    elif str1 != str2 and len(str1) > len(str2):
+        return 2
+    elif str1 != str2 and str2 == "learn":
+        return 3
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    print(f'{str_compare(1,"somestr")}')
+    print(f'{str_compare("somestr","somestr")}')
+    print(f'{str_compare("somelargestr","somestr")}')
+    print(f'{str_compare("str","learn")}')
     
 if __name__ == "__main__":
     main()

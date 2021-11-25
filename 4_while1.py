@@ -1,3 +1,4 @@
+#!/usr/bin/python3.8
 """
 
 Домашнее задание №1
@@ -11,11 +12,10 @@
 
 
 def hello_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
+    while True:
+       if input("Как дела? ") == "Хорошо":
+           break
 
-    
+
 if __name__ == "__main__":
     hello_user()

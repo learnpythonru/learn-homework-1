@@ -1,3 +1,4 @@
+#!/usr/bin/python3.8
 """
 
 Домашнее задание №1
@@ -15,13 +16,22 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {
+    "Как дела": "Хорошо!",
+    "Что делаешь?": "Программирую",
+    "Ты кто?": "Я Бендер. Пожалуйста, дайте мне прут",
+    "Смотришь фильмы?": "Давайте смотреть реально. Комедия — мёртвый жанр, а трагедия — это смешно!",
+    "Можно тебя выключить?": "Не бейте меня!.. Я предам кого угодно!",
+    "Можно тебя удалить?": "Я хочу жить! Я ещё много чего не украл!",
+}
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    while True:
+        question = input("Введите Вопрос, для выхода введите Выход ")
+        if question == "Выход":
+            break
+        if questions_and_answers.get(question):
+            print(f'{questions_and_answers.get(question)}')
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)

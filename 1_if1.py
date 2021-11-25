@@ -1,3 +1,4 @@
+#!/usr/bin/python3.8
 """
 
 Домашнее задание №1
@@ -14,12 +15,22 @@
 
 """
 
+def check_user(age):
+    if int(age) < 7:
+        return "Вы должны учиться в детском саду"
+    elif 7 <= int(age) < 17:
+        return "Вы должны учиться в школе"
+    elif 17 <= int(age) < 23:
+        return "Вы должны учиться в ВУЗе"
+    elif 23 <= int(age):
+        return "Вы должны работать"
+    
+
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    user_age = input("Введите ваш возраст: ")
+    answer = check_user(user_age)
+    print(f"{answer}")
 
 if __name__ == "__main__":
     main()
