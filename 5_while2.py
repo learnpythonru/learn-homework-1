@@ -17,14 +17,12 @@
 
 questions_and_answers = {'как дела?': 'Хорошо!', 'как тебя зовут?': 'У меня нет имени.', 'что делаешь?': 'Программирую'}
 
-def ask_user(answers_dict):
+def ask_user(questions_and_answers):
 
     user_message = str.lower(input('Введите вопрос: ')) #получение вопроса и приведение к нижнему регистру
-    while user_message in answers_dict: #перебор словаря по ключам
-        print(answers_dict[user_message])
-        user_message = input('Введите вопрос: ')
+    while user_message in questions_and_answers: #перебор словаря по ключам
+        print(questions_and_answers[user_message])
+        user_message = str.lower(input('Введите вопрос: '))
 
 if __name__ == "__main__":
     ask_user(questions_and_answers)
-
-        

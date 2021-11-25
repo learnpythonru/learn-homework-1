@@ -11,12 +11,9 @@
 
 
 def hello_user():
-    while True:
+    user_message = str(input('Как дела?: '))
+    while user_message != ('Хорошо'):
         user_message = str(input('Как дела?: '))
-        if user_message == 'Хорошо':
-            break
-#        else:
-#            continue
     
 if __name__ == "__main__":
     hello_user()

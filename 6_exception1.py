@@ -16,8 +16,6 @@ def hello_user():
             user_message = str(input('Как дела?: '))
             if user_message == 'Хорошо':
                 break
-            else:
-                continue
         except KeyboardInterrupt: # перехватывание Ctrl+C и вывод 'Пока'
             print('Пока!')
             break

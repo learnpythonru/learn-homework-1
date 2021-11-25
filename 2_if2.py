@@ -11,26 +11,31 @@
   и выводя на экран результаты
 """
 
+
 def main(line1, line2):
     if (isinstance(line1, str)) and (isinstance(line2, str)):    #проверка, являются ли строки - строками
        print(f'Проверка: "{line1}" и "{line2}" - являются строками') 
     else:
         return 0
-    if len(line1) == len(line2):
+    if line1 == line2:
         return 1
     elif len(line1) > len(line2):
-            return 2
-    elif len(line1) != len(line2) and line2 == 'learn':
+        return 2
+    elif line1 != line2 and line2 == 'learn':
         return 3
-    else:
-        return None
+#как оказалось, вообще не обязательно в конце ставить противопоставление в виде else
 if __name__ == "__main__":
 
-    print(main(123, 'строка'))
-    print(main(123, 3332))
-    print(main('строка', 123))
-    print(main("равные", "строки"))
-    print(main('learn', 'learn'))
-    print(main('длиннее', 'короче'))
-    print(main('длиннее', 'learn'))
-    print(main('abc', 'learn'))
+    print(main(123, 'строка')) #integer string = 0
+    print(main(123, 3332)) #integer integer = 0
+    print(main('строка', 123)) #string integer = 0
+    print(main("равные", "строки")) # оддинаковое кол-во символов, но строки не равны, т.к. символы между собой не равны при сравнении строк = None
+    print(main("равные", "равные")) # одинаковые строки, равные = 1
+    print(main('learn', 'learn')) # cтроки равны, learn не рабботает = 1
+    print(main('длиннееееее', 'короче')) # первая длиннее, но без функции len() сравниваются порядковые значения первых символов строк = 2
+    print(main('короче', 'длиннее')) # None
+    print(main('длиннее', 'learn')) # первая длиннее с len() = 2
+    print(main('abc', 'learn')) # строки разные, первая короче второй (иначе было бы = 2), вторая 'learn' поэтому = 3
+
+#print(ord("д"))
+#print(ord("к"))
