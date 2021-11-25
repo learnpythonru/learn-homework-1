@@ -14,32 +14,44 @@
 
 """
 
-def main(age):
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
 
-    occupation = ''
+def get_age():
+  return int(input("Сколько вам полных лет? "))
 
-    if age < 2:
-      occupation = "Ясельки"
-    elif age < 7:
-      occupation = "Детский сад"
-    elif age < 18:
-      occupation = "Школа"
-    elif age < 24:
-      occupation = "ВУЗ"
-    else:
-      extra_question = input("А еще одно образование случайно не получаете? ")
-      if extra_question.lower() in ["нет", "не получаю", "неа", "ни за что", "да ну нафиг", "а зачем?", "какой там", "я слишком стар для этого"]:
-        occupation = "Работа"
-      else: 
-        occupation = "Вечный студент"
 
-    print(occupation)
+def hard_to_be_grownup():
+  extra_question = input("А еще одно образование случайно не получаете? ")
+  if extra_question.lower() in ["нет", "не получаю", "неа", "ни за что", "да ну нафиг", "а зачем?", "какой там", "я слишком стар для этого"]:
+    return "Работа"
+  else: 
+    return "Вечный студент"
+
+
+def check_occupation(age):
+  occupation = ''
+
+  if age < 2:
+    occupation = "Ясельки"
+  elif age < 7:
+    occupation = "Детский сад"
+  elif age < 18:
+    occupation = "Школа"
+  elif age < 24:
+    occupation = "ВУЗ"
+  else:
+    occupation = hard_to_be_grownup()
+    
+  return occupation
+  
+
+def main():
+  """
+  Эта функция вызывается автоматически при запуске скрипта в консоли
+  В ней надо заменить pass на ваш код
+  """
+  age = get_age()
+  print(check_occupation(age))
 
 
 if __name__ == "__main__":
-    age = int(input("Сколько вам полных лет? "))
-    main(age)
+    main()
