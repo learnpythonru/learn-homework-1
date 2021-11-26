@@ -54,7 +54,7 @@ def planets(update, context):
         constellation = ephem.constellation(planet_dict[planet_name])
         update.message.reply_text(constellation[1])
     else:
-        update.message.reply_text('I don\'t know this planet!')
+        update.message.reply_text('Такой планеты нет в списке планет')
 
 def main():
     mybot = Updater(settings.API_KEY, use_context=True)
