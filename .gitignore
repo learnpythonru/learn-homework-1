@@ -3,7 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 settings.py
-
+*.log
+.vscode/
+.idea/
+env/
+__pycache__/
 # C extensions
 *.so
 

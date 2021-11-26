@@ -41,6 +41,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 # Непросто было вытащить данные из словаря списков
-# Натыкался на local variable ‘x’ referenced before assignment
+# Натыкался на local variable referenced before assignment, т.е. переменная не была объявлена внутри функции
 # Результат получен, но надо допилить нормальный вывод данных.
