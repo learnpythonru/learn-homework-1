@@ -1,0 +1,4 @@
+API_KEY = "2107999422:AAHqfDvCJe4qiq_D6iRqlGEg3NxRPX9AEcY"
+PROXY_URL = "t2.learn.python.ru:1080"
+PROXY_USERNAME = "learn"
+PROXY_PASSWORD = "python"
