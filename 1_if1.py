@@ -15,6 +15,8 @@ def check_age():
     age = input('Введите свой возраст: ')
     try:
         age = int(age)
+    except ValueError:
+        print('Введено не число')
 
         if type(age) == int:
             if 0 < age <= 100:
@@ -34,8 +36,7 @@ def check_age():
                 return 'Вы ввели некорректные данные'
         else:
             raise ValueError('Work with Positive Numbers Only')
-    except ValueError:
-        print('Введено не число')
+
 
 age_variable =  check_age()
 
