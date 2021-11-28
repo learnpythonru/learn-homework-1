@@ -19,11 +19,13 @@ def main(line1, line2):
         return 0
     if line1 == line2:
         return 1
-    elif len(line1) > len(line2):
-        return 2
     elif line1 != line2 and line2 == 'learn':
         return 3
-#как оказалось, вообще не обязательно в конце ставить противопоставление в виде else
+    else:
+#    elif len(line1) > len(line2): #после первого if и так понятно, что строки не равны
+        return 2
+
+
 if __name__ == "__main__":
 
     print(main(123, 'строка')) #integer string = 0
