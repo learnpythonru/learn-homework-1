@@ -7,14 +7,17 @@
 * Перепишите функцию hello_user() из задания while1, чтобы она 
   перехватывала KeyboardInterrupt, писала пользователю "Пока!" 
   и завершала работу при помощи оператора break
-    
+  
 """
 
 def hello_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    while True:
+        try:
+            user_message = str(input('Как дела?: '))
+            if user_message == 'Хорошо':
+                break
+        except KeyboardInterrupt: # перехватывание Ctrl+C и вывод 'Пока'
+            print('Пока!')
+            break
 if __name__ == "__main__":
     hello_user()

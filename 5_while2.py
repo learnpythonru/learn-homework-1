@@ -15,13 +15,20 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {
+  'как дела?': 'Хорошо!',
+  'what is love?': 'Oh baby, don\'t hurt me don\'t hurt me no more', 
+  'какая погода?': 'Солнечная!', 
+  'диплом уже выбрал?': 'Нет :(', 
+  'как тебя зовут?': 'У меня нет имени.', 
+  'что делаешь?': 'Программирую'}
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+def ask_user(questions_and_answers):
+
+    user_message = str.lower(input('Введите вопрос: ')) #получение вопроса и приведение к нижнему регистру
+    while user_message in questions_and_answers: #перебор словаря по ключам
+        print(questions_and_answers[user_message])
+        user_message = str.lower(input('Введите вопрос: '))
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)
