@@ -14,7 +14,7 @@
 
 """
 
-def main(user_age):
+def get_action(user_age):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
@@ -33,9 +33,12 @@ def main(user_age):
     else:
         return "Вы еще не родились"
 
-user_age = int(input("Введите Ваш возраст: "))
-output_info = main(user_age)
-print(output_info)
+
+def main():
+    user_age = int(input("Введите Ваш возраст: "))
+    output_info = get_action(user_age)
+    print(output_info)
+
 
 if __name__ == "__main__":
-    main(user_age)
+    main()
