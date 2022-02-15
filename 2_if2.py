@@ -15,12 +15,35 @@
 
 """
 
+def comparison(string_1, string_2):
+    if type(string_1) is not str and type(string_2) is not str:
+        return 0
+    else:
+        string_1 = str(string_1)
+        string_2 = str(string_2)
+    if string_1 is string_2:
+        return 1
+    else:
+        if len(string_1) > len(string_2):
+            if string_2 != "learn":
+                return 2
+            else:
+                return 2, 3
+        elif string_2 == "learn":
+            return 3
+                          
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    
+    TEST_LIST = [(12, 12), ("word", "word"), ("world", "word"), ("world", "learn"), ("worlds", "learn")]
+    
+    for string_1, string_2 in TEST_LIST:
+        print(comparison(string_1, string_2))
+
     
 if __name__ == "__main__":
     main()
