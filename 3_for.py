@@ -32,16 +32,15 @@ def main():
       for items in price_items_sold:
         summ_sold += items
       return summ_sold / len(price_items_sold)
-      
+
     
     summ_all_telephones = 0
     for one_tel in telephones:
       tel_avg = count_telephones_avg(one_tel['items_sold'])
-      print(f'Среднее количество продаж телефона: {telephones["name"]}: {tel_avg}')
+      print(f'Среднее количество продаж телефона: {one_tel["product"]}: {tel_avg}')
       summ_all_telephones += tel_avg
 
     print(f'Среднее количество продаж: {summ_all_telephones / len(telephones)}')
-    print (summ_sold)
     print(summ_all_telephones)
 
 

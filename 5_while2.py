@@ -16,11 +16,11 @@
 """
 
 questions_and_answers = {      
-      'Как дела' : 'Хорошо',
-      'Что делаешь' : 'Программирую',
-      'Где живешь' : 'РФ',
-      'Какая школа' : '752',
-      'Где работаешь' : 'На фабрике'
+      'Как дела?' : 'Хорошо',
+      'Что делаешь?' : 'Программирую',
+      'Где живешь?' : 'РФ',
+      'Какая школа?' : '752',
+      'Где работаешь?' : 'На фабрике'
 }
 
 def ask_user(answers_dict):
@@ -28,8 +28,8 @@ def ask_user(answers_dict):
     Замените pass на ваш код
     """
     question = input('Пользователь: ')
-    if question in questions_and_answers:
-      print('Программа: ', questions_and_answers(question))
+    if question in answers_dict:
+      print('Программа: ', answers_dict[question])
     
     
 if __name__ == "__main__":
