@@ -13,7 +13,6 @@
 
 """
 
-import datetime
 import logging
 import ephem
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -40,14 +39,13 @@ def greet_user(update, context):
 
 def ask_planet_name(update, context):
     user_text = update.message.text.split()
-    current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+    current_date = update.message.date.strftime('%Y-%m-%d')
     print(user_text)
     for word in user_text:        
-        word = word.capitalize()
-        print(word)
+        word = word.capitalize()        
         planets = [name for x, y, name in ephem._libastro.builtin_planets()]        
         if word in planets:
-            planet = getattr(ephem, word)(current_date)   #planet = ephem.word(current_date)
+            planet = getattr(ephem, word)(current_date)
             constellation = ephem.constellation(planet)
             update.message.reply_text(constellation)              
 
@@ -59,7 +57,8 @@ def talk_to_me(update, context):
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", use_context=True)
+    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", use_context=True) #КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather
+    
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", ask_planet_name))
