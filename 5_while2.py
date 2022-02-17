@@ -27,9 +27,10 @@ def ask_user(answers_dict):
     """
     Замените pass на ваш код
     """
-    question = input('Пользователь: ')
-    if question in answers_dict:
-      print('Программа: ', answers_dict[question])
+    while True:
+        question = input('Пользователь: ')
+        if question in answers_dict:
+            print('Программа: ', answers_dict[question])
     
     
 if __name__ == "__main__":

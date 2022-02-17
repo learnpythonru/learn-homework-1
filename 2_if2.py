@@ -24,13 +24,13 @@ def main():
     str1 = input('Первая строчка: ') 
     str2 = input('Вторая строчка: ')
     if not isinstance(str1, str) and not isinstance(str2, str):
-      print ('0')
+        print ('0')
     elif str1 == str2:
-      print ('1')
+        print ('1')
     elif str1 != str2 or len(str1) > len(str2):
-      print ('2')
+        print ('2')
     elif str1 != str2 or str2 == 'learn':
-      print ('3')
+        print ('3')
 
     
 if __name__ == "__main__":

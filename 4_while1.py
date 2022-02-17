@@ -15,7 +15,7 @@ def hello_user():
     Замените pass на ваш код
     """
 
-    while(True):
+    while True:
         user_say = input('Как дела? ')
         if user_say != 'Хорошо':
           continue

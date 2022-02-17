@@ -14,7 +14,6 @@
 """
 import ephem
 import logging
-from setuptools import Command
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -46,7 +45,7 @@ planet_dict = {
 def which_constellation(update, context):
     planet_name = update.message.text.split()[1]
     ephem_body = planet_dict.get(planet_name, None)
-    if(ephem_body != None):
+    if ephem_body != None:
       constellation = ephem.constellation(planet_dict[planet_name])
       update.message.reply_text(constellation[1])
     else:
@@ -71,7 +70,7 @@ def main():
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-    dp.add_handler(CommandHandler("planet", ))
+    dp.add_handler(CommandHandler("planet", which_constellation))
 
     mybot.start_polling()
     mybot.idle()

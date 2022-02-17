@@ -10,8 +10,6 @@
     
 """
 
-from logging import exception
-
 
 def hello_user():
     """
