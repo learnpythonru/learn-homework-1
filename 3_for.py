@@ -15,7 +15,6 @@
 * Посчитать и вывести суммарное количество продаж всех товаров
 * Посчитать и вывести среднее количество продаж всех товаров
 """
-
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
@@ -26,24 +25,19 @@ def main():
                   {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
                   {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]}
   ]
-
-    def count_telephones_avg(price_items_sold):
-      summ_sold = 0
-      for items in price_items_sold:
-        summ_sold += items
-      return summ_sold / len(price_items_sold)
-
+    sum_count_items_sold = 0
+    count_avg_all_tel = 0
+    for sold in telephones:
+        print(f'Суммарное количество продаж для', {sold["product"]}, ':', {sum(sold["items_sold"])})
+        sum_count_items_sold += sum(sold['items_sold'])
+        count_avg_tel = sum(sold["items_sold"]) / len(sold["items_sold"])
+        print(f'среднее количество продаж для', {sold["product"]}, ':', {count_avg_tel} )
+        count_avg_all_tel += count_avg_tel
     
-    summ_all_telephones = 0
-    for one_tel in telephones:
-      tel_avg = count_telephones_avg(one_tel['items_sold'])
-      print(f'Среднее количество продаж телефона: {one_tel["product"]}: {tel_avg}')
-      summ_all_telephones += tel_avg
-
-    print(f'Среднее количество продаж: {summ_all_telephones / len(telephones)}')
-    print(summ_all_telephones)
-
-
+    print(f'среднее количество продаж всех товаров: ', count_avg_all_tel)    
+    print(f'суммарное количество продаж всех товаров: ', sum_count_items_sold)
     
+
+
 if __name__ == "__main__":
     main()
