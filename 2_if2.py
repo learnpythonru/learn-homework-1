@@ -21,22 +21,20 @@ def main():
     В ней надо заменить pass на ваш код
     """
 
-    def strings(str1, str2):
-      if type(str1) != str and type(str2) != str:
-        return 0
-      elif str1 == str2:
-        return 1
-      elif str1 != str2 or len(str1) > len(str2):
-        return 2
-      elif str1 != str2 or str2 == 'learn':
-        return 3
-
-
-    print(strings(2, 1))
-    print(strings('Привет', 'Привет'))
-    print(strings('Приветы', 'Привет'))
-    print(strings('Привет', 'learn'))
+    str1 = input('Первая строчка: ') 
+    str2 = input('Вторая строчка: ')
+    if not isinstance(str1, str) and not isinstance(str2, str):
+      print ('0')
+    elif str1 == str2:
+      print ('1')
+    elif str1 != str2 or len(str1) > len(str2):
+      print ('2')
+    elif str1 != str2 or str2 == 'learn':
+      print ('3')
 
     
 if __name__ == "__main__":
-    main()
+    print(main(2, 1))
+    print(main('Привет', 'Привет'))
+    print(main('Приветы', 'Привет'))
+    print(main('Привет', 'learn'))

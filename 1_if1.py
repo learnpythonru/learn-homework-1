@@ -14,27 +14,23 @@
 
 """
 
-from ast import And
-
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    age = input('Введите возраст: ')
+    age = int(input('Введите возраст: '))
     print('Чем должен заниматься пользователь?')
-    def age_people(age):
-      if(age > 0  and age <= 6):
-        return 'Учится в детском саду'
-      elif(age >= 7 and age <= 18):
-        return 'Учится в школе'
-      elif(age >= 19 and age <= 22):
-        return 'Учится в ВУЗЕ'
-      else:
-        return 'Работает'
-
-    print(age_people(18))
+    
+    if 0 < age <= 6:
+      print ('Учится в детском саду')
+    elif 7 <= age <= 18:
+      print ('Учится в школе')
+    elif 19 <= age <= 22:
+      print ('Учится в ВУЗЕ')
+    else:
+      print ('Работает')
 
 if __name__ == "__main__":
     main()

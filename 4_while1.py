@@ -16,11 +16,11 @@ def hello_user():
     """
 
     while(True):
-      user_say = input('Как дела?')
-      if user_say != 'Хорошо':
-        print(user_say)
-      else:
-        break
+        user_say = input('Как дела? ')
+        if user_say != 'Хорошо':
+          continue
+        else:
+          break
 
     
 
