@@ -12,8 +12,10 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
-import logging
 
+import datetime
+import logging
+import ephem
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
@@ -36,17 +38,31 @@ def greet_user(update, context):
     update.message.reply_text(text)
 
 
+def ask_planet_name(update, context):
+    user_text = update.message.text.split()
+    current_date = datetime.datetime.now().strftime('%Y-%m-%d')
+    print(user_text)
+    for word in user_text:        
+        word = word.capitalize()
+        print(word)
+        planets = [name for x, y, name in ephem._libastro.builtin_planets()]        
+        if word in planets:
+            planet = getattr(ephem, word)(current_date)   #planet = ephem.word(current_date)
+            constellation = ephem.constellation(planet)
+            update.message.reply_text(constellation)              
+
+
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
-
+    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", use_context=True)
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", ask_planet_name))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
