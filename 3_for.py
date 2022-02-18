@@ -17,11 +17,30 @@
 """
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
+  
+
+    all_products = [
+    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
+    {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
+    {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
+    ]
+
+    average = dict()
+    sum_of_all = 0
+    for phone in all_products:
+        current_item_sum = sum(phone['items_sold'])         # Суммарное кол-во отдельного товара
+        average[phone['product']] = current_item_sum / 12   # Среднее кол-во отдельного товара
+        sum_of_all += current_item_sum
+        print(f"Cуммарное количество продаж для {phone['product']} за год = {current_item_sum}")
+    print()
+
+    for k, v in average.items():
+        print(f'Среднее количество продаж для {k} за год = {round(v, 2)}')
+    print()
+
+    print(f'Cуммарное количество продаж всех товаров = {sum_of_all}')
+    print(f'Среднее количество продаж всех товаров = {sum_of_all / (len(all_products) * 12)}')
+
+
 if __name__ == "__main__":
     main()
