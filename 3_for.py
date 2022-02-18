@@ -8,7 +8,7 @@ def sale_avg(phone_items_sold):    #среднее количество прод
   items_sold_sum = 0               
   for items in phone_items_sold:   
     items_sold_sum += items
-  return items_sold_sum / len(phone_items_sold) 
+  return round(items_sold_sum / len(phone_items_sold), 1)
    
 items_sold_avg = 0 
 
