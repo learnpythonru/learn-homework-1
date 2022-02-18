@@ -27,14 +27,11 @@ def main():
         print ('0')
     elif str1 == str2:
         print ('1')
-    elif str1 != str2 or len(str1) > len(str2):
+    elif str1 != str2 and len(str1) > len(str2):
         print ('2')
-    elif str1 != str2 or str2 == 'learn':
+    elif str1 != str2 and str2 == 'learn':
         print ('3')
 
     
 if __name__ == "__main__":
-    print(main(2, 1))
-    print(main('Привет', 'Привет'))
-    print(main('Приветы', 'Привет'))
-    print(main('Привет', 'learn'))
+    main()
