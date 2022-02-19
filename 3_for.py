@@ -32,7 +32,8 @@ def main():
         sum_count_items_sold += sum(sold['items_sold'])
         count_avg_tel = sum(sold["items_sold"]) / len(sold["items_sold"])
         print(f'среднее количество продаж для {sold["product"]}: {count_avg_tel}' )
-        count_avg_all_tel = sum_count_items_sold / sum(sold['product'])
+    
+    count_avg_all_tel = sum_count_items_sold / len(telephones)
     
     print(f'среднее количество продаж всех товаров: ', count_avg_all_tel)    
     print(f'суммарное количество продаж всех товаров: ', sum_count_items_sold)

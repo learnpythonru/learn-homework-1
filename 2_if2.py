@@ -20,19 +20,19 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    print( strings(123, 246 ))
-    print( strings('Привет','Привет'))
-    print( strings('Приветы','Привет'))
-    print( strings('hi','learn'))
+    print(strings(123, 246 ))
+    print(strings('Привет','Привет'))
+    print(strings('Приветы','Привет'))
+    print(strings('hi','learn'))
 
 def strings(str1, str2):
     if not isinstance(str1, str) or not isinstance(str2, str):
         return 0
-    if str1==str2:
+    elif str1==str2:
         return 1
     elif len(str1) > len(str2):
         return 2
-    elif 'learn'==str2:
+    elif 'learn'== str2:
         return 3
 
     
