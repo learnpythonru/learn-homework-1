@@ -13,6 +13,8 @@
 
 """
 import logging
+import ephem
+
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -29,24 +31,47 @@ PROXY = {
     }
 }
 
+date_planet = '2000/01/10'
+
+planet_names = {'Mercury': ephem.Mercury(date_planet),
+                'Venus': ephem.Venus(date_planet),
+                'Mars': ephem.Mars(date_planet),
+                'Jupiter': ephem.Jupiter(date_planet),
+                'Saturn': ephem.Saturn(date_planet),
+                'Uranus': ephem.Uranus(date_planet),
+                'Neptune': ephem.Neptune(date_planet),
+                'Pluto': ephem.Pluto(date_planet)
+                }
+
 
 def greet_user(update, context):
-    text = 'Вызван /start'
-    print(text)
-    update.message.reply_text(text)
+    print('Вызван /start')
+    update.message.reply_text('Привет, пользаватель!')
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+
+def constellation_planet(update, context):
+    user_planet = update.message.text.split()[1]
+    if user_planet in planet_names:
+        ephem_planet = planet_names.get(user_planet, None)
+        constellation = ephem.constellation(ephem_planet)
+        update.message.reply_text(constellation)
+    else:
+        update.message.reply_text('Неизвестная планета')
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater("5127408752:AAHyqNdZ8Ur8JaBuT4zPptxboh127PBDq64",
+                    request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", constellation_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
