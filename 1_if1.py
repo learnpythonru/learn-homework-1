@@ -14,12 +14,29 @@
 
 """
 
+def employment(age: str) -> str:
+    try:
+        age = float(age)
+    except ValueError:
+        return 'ValueError: age should be a number'
+    if age >= 65:
+        return 'retiree'
+    elif 24 <= age < 65:
+        return 'employed'
+    elif 18 <= age < 24:
+        return 'student'
+    elif 7 <= age < 18:
+        return 'schoolchild'
+    elif 3 <= age < 7:
+        return 'kindergartner'
+    elif 0 <= age < 3:
+        return 'baby'
+    else:
+        return 'age could not be a negative number'
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    age = input("Please, enter person's age\n")
+    print(employment(age))
 
 if __name__ == "__main__":
     main()

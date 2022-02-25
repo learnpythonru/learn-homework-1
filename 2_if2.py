@@ -15,12 +15,28 @@
 
 """
 
+def check_strings(str_1: str, str_2: str) -> str:
+    # Check that our arguments are strings
+    if isinstance(str_1, str) and isinstance(str_2, str):
+        # Check that strings are equal
+        if str_1 == str_2:
+            return 1
+        # Check that 2nd string is 'learn'
+        elif str_2 == 'learn':
+            return 3
+        # Check that 1st string longer than 2nd
+        elif len(str_1) > len(str_2):
+            return 2
+    else:
+        return 0
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    print(check_strings(123, 'gt'))   # 0
+    print(check_strings('ab', 'ab'))    # 1
+    print(check_strings('abc', 'ab'))   # 2
+    print(check_strings('ab', 'learn')) # 3
+    print(check_strings('ed', 'tgrf'))  # None
+    print(check_strings('fkoo', 'ijdi'))# None
     
 if __name__ == "__main__":
     main()
