@@ -19,7 +19,21 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age = int(input())
+
+    def classifier(age):
+        if age < 7:
+            return 'пользователь должен учиться в детском саду'
+        elif age > 7 and age < 17:
+            return 'пользователь должен учиться в школе'
+
+        elif age > 17 and age < 21:
+            return 'пользователь должен учиться в ВУЗе'
+        else:
+            return 'пользователь должен работать'
+
+    print(classifier(age))
+    #pass
 
 if __name__ == "__main__":
     main()
