@@ -13,13 +13,41 @@
 * Вывести содержимое переменной на экран
 
 """
+from turtle import position
+
+
+def get_status(age):
+    if age >0 and age <= 5:
+      return "В детском саду"
+    elif age > 5 and age <= 18:
+      return "В школе"
+    elif age > 18 and age <= 22:
+      return "В ВУЗе"
+    else:
+      return "Работает"
+
+def ask_age():
+    while True:
+      age = int(input("Введите ваш возраст: "))
+      if age > 0:
+        break
+      else:
+        print("Возраст должен быть больше 0")
+    return age
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age = ask_age()
+    status = get_status(age)
+    print(status)
+            
+    
+
+
+      
 
 if __name__ == "__main__":
     main()
