@@ -16,16 +16,15 @@
 """
 
 def sring_comparison(str1,str2):
-    if not isinstance(str1, str) and not isinstance(str2, str):
+    if not isinstance(str1, str) or not isinstance(str2, str):
       return 0
-    elif str1 == str2:
+    if str1 == str2:
       return 1
-    elif len(str1) > len(str2):
+    if len(str1) > len(str2):
       return 2
-    elif str2.lower() == "learn":
+    if str2.lower() == "learn":
       return 3
-    else:
-      return "Ни одно из рассматриваемых условий не выполнено"
+    return 4
 
 
 def main():
@@ -33,7 +32,7 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    print(sring_comparison(345,True)) #Передаваемые значения не строки, вернуть 0
+    print(sring_comparison("dsd",5)) #Передаваемые значения не строки, вернуть 0
     print(sring_comparison("abc","abc")) #Строки одинаковые, вернуть 1
     print(sring_comparison("abcd","ab")) # Если строки разные и первая длиннее, вернуть 2 
     print(sring_comparison("abc","lEarN")) #Если строки разные и вторая строка 'learn', возвращает 3
