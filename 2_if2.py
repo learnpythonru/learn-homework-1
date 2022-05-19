@@ -15,12 +15,34 @@
 
 """
 
+def sring_comparison(str1,str2):
+    if type(str1) != str or type(str2) != str:
+      print("0")
+    elif len(str1) == len(str2):
+      print("1")
+    elif len(str1) > len(str2):
+      print("2")
+    elif str1 != str2 and str2.lower() == "learn":
+      print("3")
+    else:
+      print("Ни одно из рассматриваемых условий не выполнено")
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    sring_comparison(345,True) #Передаваемые значения не строки, вернуть 0
+    sring_comparison("abc","abc") #Строки одинаковые, вернуть 1
+    sring_comparison("abcd","ab") # Если строки разные и первая длиннее, вернуть 2 
+    sring_comparison("abc","lEarN") #Если строки разные и вторая строка 'learn', возвращает 3
+    sring_comparison("abc","abcder") #Если ни одно из условий не выполнено
+
+    
+
+    
+
     
 if __name__ == "__main__":
     main()
