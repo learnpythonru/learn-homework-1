@@ -55,16 +55,10 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    #Посчитать и вывести суммарное количество продаж для каждого товара
-    print_sum_stores(phone_store)
-   
-    #Посчитать и вывести среднее количество продаж для каждого товара
-    print_avg_stores(phone_store)
-
-    #Посчитать и вывести суммарное количество продаж всех товаров
-    print_sum_stores_all_model(phone_store)
-
-    #Посчитать и вывести среднее количество продаж всех товаров
+    
+    print_sum_stores(phone_store)    
+    print_avg_stores(phone_store)    
+    print_sum_stores_all_model(phone_store)    
     print_avg_stores_all_model(phone_store)
 
 
