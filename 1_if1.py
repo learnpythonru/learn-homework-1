@@ -22,8 +22,10 @@ def get_input() -> int:
     except ValueError as err:
       print(f'{err} Возраст должен быть целым числом')
 
-    assert age > 0, 'Возраст должен быть больше нуля'
-    assert age < 122, 'Возраст слишком большой'
+    if age > 0:
+      raise ValueError('Возраст должен быть больше нуля')
+    if age < 122:
+      raise ValueError('Возраст слишком большой')
     
     return age
 
