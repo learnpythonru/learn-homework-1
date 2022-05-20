@@ -14,12 +14,27 @@
 
 """
 
+
+def get_input() -> int:
+
+    try:
+        age = int(input('Введите возраст: '))
+    except ValueError as err:
+      print(f'{err} Возраст должен быть целым числом')
+
+    assert age > 0, 'Возраст должен быть больше нуля'
+    assert age < 122, 'Возраст слишком большой'
+    
+    return age
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
     pass
+
 
 if __name__ == "__main__":
     main()
