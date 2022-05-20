@@ -10,10 +10,7 @@
 """
 
 def hello_user():
-  while True:
-    user_say = input('Скажи что нибудь: ')
-    if user_say.lower() == "хорошо":
-      break
+  while user_say := input('Скажи что нибудь: ').lower() != 'хорошо':
     print("Как дела?") 
     
     
