@@ -21,17 +21,33 @@ phone_store =   [
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
   ]
 
-def sum_phone_store(phone_sale_arr):
-  pnone_sale_summ = 0
-  for sale in phone_sale_arr:
-    pnone_sale_summ += sale
-  return pnone_sale_summ
-  
-def avg_phone_store(phone_sale_arr):
-  pnone_sale_summ = 0
-  for sale in phone_sale_arr:
-    pnone_sale_summ += sale
-  return pnone_sale_summ / len(phone_sale_arr) 
+
+
+def print_sum_stores(phone_stores):
+  sum_phone_sale = 0
+  for phone in phone_store:  
+    sum_phone_sale = sum(phone['items_sold'])
+    print(f'Суммарное количество проданных телефонов марки {phone["product"]}: {sum_phone_sale} \n') 
+
+def print_avg_stores(phone_stores):
+  avg_phone_sale = 0
+  for phone in phone_store:  
+    avg_phone_sale = round(sum(phone['items_sold']) / len(phone['items_sold']), 2)
+    print(f'Среднее количество проданных телефонов марки {phone["product"]}: {avg_phone_sale} \n')
+
+def print_sum_stores_all_model(phone_stores):
+  sum_phone_sale = 0
+  for phone in phone_store:  
+    sum_phone_sale += sum(phone['items_sold'])
+  print(f'Cуммарное количество продаж всех товаров: {sum_phone_sale} \n') 
+
+def print_avg_stores_all_model(phone_stores):
+  sum_phone_sale = 0
+  avg_phone_sale_all = 0
+  for phone in phone_store:  
+    sum_phone_sale += sum(phone['items_sold'])
+  avg_phone_sale_all = round(sum_phone_sale / len(phone_store), 2)
+  print(f'Среднее количество продаж всех товаров: {avg_phone_sale_all} \n') 
 
 
 def main():
@@ -40,29 +56,18 @@ def main():
     В ней надо заменить pass на ваш код
     """
     #Посчитать и вывести суммарное количество продаж для каждого товара
-    sum = 0
-    for phone in phone_store:  
-      sum = sum_phone_store(phone['items_sold'])
-      print(f'Суммарное количество проданных телефонов марки {phone["product"]}: {sum} \n') 
-
+    print_sum_stores(phone_store)
+   
     #Посчитать и вывести среднее количество продаж для каждого товара
-    avg = 0
-    for phone in phone_store:  
-          avg = round(avg_phone_store(phone['items_sold']), 2)
-          print(f'Среднее количество проданных телефонов марки {phone["product"]}: {avg} \n')
+    print_avg_stores(phone_store)
+
     #Посчитать и вывести суммарное количество продаж всех товаров
-    sum = 0
-    for phone in phone_store:  
-      sum += sum_phone_store(phone['items_sold'])
-    print(f'Cуммарное количество продаж всех товаров: {sum} \n') 
+    print_sum_stores_all_model(phone_store)
 
     #Посчитать и вывести среднее количество продаж всех товаров
-    sum = 0
-    avg_all = 0
-    for phone in phone_store:  
-      sum += sum_phone_store(phone['items_sold'])
-    avg_all = round(sum / len(phone_store), 2)
-    print(f'Среднее количество продаж всех товаров: {avg_all} \n') 
+    print_avg_stores_all_model(phone_store)
+
+
     
     
 if __name__ == "__main__":
