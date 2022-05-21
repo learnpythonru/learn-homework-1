@@ -13,13 +13,24 @@
 * Вывести содержимое переменной на экран
 
 """
+def user_activity_by_age(age):
+        if age in range(0, 7):
+            return f'Вам пора в детский сад'
+        elif age in range(7, 19):
+            return f'Вам пора в школу'
+        elif age in range(19, 24):
+            return f'Вам пора в ВУЗ'
+        else:
+            return f'Вам пора на работу'
+
+user_age = int(input('Пожалуйста, введите свой возраст: '))
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    result = user_activity_by_age(user_age)
+    print(result)
+
+
 
 if __name__ == "__main__":
     main()
+    
