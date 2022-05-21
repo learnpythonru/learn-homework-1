@@ -15,13 +15,24 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {
+  'How are you doing?': 'Well',
+  'What are you doing?': 'Coding',
+  'Are you bored?': 'No',
+  'What is your name?': 'Python Bot'
+}
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
+    while True:
+        user_inp = input('Ask me anything...\n')
+        if user_inp not in questions_and_answers.keys():
+            print('Try another question, please.')
+            continue
+        else:
+            print(questions_and_answers[user_inp])
+            break
+
+
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)
