@@ -23,3 +23,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print('Ха-ха, я всё сделал')
