@@ -16,11 +16,22 @@
 """
 
 def main():
+    one_line = input("Введите первую строку с данными. ")
+    two_line = input("Введите вторую строку с данными. ")
+    if one_line == two_line :
+       return "1"
+    elif len(one_line) > len(two_line):
+      return "2"
+    elif len(one_line) != len(two_line) and "learn" in two_line:
+      return "3"
+    elif isinstance(one_line, str) and isinstance(two_line, str):
+      return "0"
+
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+
+       
 if __name__ == "__main__":
-    main()
+    print(main())
