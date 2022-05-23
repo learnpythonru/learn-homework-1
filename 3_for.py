@@ -19,7 +19,6 @@
 * Посчитать и вывести среднее количество продаж всех товаров
 """
 
-from collections import Counter
 phones_sold = [
     {'product': 'iPhone 12', 'items_sold': [
         363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
