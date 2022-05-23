@@ -15,13 +15,20 @@
     
 """
 
-questions_and_answers = {}
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+questions_and_answers = {"Как дела?": "Отлично!", "Как настроение?": "Немного беспокойно?", "Что делаешь?": "Программирую", "Думаешь получится освоить Python?": "Конечно, я все смогу",
+                         "Когда уже перерыв?": "Когда все доделаешь", "Может сбежим гулять по парку?": "Только когда сдашь домашку", "Ты серьезно?": "Серьезнее некуда"}
+
+
+def ask_user():
+    while True:
+        ask_user = input("Задай мне свой вопрос: ")
+        if questions_and_answers.get(ask_user) == None:
+            ask_user
+        else:
+            print(f'Программа говорит: {questions_and_answers.get(ask_user)}')
+
+
 if __name__ == "__main__":
-    ask_user(questions_and_answers)
+    # ask_user(questions_and_answers)
+    ask_user()
