@@ -13,6 +13,9 @@
 
 """
 import logging
+import ephem
+from datetime import datetime, date
+import settings
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -21,32 +24,52 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     filename='bot.log')
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
+# PROXY = {
+#   'proxy_url': 'socks5://t1.learn.python.ru:1080',
+#  'urllib3_proxy_kwargs': {'username': 'learn', 'password': 'python'}}
 
 
-def greet_user(update, context):
-    text = 'Вызван /start'
+def planet_finding(update, context):
+    text = 'Вызван /planet'
     print(text)
-    update.message.reply_text(text)
+    update.message.reply_text("Про какую плаету ты хочешь узнать?")
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    today = datetime.date(datetime.now())
+    mars = ephem.Mars(today)
+    const_mars = ephem.constellation(mars)
+    venus = ephem.Venus(today)
+    const_venus = ephem.constellation(venus)
+    jupiter = ephem.Jupiter(today)
+    const_jupiter = ephem.constellation(jupiter)
+    saturn = ephem.Saturn(today)
+    const_saturn = ephem.constellation(saturn)
+    planet_list = {'Venus': const_venus, 'Mars': const_mars,
+                   'Jupiter': const_jupiter, 'Saturn': const_saturn}
+    ask_user = str(user_text).lower().capitalize()
+    ask_user_1 = ask_user.split(' ')
+    if planet_list.get(str(ask_user_1[0])) == None:
+        ask_user_1
+    else:
+        try:
+            update.message.reply_text(
+                f'Планта сейчас находится в созвездии: {planet_list.get(str(ask_user_1[0]))}')
+        except:
+            if planet_list.get(str(ask_user_1[1])) == None:
+                ask_user_1
+            else:
+                update.message.reply_text(
+                    f'Планта сейчас находится в созвездии: {planet_list.get(str(ask_user_1[1]))}')
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, use_context=True)
 
     dp = mybot.dispatcher
-    dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", planet_finding))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
