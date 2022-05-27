@@ -13,15 +13,7 @@
 * Вывести содержимое переменной на экран
 
 """
-
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-
-
-def actyvity(age = int(input("ввесте возраст "))):
+def actyvity(age):
   if age <= 6:
     print("учиться в детском саду")
   elif 6 < age <= 18:
@@ -32,10 +24,20 @@ def actyvity(age = int(input("ввесте возраст "))):
     print("работать")
 
 
-actyvity(4)
-actyvity(23)
-actyvity(15)
-actyvity(70)
+def main():
+    """
+    Эта функция вызывается автоматически при запуске скрипта в консоли
+    В ней надо заменить pass на ваш код
+    """
+    age_user = int(input("ввесте возраст "))
+    actyvity(4)
+    actyvity(23)
+    actyvity(15)
+    actyvity(70)
+    actyvity(age_user)
+
+
+
 
 
 if __name__ == "__main__":
