@@ -20,7 +20,23 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+first = input()
+second = input()
+def function(first, second):
+  if type(first) == int and type(second) == int:
+    print('0')
+  elif first == second:
+    print('1')
+  elif first != second and second == "learn":
+    print('3')
+  elif first != second and len(first) > len(second):
+    print('2')      
+
+function(1, 5)
+function('fdf', 'fdf')
+function('hxckhxzc', 'ckjdc')
+function('vnj', 'learn')
+
+
 if __name__ == "__main__":
     main()
