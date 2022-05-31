@@ -12,46 +12,55 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+from turtle import update
 import logging
-
+import settings
+import ephem
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import datetime
 
-logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO,
-                    filename='bot.log')
+logging.basicConfig(filename="bot.log", level=logging.INFO)
+
+ephem_built_in_planets = [name for _0, _1, name in ephem._libastro.builtin_planets()]
+
+def planet_constellation_now(text):
+    planet_name = text.replace("/planet ","")
+    if planet_name in ephem_built_in_planets:
+        return ephem.constellation(getattr(ephem, planet_name)(datetime.datetime.now()))[1]
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
-
+def help(update, context):
+    update.message.reply_text("Напиши /planet название планеты, что бы узнать в каком созвездии сегодня находится планета\n\nДля того что бы получить список доступных планет напиши /all_planet")
 
 def greet_user(update, context):
-    text = 'Вызван /start'
-    print(text)
-    update.message.reply_text(text)
+    print("Вызван /start")
+    update.message.reply_text("Доброго здоровьица мой дорогой.\nНапиши /planet название планеты, что бы узнать в каком созвездии сегодня находится планета\n\n Для того что бы получить список доступных планет напиши /all_planet \n\nЕсли запутался ты всегда можешь вызвать команду /help")
+
+def all_planet(update, context):
+    update.message.reply_text(ephem_built_in_planets)
 
 
 def talk_to_me(update, context):
-    user_text = update.message.text
-    print(user_text)
-    update.message.reply_text(text)
-
-
+    text = update.message.text
+    logging.info(text)
+    if text.split(" ")[0] == "/planet":
+        update.message.reply_text(f"Планета находится в созвездии {planet_constellation_now(text)}")
+     
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
-
+    #Создаем бот и передаем ему ключ для авторизации
+    mybot = Updater(settings.API_KEY, use_context=True)
+    
     dp = mybot.dispatcher
+    
+    dp.add_handler(CommandHandler("all_planet", all_planet))
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("help", help))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
+    logging.info("Бот стартовал")
     mybot.start_polling()
+
     mybot.idle()
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
