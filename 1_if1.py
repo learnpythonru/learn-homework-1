@@ -19,8 +19,20 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    "test commit"
-    "test commit2"
+user_age = int(input('ввидите ваш возраст '))
+
+def user_stady(user_age):
+	
+	if user_age < 5:
+		return 'Должен учиться в саду'
+	elif user_age > 5 and user_age <= 15:
+		return 'Должен учиться в школе'
+	elif user_age > 15 and user_age < 22:
+		return 'Должен учиться в университете'
+	else:
+		return 'Должен работать'
+
+print(user_stady(user_age))
 
 if __name__ == "__main__":
     main()
