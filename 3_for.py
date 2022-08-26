@@ -30,6 +30,7 @@ def main():
   for product in phone_sales:
     for item in product:
       for sales in item:
+        
 pass
     
 if __name__ == "__main__":
