@@ -20,7 +20,21 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    str1 = input('Введите строку 1: ')
+    str2 = input('Введите строку 2: ')
+
+    result = check(str1, str2)
+    print(result)
+  
+def check(data1, data2):
+  if data1.isdigit() and data2.isdigit():
+    return 0
+  elif data1 == data2:
+    return 1
+  elif len(data1) > len(data2):
+    return 2
+  elif len(data1) < len(data2):
+    return 3
+
 if __name__ == "__main__":
     main()
