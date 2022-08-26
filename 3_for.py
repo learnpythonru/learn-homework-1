@@ -30,5 +30,7 @@ def main():
   for product in phone_list:
     for line in product:
     
+pass
+    
 if __name__ == "__main__":
     main()
