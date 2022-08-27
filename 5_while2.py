@@ -15,13 +15,23 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {
+  'Как дела?': 'Хорошо',
+  'Что делаешь?': 'Программирую',
+  'Как погода?': 'Отлично',
+  'Пойдешь гулять?': 'Да',
+  'Что насчет кино?': 'Согласен',
+  'Что на работе?': 'Все отлично',
+  'Пойдем в поход?': 'С радостью'
+}
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
+answers_dict = input('Задайте вопрос: ')
+
+def ask_user(answers_dict, questions_and_answers):
+  if answers_dict in questions_and_answers:
+    print(questions_and_answers[answers_dict])
+  else:
+    print('Задайте вопрос еще раз.')
     
 if __name__ == "__main__":
-    ask_user(questions_and_answers)
+    ask_user(answers_dict, questions_and_answers)
