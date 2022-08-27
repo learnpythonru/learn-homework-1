@@ -15,6 +15,7 @@ def hello_user():
     Замените pass на ваш код
     """
     pass
+  git branch testing
     
 if __name__ == "__main__":
     hello_user()
