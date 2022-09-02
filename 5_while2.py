@@ -15,13 +15,28 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {"Как дела?": "Хорошо!", 
+                         "Что делаешь?": "Ничего", 
+                         "Ты кто?": "Конь в пальто",
+                         "Зачем всё это?": "Я не знаю",
+                         "Кто ты?": "Я словарь",}
 
 def ask_user(answers_dict):
     """
     Замените pass на ваш код
     """
-    pass
+    print('Для выходы введите "exit" в поле ввода')
+    while True:
+
+        user_text = str(input('спроси меня о чем хочешь')).capitalize()
+        if user_text != 'Exit':
+            print(questions_and_answers.get(user_text, 'Я не знаю ответа на этот вопрос'))
+            continue
+        else:
+            print('Выход...')
+            break
+
+
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)

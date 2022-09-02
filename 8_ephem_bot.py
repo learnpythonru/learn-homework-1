@@ -12,26 +12,28 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
-import logging
-
+import logging, settings, ephem, difflib, re
+from datetime import date
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
+planets = ['Sun', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto']
+
 
 PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
+    'proxy_url': settings.PROXY_ULR,
     'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
+        'username': settings.PROXY_USERNAME,
+        'password': settings.PROXY_PASSWORD
     }
 }
 
 
 def greet_user(update, context):
-    text = 'Вызван /start'
+    text = 'Приветствую, на данный момент бод тестирует работу команды /planet'
     print(text)
     update.message.reply_text(text)
 
@@ -39,14 +41,74 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+def find_planet(update, context):
+    global planets
+    
+    if context.args:
+
+        inpt = context.args[0].title()
+        print(inpt)
+
+        test_word = difflib.get_close_matches(inpt, planets, n=1, cutoff = 0.6)
+
+        if len(test_word) == 0:
+            print('+')
+        else:
+            inpt = test_word[0]
+        
+        # inpt = test_word[0]
+        # print(inpt)
+
+        try:
+
+            space_object = getattr(ephem, inpt)(date.today())
+            message = f'Вы выбрали планету {inpt}. Эта планета находится в созвездии: {list(ephem.constellation(space_object))[1]}'
+
+        except (AttributeError):
+            message = f'Планеты {inpt} -  не существует. Вы должны указать название планеты из списка:  {planets}'
+
+    else:
+
+        message = f'Вы должны указать название планеты из списка:  {planets}'
+    
+
+    print("Вызов /planet")
+    
+    update.message.reply_text(message)
+
+def bot_math(update, context):
+
+    if context.args:
+        
+        inpt = context.args[0]
+        result = 0
+        if bool(re.match('^[1234567890.+-/*]+$',inpt)):
+            try:
+                result = eval(inpt)
+                message = str(result)
+            except (ZeroDivisionError):
+                message = 'на ноль делить нельзя'
+        else:
+            message = 'Вы ввели недопустимые символы в математическое выражение'
+            
+
+    else: 
+        message  = 'Введите строку формата 2+2'
+
+    print("Вызов /calc")
+    update.message.reply_text(message)
+
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", find_planet))
+    dp.add_handler(CommandHandler("calc", bot_math))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
