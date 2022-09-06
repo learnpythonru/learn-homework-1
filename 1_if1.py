@@ -14,12 +14,38 @@
 
 """
 
+def occupation(age):
+  result = ''
+  if age < 7:
+    result = 'Вы проводите время в детском саду'
+  elif age < 19:
+    result = 'Скорее всего вы учитесь в школе'
+  elif age < 25:
+    result = 'Скорее всего вы - студент'
+  else:
+    result = 'Вы работаете (или на пенсии)'
+  return result
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    try:
+      
+      age = int(input('Сколько вам лет: '))
+      
+      if age > 0 and age < 120:
+        res = occupation(age)
+        print(res)
+      else:
+        print('Введите правильный возраст')
+   
+    except ValueError:
+      print('Возраст должен был быть указан числом')
+
+
+
 
 if __name__ == "__main__":
     main()
