@@ -15,13 +15,36 @@
     
 """
 
-questions_and_answers = {}
+answers_dict = {
+    'hello': 'greetings professor falken',
+    'how are you?': 'fine',
+    'what is your name?': 'joshua',
+    'get defcon level': '5',
+    'get games': 'chess\npoker\nfighter combat\ndesert warfare\n\nglobal thermonuclear war',
+    'play a game?': 'let\'s play global thermonuclear war',
+    'a nice game of chess?': 'yes, please'
+}
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+
+exit_request = ['quit', 'exit', 'bye', 'good bye']
+
+
+def print_wopr_style(msg: str):
+    print(msg.upper())
+
+
+def ask_user(qa_dict):
+    print_wopr_style('wopr console')
+    while True:
+        user_input = input('> ').lower()
+        if user_input in qa_dict:
+            print_wopr_style(qa_dict[user_input])
+        elif user_input in exit_request:
+            print_wopr_style('bye-bye')
+            break
+        else:
+            print_wopr_style('i don\'t understand you')
+
+
 if __name__ == "__main__":
-    ask_user(questions_and_answers)
+    ask_user(answers_dict)
