@@ -16,19 +16,19 @@
 """
 
 def compare_two_strings(line1, line2):
-    if type(line1) != str or type(line2) != str:
+    if not isinstance(line1, str) or not isinstance(line2, str):
         return 0
 
     if line1 == line2:
         return 1
 
-    if len(line1) > len(line2) and line2 != 'learn': #если убрать второе условие, 3 не вернется при line1 > line2
+    if len(line1) > len(line2): 
         return 2
 
     if line2 == 'learn':
         return 3
 
-    return 'подходящих условий не нашлось'
+    return -1
     
 if __name__ == "__main__":
     line1 = '2'
@@ -45,4 +45,12 @@ if __name__ == "__main__":
 
     line1 = 'Python'
     line2 = 'learn'
+    print(compare_two_strings(line1, line2))
+
+    line1 = 'Py'
+    line2 = 'learn'
+    print(compare_two_strings(line1, line2))
+
+    line1 = '1'
+    line2 = 'Python'
     print(compare_two_strings(line1, line2))
