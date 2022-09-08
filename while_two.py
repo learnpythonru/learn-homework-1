@@ -17,17 +17,18 @@
 
 
 
-def ask_user(answers_dict):
+questions_and_answers = {
+'Привет': ':)', 'Как дела?': 'Хорошо!', 'Что делаешь?': 'Программирую', 'Сколько будет 2+2?': '4', 'Выход': 'Пока'
+}
+
+def ask_user():
     question = ''
     while question != 'Выход':
         question = input('Задайте вопрос: ')
-        if question != 'Выход':
-            print(answers_dict.get(question))
-            if question not in answers_dict.keys():
-                print(f'Я понимаю только следующие вопросы: {answers_dict.keys()}')
+        answer = questions_and_answers.get(question)
+        print(answer)
+        if not answer:
+            print(f'Я понимаю только следующие вопросы: {questions_and_answers.keys()}')
 
 if __name__ == "__main__":
-    questions_and_answers = {
-    'Привет': ':)', 'Как дела?': 'Хорошо!', 'Что делаешь?': 'Программирую', 'Сколько будет 2+2?': '4'
-    }
-    ask_user(questions_and_answers)
+    ask_user()
