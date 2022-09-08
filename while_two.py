@@ -12,16 +12,22 @@
 
     Пользователь: Что делаешь?
     Программа: Программирую
-    
+
 """
 
-questions_and_answers = {}
+
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    question = ''
+    while question != 'Выход':
+        question = input('Задайте вопрос: ')
+        if question != 'Выход':
+            print(questions_and_answers.get(question))
+            if question not in questions_and_answers.keys():
+                print(f'Я понимаю только следующие вопросы: {questions_and_answers.keys()}')
+
 if __name__ == "__main__":
+    questions_and_answers = {
+    'Привет': ':)', 'Как дела?': 'Хорошо!', 'Что делаешь?': 'Программирую', 'Сколько будет 2+2?': '4'
+    }
     ask_user(questions_and_answers)
