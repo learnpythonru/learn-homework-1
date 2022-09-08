@@ -4,18 +4,15 @@
 
 Цикл while: hello_user
 
-* Напишите функцию hello_user(), которая с помощью функции input() спрашивает 
+* Напишите функцию hello_user(), которая с помощью функции input() спрашивает
   пользователя “Как дела?”, пока он не ответит “Хорошо”
-   
+
 """
 
+answer = (input('Как дела? ').lower())
+def hello_user(answer):
+    while answer != 'хорошо':
+        print('Ответьте еще раз!')
+        answer = str(input('Как дела? '))
+print(hello_user(answer))
 
-def hello_user():
-    """
-    Замените pass на ваш код
-    """
-    pass
-
-    
-if __name__ == "__main__":
-    hello_user()
