@@ -16,6 +16,10 @@ import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
+from datetime import date
+
+import ephem
+
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
@@ -39,14 +43,24 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
 
+def get_planet_location(update, context):
+    text_message = update.message.text.split()
+    date_today = date.today().strftime("%Y/%m/%d")
+
+    fn = getattr(ephem, text_message[1])
+    planet = fn(date_today)
+    constellation = ephem.constellation(planet)
+
+    update.message.reply_text(', '.join(constellation))
 
 def main():
     mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_planet_location))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
