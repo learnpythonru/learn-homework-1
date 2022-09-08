@@ -6,7 +6,7 @@
 
 * Дан список словарей с данными по колличеству проданных телефонов
   [
-    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
+    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
   ]
@@ -16,18 +16,11 @@
 * Посчитать и вывести среднее количество продаж всех товаров
 """
 
-def count_total_phones_sales(phones_sold):
-    """Считает сумму продаж для каждой модели телефона"""
 
-    sales_sum = 0
-    for sales in phones_sold:
-        sales_sum += sales
-    return sales_sum 
-    
 
 if __name__ == "__main__":
     phones_sales = [
-    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
+    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
     ]
@@ -35,7 +28,7 @@ if __name__ == "__main__":
     total_sales = 0
 
     for phones in phones_sales:
-        sales_sum = count_total_phones_sales(phones['items_sold'])
+        sales_sum = sum(phones['items_sold'])
         total_sales += sales_sum
         print(f'Телефонов {phones["product"]} продано {sales_sum} штук')
         average_sales = int(sales_sum / len(phones['items_sold']))
@@ -44,6 +37,5 @@ if __name__ == "__main__":
     print(f'Всего продано {total_sales} телефонов')
 
     average_total_sales = int(total_sales / len(phones_sales))
-    
+
     print(f'В среднем продано {average_total_sales} телефонов')
-    
