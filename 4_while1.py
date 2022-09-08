@@ -13,6 +13,6 @@ answer = (input('Как дела? ').lower())
 def hello_user(answer):
     while answer != 'хорошо':
         print('Ответьте еще раз!')
-        answer = str(input('Как дела? '))
+        answer = str(input('Как дела? ').lower())
 print(hello_user(answer))
 
