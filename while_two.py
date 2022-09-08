@@ -22,9 +22,9 @@ def ask_user(answers_dict):
     while question != 'Выход':
         question = input('Задайте вопрос: ')
         if question != 'Выход':
-            print(questions_and_answers.get(question))
-            if question not in questions_and_answers.keys():
-                print(f'Я понимаю только следующие вопросы: {questions_and_answers.keys()}')
+            print(answers_dict.get(question))
+            if question not in answers_dict.keys():
+                print(f'Я понимаю только следующие вопросы: {answers_dict.keys()}')
 
 if __name__ == "__main__":
     questions_and_answers = {
