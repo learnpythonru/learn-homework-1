@@ -15,13 +15,21 @@
     
 """
 
-questions_and_answers = {}
+from pickle import TRUE
+
+
+questions_and_answers = {'Как дела?': 'Хорошо!', 'Что делаешь?': 'Программирую.', 
+  'Какая погода?': 'Солнечно.'}
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
+  question_in = input('Задайте вопрос: ').strip()
+  sence_bool = TRUE
+  while sence_bool:
+    if answers_dict.get(question_in):
+      print(answers_dict.get(question_in))
+      sence_bool = False
+    else: 
+      print('Я не знаю.')
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)

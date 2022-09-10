@@ -12,7 +12,11 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+from datetime import datetime
+from typing import Type
+import Setting
 import logging
+import ephem
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -20,14 +24,6 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
-
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
 
 
 def greet_user(update, context):
@@ -41,14 +37,26 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(text)
 
+def planet_mars(update, context):
+    planet = update.message.text.split()
+    try:
+      planet_ephem = getattr(ephem,planet[1].lower().capitalize())(datetime.now())
+    
+      constellation = ephem.constellation(planet_ephem)
+      
+      text = f"Планета {planet[1].lower().capitalize()} находится в {constellation}"
+    except AttributeError:
+      text = f"Планета {planet[1].lower().capitalize()} не найдена."
+    update.message.reply_text(text)
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(Setting.API_KEY)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", planet_mars))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-
+    
     mybot.start_polling()
     mybot.idle()
 
