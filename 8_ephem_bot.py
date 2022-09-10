@@ -12,27 +12,32 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+
 import logging
-import ephem
-from datetime import date
+from time import time
+from datetime import datetime
+from Setting import APIKEY
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import ephem
 
 logging.basicConfig(
     format="%(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
     filename="bot.log",
 )
+time_now = datetime.now()
 
-planet_dict = {
-    "Mars": ephem.Mars(date.today()),
-    "Venus": ephem.Venus(date.today()),
-    "Saturn": ephem.Saturn(date.today()),
-    "Jupiter": ephem.Jupiter(date.today()),
-    "Neptune": ephem.Neptune(date.today()),
-    "Uranus": ephem.Uranus(date.today()),
-    "Mercury": ephem.Mercury(date.today()),
-}
-
+def get_planet(planet):
+    planet_dict = {
+        "Mars": ephem.Mars(time_now),
+        "Venus": ephem.Venus(time_now),
+        "Saturn": ephem.Saturn(time_now),
+        "Jupiter": ephem.Jupiter(time_now),
+        "Neptune": ephem.Neptune(time_now),
+        "Uranus": ephem.Uranus(time_now),
+        "Mercury": ephem.Mercury(time_now),
+    }
+    return planet_dict.get(planet, None)
 
 def greet_user(update, context):
     text = "Вызван /start"
@@ -47,16 +52,19 @@ def talk_to_me(update, context):
 
 
 def planets(update, context):
-    planetname = update.message.text.split()[1]
-    isplanet = planet_dict.get(planetname, None)
-    if isplanet != None:
-        constellation = ephem.constellation(planet_dict[planetname])
-        update.message.reply_text(constellation[1])
-        update.message.reply_text("Такой планеты нет")
+    text_lst = update.message.text.split()
+    if len(text_lst)==2:
+        planetname = update.message.text.split()[1]
+        if get_planet(planetname) is not None:
+            constellation = ephem.constellation(get_planet(planetname))
+            update.message.reply_text(constellation[1])
+            update.message.reply_text("Такой планеты нет")
+    else:
+        update.message.reply_text("Такой команды нет")
 
 
 def main():
-    mybot = Updater("5437432503:AAFHarbS1qyUzjB4cAkmma2VBDsMfPnzHso", use_context=True)
+    mybot = Updater(APIKEY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
