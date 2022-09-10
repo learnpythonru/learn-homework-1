@@ -20,14 +20,15 @@ import ephem
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO,
-                    filename='bot.log')
-
+logging.basicConfig(
+    format="%(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+    filename="bot.log",
+)
 
 
 def greet_user(update, context):
-    text = 'Вызван /start'
+    text = "Вызван /start"
     print(text)
     update.message.reply_text(text)
 
@@ -37,17 +38,19 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(text)
 
+
 def planet_mars(update, context):
     planet = update.message.text.split()
     try:
-      planet_ephem = getattr(ephem,planet[1].lower().capitalize())(datetime.now())
-    
-      constellation = ephem.constellation(planet_ephem)
-      
-      text = f"Планета {planet[1].lower().capitalize()} находится в {constellation}"
+        planet_ephem = getattr(ephem, planet[1].lower().capitalize())(datetime.now())
+
+        constellation = ephem.constellation(planet_ephem)
+
+        text = f"Планета {planet[1].lower().capitalize()} находится в {constellation}"
     except AttributeError:
-      text = f"Планета {planet[1].lower().capitalize()} не найдена."
+        text = f"Планета {planet[1].lower().capitalize()} не найдена."
     update.message.reply_text(text)
+
 
 def main():
     mybot = Updater(Setting.API_KEY)
@@ -56,7 +59,7 @@ def main():
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", planet_mars))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-    
+
     mybot.start_polling()
     mybot.idle()
 

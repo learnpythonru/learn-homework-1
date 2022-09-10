@@ -8,11 +8,13 @@
   пользователя “Как дела?”, пока он не ответит “Хорошо”
    
 """
-def hello_user():
-  answer = input('Как дела? ')
-  while answer != 'Хорошо':
-    answer = input('Как дела? ')
 
-    
+
+def hello_user():
+    answer = input("Как дела? ")
+    while answer != "Хорошо":
+        answer = input("Как дела? ")
+
+
 if __name__ == "__main__":
     hello_user()

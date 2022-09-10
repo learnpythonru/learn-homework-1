@@ -14,31 +14,32 @@
   и выводя на экран результаты
 
 """
-def comparison_str(string1, string2):
-  answer = 0
- 
-  if type(string1) != str or type(string2) != str :
-    answer = 0
-  elif string1 == string2 :
-    answer = 1
-  elif len(string1) > len (string2) :
-    answer = 2
-  elif string2 == 'learn' :
-    answer = 3 
-  else :
-    answer = 4
 
-  return answer
-    
+
+def comparison_str(string1, string2):
+    answer = 0
+
+    if type(string1) != str or type(string2) != str:
+        answer = 0
+    elif string1 == string2:
+        answer = 1
+    elif len(string1) > len(string2):
+        answer = 2
+    elif string2 == "learn":
+        answer = 3
+    else:
+        answer = 4
+
+    return answer
 
 
 def main():
 
-    string1 = input('Введите первую строку: ')
-    string2 = input('Введите вторую строку: ')  
-    print(comparison_str(string1, string2) )  
-    print(comparison_str(12,string2))   
-    
-    
+    string1 = input("Введите первую строку: ")
+    string2 = input("Введите вторую строку: ")
+    print(comparison_str(string1, string2))
+    print(comparison_str(12, string2))
+
+
 if __name__ == "__main__":
     main()
