@@ -15,6 +15,7 @@
 
 """
 
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
@@ -24,17 +25,17 @@ def main():
     str2 = input()
     print(check_str(str1, str2))
 
-def check_str(str1,str2):
-    if type(str1)!=str or type(str2)!=str:
+
+def check_str(str1, str2):
+    if type(str1) != str or type(str2) != str:
         return 0
     if str1 == str2:
         return 1
     if len(str1) > len(str2):
         return 2
-    if str1 != str2 and str2 == 'learn':
+    if str1 != str2 and str2 == "learn":
         return 3
 
 
-    
 if __name__ == "__main__":
     main()

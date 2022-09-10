@@ -17,14 +17,25 @@ import ephem
 from datetime import date
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO,
-                    filename='bot.log')
+logging.basicConfig(
+    format="%(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+    filename="bot.log",
+)
 
-planet_dict = {'Mars': ephem.Mars(date.today()), 'Venus': ephem.Venus(date.today()), 'Saturn': ephem.Saturn(date.today()), 'Jupiter': ephem.Jupiter(date.today()),
-               'Neptune': ephem.Neptune(date.today()), 'Uranus': ephem.Uranus(date.today()), 'Mercury': ephem.Mercury(date.today())}
+planet_dict = {
+    "Mars": ephem.Mars(date.today()),
+    "Venus": ephem.Venus(date.today()),
+    "Saturn": ephem.Saturn(date.today()),
+    "Jupiter": ephem.Jupiter(date.today()),
+    "Neptune": ephem.Neptune(date.today()),
+    "Uranus": ephem.Uranus(date.today()),
+    "Mercury": ephem.Mercury(date.today()),
+}
+
+
 def greet_user(update, context):
-    text = 'Вызван /start'
+    text = "Вызван /start"
     print(text)
     update.message.reply_text(text)
 
@@ -34,16 +45,14 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(user_text)
 
+
 def planets(update, context):
     planetname = update.message.text.split()[1]
     isplanet = planet_dict.get(planetname, None)
     if isplanet != None:
         constellation = ephem.constellation(planet_dict[planetname])
         update.message.reply_text(constellation[1])
-        update.message.reply_text('Такой планеты нет')
-
-
-    
+        update.message.reply_text("Такой планеты нет")
 
 
 def main():
