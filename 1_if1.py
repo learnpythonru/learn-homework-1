@@ -14,12 +14,29 @@
 
 """
 
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    from unicodedata import name
+
+
+your_age = int(input("Введите ваш возрвст "))
+
+
+def main(your_age):
+    if your_age < 7:
+        return "Вы учитесь в детском саду"
+    elif your_age >= 7 and your_age <= 17:
+        return "Вы учитесь в школе"
+    elif your_age > 17 and your_age <= 23:
+        return "Вы учитесь в ВУЗе"
+    else:
+        return "Вы уже работаете"
+
+
+age = main(your_age)
+print(age)
+if __name__ == "main":
+    main()
 
 if __name__ == "__main__":
     main()
