@@ -29,10 +29,10 @@ def ask_user(answers_dict):
     while True:
         question = input('Введите вопрос: ')
         answer = questions_and_answers.get(question)
-        if answer:
+        if not answer is None:
             print(answer)
         else:
-            print('Нет подходящего ответа данный вопрос')
+            print('Нет подходящего ответа на данный вопроса')
 
 if __name__ == "__main__":
     ask_user(questions_and_answers)

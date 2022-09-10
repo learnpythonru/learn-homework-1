@@ -16,15 +16,14 @@
 """
 
 def check_string(first_string, second_string):
-    if type(first_string) and type(second_string) != str:
+    if isinstance(first_string, str) and isinstance(second_string, str) is not  True:
         return 0
     elif first_string == second_string:
         return 1
-    else:
-        if second_string == 'learn':
-            return 3
-        elif len(first_string) > len(second_string):
-            return 2
+    elif second_string == 'learn':
+        return 3
+    elif len(first_string) > len(second_string):
+        return 2
 
 def main():
     """
