@@ -52,12 +52,12 @@ def get_planet_location(update, context):
     if len(text_message) < 2:
         return update.message.reply_text('Не указана планета.')
 
-    fn = getattr(ephem, text_message[1], 'err')
+    get_attribute = getattr(ephem, text_message[1], None)
 
-    if fn == 'err':
+    if get_attribute is None:
         return update.message.reply_text('Допущена ошибка вводе планеты.')
 
-    planet = fn(date_today)
+    planet = get_attribute(date_today)
     constellation = ephem.constellation(planet)
 
     update.message.reply_text(', '.join(constellation))

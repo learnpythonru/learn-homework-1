@@ -16,7 +16,7 @@
 """
 
 def check_string(first_string, second_string):
-    if isinstance(first_string, str) and isinstance(second_string, str) is not  True:
+    if not isinstance(first_string, str) or not isinstance(second_string, str):
         return 0
     elif first_string == second_string:
         return 1

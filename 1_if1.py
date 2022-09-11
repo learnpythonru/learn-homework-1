@@ -15,17 +15,23 @@
 """
 def distribute_career(age):
     if age < 1.5:
-        return print('Ты совсем еще маленький')
+        print('Ты совсем еще маленький')
+        return
     elif 1.5 <= age <= 7:
-        return print('Ходить в детский сад')
+        print('Ходить в детский сад')
+        return
     elif 7 < age <= 18:
-        return print('Учиться в школе')
+        print('Учиться в школе')
+        return
     elif 18 < age <= 23:
-       return  print('Учиться в ВУЗе')
+        print('Учиться в ВУЗе')
+        return
     elif 23 < age <= 70:
-        return print('Пора работать')
+        print('Пора работать')
+        return
     else:
-        return print('Пора уже на пенсию')
+        print('Пора уже на пенсию')
+        return
 
 
 def main():

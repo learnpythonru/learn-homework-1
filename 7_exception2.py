@@ -22,9 +22,11 @@ def discounted(price, discount, max_discount=20):
         discount = abs(float(discount))
         max_discount = abs(int(max_discount))
     except TypeError:
-        return print('Ошибка, передан не верный тип!')
+        print('Ошибка, передан не верный тип!')
+        return
     except ValueError:
-        return print('Ошибка, переданы не верные данные!')
+        print('Ошибка, переданы не верные данные!')
+        return
 
     if max_discount >= 100:
         raise ValueError('Слишком большая максимальная скидка')
@@ -40,4 +42,3 @@ if __name__ == "__main__":
     print(discounted("five", 5))
     print(discounted("сто", "десять"))
     print(discounted(100.0, 5, "10"))
-    
