@@ -14,6 +14,12 @@
 """
 import logging
 
+import ephem
+
+import datetime
+
+import settings
+
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
@@ -21,32 +27,63 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     filename='bot.log')
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
-
 
 def greet_user(update, context):
     text = 'Вызван /start'
+    update.message.reply_text('Здравствуй, пользователь!')
+
+
+def find_what_constellation_planet(update, context):
+    now = datetime.datetime.now()
+    planet = update.message.text.split()[-1].capitalize()
+
+    if planet == 'Mercury':
+        planet_now = ephem.constellation(ephem.Mercury(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Venus':
+        planet_now = ephem.constellation(ephem.Venus(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Mars':
+        planet_now = ephem.constellation(ephem.Mars(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Jupiter':
+        planet_now = ephem.constellation(ephem.Jupiter(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Saturn':
+        planet_now = ephem.constellation(ephem.Saturn(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Uranus':
+        planet_now = ephem.constellation(ephem.Uranus(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Neptune':
+        planet_now = ephem.constellation(ephem.Neptune(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Pluto':
+        planet_now = ephem.constellation(ephem.Pluto(now.strftime("%Y-%m-%d")))
+
+    elif planet == 'Earth':
+        update.message.reply_text(f'Ты и так на {planet}, в небе ее нет.')
+        return
+
+    else:
+        update.message.reply_text(f'{planet} в солнечной системе нет.')
+        return
+
+    update.message.reply_text(f'{planet} сейчас находится в созвездии {planet_now}.')
+
+
+def talk_to_me(update, context):
+    text = update.message.text
     print(text)
     update.message.reply_text(text)
 
 
-def talk_to_me(update, context):
-    user_text = update.message.text
-    print(user_text)
-    update.message.reply_text(text)
-
-
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", find_what_constellation_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
