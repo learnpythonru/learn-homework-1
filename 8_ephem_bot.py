@@ -12,6 +12,8 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+# В Setting содержится API_KEY для бота
+
 from datetime import datetime
 from typing import Type
 import Setting
@@ -41,8 +43,9 @@ def talk_to_me(update, context):
 
 def planet_mars(update, context):
     planet = update.message.text.split()
+    name_planet = planet[1].lower().capitalize()
     try:
-        planet_ephem = getattr(ephem, planet[1].lower().capitalize())(datetime.now())
+        planet_ephem = getattr(ephem, name_planet)(datetime.now())
 
         constellation = ephem.constellation(planet_ephem)
 

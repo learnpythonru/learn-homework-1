@@ -33,7 +33,7 @@ def main():
         },
     ]
     all_sum = 0
-    all_middle = 0
+    all_len = 0
     for amount_phone in list_phone:
         print(sum(amount_phone["items_sold"]))
         all_sum += sum(amount_phone["items_sold"])
@@ -42,9 +42,9 @@ def main():
                 amount_phone["items_sold"]
             )
             print(middle_num)
-            all_middle += middle_num
+            all_len += len(amount_phone["items_sold"])
     print(all_sum)
-    print(all_middle)
+    print(all_sum / all_len)
 
 
 if __name__ == "__main__":

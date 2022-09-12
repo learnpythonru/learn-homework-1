@@ -11,9 +11,9 @@
 
 
 def hello_user():
-    answer = input("Как дела? ")
-    while answer != "Хорошо":
-        answer = input("Как дела? ")
+
+    while input("Как дела? ") != "Хорошо":
+        pass
 
 
 if __name__ == "__main__":

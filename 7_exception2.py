@@ -16,14 +16,9 @@
 
 def discounted(price, discount, max_discount=20):
     try:
-        try:
-            price = abs(price)
-            discount = abs(discount)
-            max_discount = abs(max_discount)
-        except TypeError:
-            price = abs(float(price))
-            discount = abs(float(discount))
-            max_discount = abs(int(max_discount))
+        price = abs(float(price))
+        discount = abs(float(discount))
+        max_discount = abs(int(max_discount))
     except (TypeError, ValueError):
         return "Введены не корректные данные"
 

@@ -26,12 +26,12 @@ questions_and_answers = {
 
 
 def ask_user(answers_dict):
-    question_in = input("Задайте вопрос: ").strip()
-    sence_bool = TRUE
-    while sence_bool:
+
+    while True:
+        question_in = input("Задайте вопрос: ").strip()
         if answers_dict.get(question_in):
             print(answers_dict.get(question_in))
-            sence_bool = False
+            break
         else:
             print("Я не знаю.")
 

@@ -17,20 +17,17 @@
 
 
 def comparison_str(string1, string2):
-    answer = 0
 
     if type(string1) != str or type(string2) != str:
-        answer = 0
+        return 0
     elif string1 == string2:
-        answer = 1
+        return 1
     elif len(string1) > len(string2):
-        answer = 2
+        return 2
     elif string2 == "learn":
-        answer = 3
+        return 3
     else:
-        answer = 4
-
-    return answer
+        return 4
 
 
 def main():
