@@ -18,14 +18,14 @@
 questions_and_answers = {}
 
 
-def ask_user(answers_dict):
+def ask_user(questions_and_answers):
     """
     Замените pass на ваш код
     """
-    que = ""
-    while que != "Стоп":
+
+    while True:
         que = input("Какой вопрос?")
-        if questions_and_answers.get(que) == None:
+        if questions_and_answers.get(que) is None:
             questions_and_answers[que] = input("Какой ответ")
         else:
             print(questions_and_answers[que])

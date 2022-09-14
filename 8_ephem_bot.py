@@ -25,9 +25,10 @@ logging.basicConfig(
     level=logging.INFO,
     filename="bot.log",
 )
-time_now = datetime.now()
+
 
 def get_planet(planet):
+    time_now = datetime.now()
     planet_dict = {
         "Mars": ephem.Mars(time_now),
         "Venus": ephem.Venus(time_now),
@@ -38,6 +39,7 @@ def get_planet(planet):
         "Mercury": ephem.Mercury(time_now),
     }
     return planet_dict.get(planet, None)
+
 
 def greet_user(update, context):
     text = "Вызван /start"
@@ -53,7 +55,7 @@ def talk_to_me(update, context):
 
 def planets(update, context):
     text_lst = update.message.text.split()
-    if len(text_lst)==2:
+    if len(text_lst) == 2:
         planetname = update.message.text.split()[1]
         if get_planet(planetname) is not None:
             constellation = ephem.constellation(get_planet(planetname))
