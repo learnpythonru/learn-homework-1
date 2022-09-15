@@ -17,6 +17,8 @@ import logging, ephem
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from datetime import datetime
 
+import settings
+
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s', level=logging.INFO, filename='bot.log')
 
 
@@ -43,7 +45,7 @@ def talk_to_me(update, context):
     update.message.reply_text(user_text)
 
 def main():
-    mybot = Updater("5402003770:AAFIMcg5CtejQjOj4kkyleYfxw-he5fo6D4",  use_context=True)
+    mybot = Updater(settings.API_KEY,  use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
