@@ -49,9 +49,9 @@ def planet_mars(update, context):
 
         constellation = ephem.constellation(planet_ephem)
 
-        text = f"Планета {planet[1].lower().capitalize()} находится в {constellation}"
+        text = f"Планета {name_planet} находится в {constellation}"
     except AttributeError:
-        text = f"Планета {planet[1].lower().capitalize()} не найдена."
+        text = f"Планета {name_planet} не найдена."
     update.message.reply_text(text)
 
 

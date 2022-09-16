@@ -15,9 +15,6 @@
     
 """
 
-from pickle import TRUE
-
-
 questions_and_answers = {
     "Как дела?": "Хорошо!",
     "Что делаешь?": "Программирую.",
