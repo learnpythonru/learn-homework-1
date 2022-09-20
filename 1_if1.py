@@ -13,19 +13,15 @@
 * Вывести содержимое переменной на экран
 
 """
-while True:
-    user_age = int(input("Type your age, please:\n"))
-    if user_age < 2:
-        print("You typed incorrect age, type correct age")
-        continue
-    else:
-        break
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
+    while True:
+        user_age = int(input("Type your age, please:\n"))
+        if user_age < 2:
+            print("You typed incorrect age, type correct age")
+            continue
+        else:
+            break
     if user_age < 7:
         print("You must go to kindergarten")
     elif user_age >= 7 and user_age < 18:

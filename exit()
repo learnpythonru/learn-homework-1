@@ -1,0 +1,116 @@
+[1mdiff --git a/1_if1.py b/1_if1.py[m
+[1mindex 982de6d..514c88d 100644[m
+[1m--- a/1_if1.py[m
+[1m+++ b/1_if1.py[m
+[36m@@ -13,19 +13,15 @@[m
+ * Вывести содержимое переменной на экран[m
+ [m
+ """[m
+[31m-while True:[m
+[31m-    user_age = int(input("Type your age, please:\n"))[m
+[31m-    if user_age < 2:[m
+[31m-        print("You typed incorrect age, type correct age")[m
+[31m-        continue[m
+[31m-    else:[m
+[31m-        break[m
+ [m
+ def main():[m
+[31m-    """[m
+[31m-    Эта функция вызывается автоматически при запуске скрипта в консоли[m
+[31m-    В ней надо заменить pass на ваш код[m
+[31m-    """[m
+[32m+[m[32m    while True:[m
+[32m+[m[32m        user_age = int(input("Type your age, please:\n"))[m
+[32m+[m[32m        if user_age < 2:[m
+[32m+[m[32m            print("You typed incorrect age, type correct age")[m
+[32m+[m[32m            continue[m
+[32m+[m[32m        else:[m
+[32m+[m[32m            break[m
+     if user_age < 7:[m
+         print("You must go to kindergarten")[m
+     elif user_age >= 7 and user_age < 18:[m
+[1mdiff --git a/2_if2.py b/2_if2.py[m
+[1mindex 921b583..d421f0e 100644[m
+[1m--- a/2_if2.py[m
+[1m+++ b/2_if2.py[m
+[36m@@ -16,18 +16,15 @@[m
+ """[m
+ [m
+ def main(one, two):[m
+[31m-    """[m
+[31m-    Эта функция вызывается автоматически при запуске скрипта в консоли[m
+[31m-    В ней надо заменить pass на ваш код[m
+[31m-    """[m
+[31m-    if type(one) and type(two) != str:[m
+[31m-      return 0[m
+[31m-    elif one == two:[m
+[31m-      return 1[m
+[31m-    elif one != two and len(one)>len(two):[m
+[31m-      return 2[m
+[31m-    elif one != two and two == 'learn':[m
+[31m-      return 3[m
+[32m+[m[32m  if not isinstance(one, str) or not isinstance(two, str):[m
+[32m+[m[32m    return 0[m
+[32m+[m[32m  elif one == two:[m
+[32m+[m[32m    return 1[m
+[32m+[m[32m  elif len(one) > len(two):[m
+[32m+[m[32m    return 2[m
+[32m+[m[32m  elif two == 'learn':[m
+[32m+[m[32m    return 3[m
+[32m+[m
+ if __name__ == "__main__":[m
+[31m-    result=main('one', 'learn')[m
+[31m-    print(result)[m
+[32m+[m[32m  result=main('two', 'learn')[m
+[32m+[m[32m  print(result)[m
+[1mdiff --git a/8_ephem_bot.py b/8_ephem_bot.py[m
+[1mindex 1cf9ea1..3911034 100644[m
+[1m--- a/8_ephem_bot.py[m
+[1m+++ b/8_ephem_bot.py[m
+[36m@@ -14,6 +14,8 @@[m
+ """[m
+ import logging[m
+ [m
+[32m+[m[32mimport ephem[m
+[32m+[m
+ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters[m
+ [m
+ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',[m
+[36m@@ -21,14 +23,6 @@[m [mlogging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',[m
+                     filename='bot.log')[m
+ [m
+ [m
+[31m-PROXY = {[m
+[31m-    'proxy_url': 'socks5://t1.learn.python.ru:1080',[m
+[31m-    'urllib3_proxy_kwargs': {[m
+[31m-        'username': 'learn',[m
+[31m-        'password': 'python'[m
+[31m-    }[m
+[31m-}[m
+[31m-[m
+ [m
+ def greet_user(update, context):[m
+     text = 'Вызван /start'[m
+[36m@@ -41,12 +35,21 @@[m [mdef talk_to_me(update, context):[m
+     print(user_text)[m
+     update.message.reply_text(text)[m
+ [m
+[32m+[m[32mdef planet(update,context):[m
+[32m+[m[32m    user_name_planet = update.message.text[m
+[32m+[m[32m    user_name_planet = user_name_planet.split()[m
+[32m+[m[32m    print(user_name_planet)[m
+[32m+[m[32m    date = user_name_planet[1][m
+[32m+[m[32m    constellation = ephem.constellation(date)[m
+[32m+[m[32m    update.message.reply_text(constellation)[m
+[32m+[m
+ [m
+ def main():[m
+[31m-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)[m
+[32m+[m[32m    mybot = Updater("5488227838:AAExpRXaTH-jy5VgQeec557Zh0wHdpBvpI4", use_context=True)[m
+ [m
+     dp = mybot.dispatcher[m
+     dp.add_handler(CommandHandler("start", greet_user))[m
+[32m+[m[32m    dp.add_handler(MessageHandler(Filters.text, planet))[m
+     dp.add_handler(MessageHandler(Filters.text, talk_to_me))[m
+ [m
+     mybot.start_polling()[m
