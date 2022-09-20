@@ -11,11 +11,7 @@
 * Вызвать функцию, передав ей возраст пользователя и положить результат 
   работы функции в переменную
 * Вывести содержимое переменной на экран
-asfsafsafsafasf
-asfasfasf
-asfasfsaf
-asfaf
-
+asfsaffffffffffffffff
 """
 
 def main():
