@@ -14,12 +14,25 @@
 
 """
 
+
+def years_print(years_old):
+    stroka = ""
+    if years_old < 7:
+        stroka = "Человек учится в детском саду."
+    elif 7 <= years_old < 17:
+        stroka = "Человек учится в школе."
+    elif 17 <= years_old < 22:
+        stroka = "Человек учится в ВУЗе."
+    else:
+        stroka = "Человек работает."
+    return stroka
+
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+
+    years_old = input("Введите ваш возраст: ")
+    print(years_print(int(years_old)))
+
 
 if __name__ == "__main__":
     main()
