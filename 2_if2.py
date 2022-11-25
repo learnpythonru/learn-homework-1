@@ -14,13 +14,25 @@
   и выводя на экран результаты
 
 """
+def is_string(str1, str2: str) -> int:
+    if not type(str1) is str or not type(str2) is str:
+        return 0
+    if str1 == str2:
+        return 1
+    if len(str1) > len(str2):
+        return 2
+    if str2 == 'learn':
+        return 3
 
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    print(is_string(1, 'Уася'))       # 0
+    print(is_string('Уася', 'Уася'))  # 1
+    print(is_string('привееет', 'Уася'))       # 2
+    print(is_string('Уася', 'learn'))       # 3
     
 if __name__ == "__main__":
     main()
