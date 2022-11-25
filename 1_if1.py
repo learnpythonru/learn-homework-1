@@ -35,7 +35,7 @@ def main():
           user_age = abs(int(input("Введите ваш возраст: "))) # а вдруг нажмет -15
       except ValueError:
           print('Вы ввели не число! Попробуйте ещё раз.')
-          continue
+          #continue
       else:
         result = what_you_gonna_do(user_age)
         print(result)
