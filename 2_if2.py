@@ -33,6 +33,6 @@ def main():
     print(is_string('Уася', 'Уася'))  # 1
     print(is_string('привееет', 'Уася'))       # 2
     print(is_string('Уася', 'learn'))       # 3
-    
+# комментарий для проверки    
 if __name__ == "__main__":
     main()
