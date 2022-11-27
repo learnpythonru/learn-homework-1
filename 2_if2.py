@@ -14,13 +14,22 @@
   и выводя на экран результаты
 
 """
+#DONE
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+def str_comparing(str1, str2):
+    if (type(str1)!=str) and (type(str2)!=str) :
+        return 0
+    if str1 == str2:
+        return 1
+    elif str1 !='Learn' and  str2 == 'Learn':
+        return 3
+    elif len(str1) > len(str2):
+        return 2
+
+
+
+print(str_comparing(5, 10))
+print(str_comparing("Two str is the same", "Two str is the same"))
+print(str_comparing("Loooooong", "Short"))
+print(str_comparing("Some random", "Learn"))
     
-if __name__ == "__main__":
-    main()

@@ -14,14 +14,23 @@
     Программа: Программирую
     
 """
+#NEED TO THINK MORE NOTHING HELPS 
+#HOW TO LOOP THROUGH DICT AND GET THE VALUE 
 
-questions_and_answers = {}
+questions_and_answers = {
+    "question": "Что делаешь?",
+    "answer":"Программирую"
+}
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
+  user_question = input("Спроси меня, что я делаю:\n")
+
+  for i in questions_and_answers:
+        while user_question == questions_and_answers[i]:
+            return questions_and_answers["answer"]
+        else:
+            return "Я вас не понимаю, запустите программу ещё раз и спросите что я делаю."
+
     
 if __name__ == "__main__":
-    ask_user(questions_and_answers)
+    print(ask_user(questions_and_answers))
