@@ -13,13 +13,22 @@
 * Вывести содержимое переменной на экран
 
 """
-
+years_old = int(input('Введите ваш возраст: '))
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    if years_old <= 6 :
+      post = 'учится в детском саду'
+    elif years_old > 6 and years_old < 18:
+      post = 'учится в школе'
+    elif years_old >= 18 and years_old < 24:
+      post = 'учится в ВУЗе'
+    else:
+      post = 'работает'
+    print(f'Пользователь {post}')
+    
 
 if __name__ == "__main__":
     main()
