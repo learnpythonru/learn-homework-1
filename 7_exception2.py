@@ -14,23 +14,22 @@
 """
 
 def discounted(price, discount, max_discount=20):
-  try:
-    price = float(price)
-    discount = float(discount)
-    max_discount = int(max_discount)
-  
+    try:
+        price = abs(float(price))
+        discount = abs(float(discount))
+        max_discount = abs(int(max_discount))
+    except (ValueError, TypeError) as err:
+        return f"Введены не корректные данные, повторите ввод. Ошибка: {err}"
     if max_discount >= 100:
-      raise ValueError('Слишком большая максимальная скидка')
+        return f"Слишком большая максимальная скидка. Она не может быть больше 100%!"
     if discount >= max_discount:
-      return price
-    else:
-      return price - (price * discount / 100)
-  except(ValueError, TypeError):
-    return 'Ошибка'
+        return price
+    return price - (price * discount / 100)
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))
     print(discounted("100", "4.5"))
     print(discounted("five", 5))
     print(discounted("сто", "десять"))
-    print(discounted(100.0, 5, "10"))
+    print(discounted(100.0, 5, max_discount="10"))
+    print(discounted(100.0, 5, max_discount="десять"))

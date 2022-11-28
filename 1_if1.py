@@ -21,9 +21,9 @@ def main():
     """
     if years_old <= 6 :
       post = 'учится в детском саду'
-    elif years_old > 6 and years_old < 18:
+    elif 6 > years_old < 18:
       post = 'учится в школе'
-    elif years_old >= 18 and years_old < 24:
+    elif 18 >= years_old < 24:
       post = 'учится в ВУЗе'
     else:
       post = 'работает'

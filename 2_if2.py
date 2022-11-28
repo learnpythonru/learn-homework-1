@@ -14,18 +14,19 @@
   и выводя на экран результаты
 
 """
-first_string = input()
-second_string = input()
-def main():
-    
-    def string_comparator(first_string,second_string):
-      if first_string == second_string:
+def main(first_string, second_string):
+      if str(first_string) == str(second_string):
           return 1
-      elif len(first_string) > len(second_string):
+      elif len(str(first_string)) > len(str(second_string)):
           return 2
-      elif second_string == 'learn':
+      elif str(second_string) == 'learn':
           return 3
 
     
 if __name__ == "__main__":
-    main()
+    print(main(1, 2))
+    print(main(1, "2"))
+    print(main("1", 2))
+    print(main("python", "learn"))
+    print(main("string", "string"))
+    print(main("learn_python", "course"))

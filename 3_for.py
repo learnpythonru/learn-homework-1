@@ -22,12 +22,17 @@ phones = [
   ]
 
 def main():
-  for record in phones:
-    print(f"{record['product']} : {sum(record['items_sold'])} продаж")
-  for record in phones:
-    print(f"{record['product']} : {(sum(record['items_sold'])/len(record['items_sold'])):.1f} продаж в среднем")
-  print(f"Всего продаж : {sum([sum(sold['items_sold']) for sold in phones])}")
-  print(f"Всего в среднем продаж : {(sum([sum(sold['items_sold']) for sold in phones])/sum([len(sold['items_sold']) for sold in phones])):.1f}")
+ for product in phones:
+    product_name = product['product']  # внесены переменные для удобства чтения кода
+    sales = product['items_sold']
+    total_sales = sum(sales)
+    avg_sales = total_sales / len(sales)
+    print(f"Продукт: {product_name}, кол-во продаж: общие - {total_sales}, средние - {avg_sales:.0f}")
+
+count_all_sales = sum([sum(sales['items_sold']) for sales in phones])
+avg_all_sales = count_all_sales / len(phones)
+print(f"Cуммарное количество продаж всех товаров: {count_all_sales}")
+print(f"Cреднее количество продаж всех товаров: {avg_all_sales:.0f}")
     
 if __name__ == "__main__":
     main()

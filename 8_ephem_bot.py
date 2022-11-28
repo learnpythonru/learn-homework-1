@@ -39,39 +39,13 @@ def talk_to_me(update, context):
 
 
 def planet_search(update,context):
-    planets=['солнце', 'луна', 'меркурий', 'венера', 'марс', 'сатурн', 'уран', 'нептун', 'юпитер',]
-    user_text = update.message.text.split()[1].lower()
-    print('поиск планеты...')
-    print('планета, которую ввел пользователь', user_text)
-    for planet in planets:
-        if user_text == planet:
-            if user_text == 'солнце':
-                planet_answer = ephem.constellation(ephem.Sun(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer)
-            elif user_text == 'луна':
-                planet_answer=ephem.constellation(ephem.Moon(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer)
-            elif user_text == 'меркурий':
-                planet_answer=ephem.constellation(ephem.Mercury(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer) 
-            elif user_text == 'венера':
-                planet_answer=ephem.constellation(ephem.Venus(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer)
-            elif user_text == 'марс':
-                planet_answer=ephem.constellation(ephem.Mars(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer)
-            elif user_text == 'юпитер':
-                planet_answer=ephem.constellation(ephem.Jupiter(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer) 
-            elif user_text == 'сатурн':
-                planet_answer=ephem.constellation(ephem.Saturn(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer)
-            elif user_text == 'уран':
-                planet_answer=ephem.constellation(ephem.Uranus(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer)
-            elif user_text == 'нептун':
-                planet_answer=ephem.constellation(ephem.Neptune(datetime.datetime.now().strftime('%Y')))
-                update.message.reply_text(planet_answer) 
+    user_text = update.message.text
+    planet_name = user_text.split()[1].capitalize()
+    if hasattr(ephem, planet_name):
+        planet = getattr(ephem, planet_name)(datetime.now)
+        update.message.reply_text(f"Планета {planet_name} находится в созвездии {ephem.constellation(planet)}")
+    else:
+        update.message.reply_text(f"Извините, я не знаю такую планету! Попробуйте ещё раз.")
             
 
 
