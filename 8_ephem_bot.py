@@ -13,6 +13,8 @@
 
 """
 import logging
+import ephem
+import datetime
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -21,13 +23,7 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     filename='bot.log')
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
+
 
 
 def greet_user(update, context):
@@ -39,14 +35,26 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+
+def planet_search(update,context):
+    user_text = update.message.text
+    planet_name = user_text.split()[1].capitalize()
+    if hasattr(ephem, planet_name):
+        planet = getattr(ephem, planet_name)(datetime.now)
+        update.message.reply_text(f"Планета {planet_name} находится в созвездии {ephem.constellation(planet)}")
+    else:
+        update.message.reply_text(f"Извините, я не знаю такую планету! Попробуйте ещё раз.")
+            
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater("", use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", planet_search))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
