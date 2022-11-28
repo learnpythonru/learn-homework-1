@@ -13,6 +13,7 @@
 * Вывести содержимое переменной на экран
 
 """
+
 def actyvity(age):
   if age <= 6:
     print("учиться в детском саду")
@@ -30,10 +31,7 @@ def main():
     В ней надо заменить pass на ваш код
     """
     age_user = int(input("ввесте возраст "))
-    actyvity(4)
-    actyvity(23)
-    actyvity(15)
-    actyvity(70)
+    
     actyvity(age_user)
 
 
