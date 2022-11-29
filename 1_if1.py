@@ -14,12 +14,30 @@
 
 """
 
+def actyvity(age):
+  if age <= 6:
+    print("учиться в детском саду")
+  elif 6 < age <= 18:
+    print("учиться в школе")
+  elif 18 < age <= 24:
+    print("учиться в ВУЗе")
+  else:
+    print("работать")
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age_user = int(input("ввесте возраст "))
+    
+    actyvity(age_user)
+
+
+
+
 
 if __name__ == "__main__":
     main()
+
