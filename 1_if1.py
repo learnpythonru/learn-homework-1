@@ -14,12 +14,17 @@
 
 """
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+def is_studied():
+    age = int(input('What is your age?'))
+    
+    if 3 <= age  < 7:
+        return 'Вы должны быть в детском саду'
+    elif 7 <= age < 18:
+        return 'Вы должны быть в школе'
+    elif 18 <= age < 60:
+        return 'Вы должны быть на работе'
+    else:
+        return 'Отдыхайте!'        
 
-if __name__ == "__main__":
-    main()
+result = is_studied()    
+print(result)   
