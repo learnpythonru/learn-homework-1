@@ -12,16 +12,21 @@
 
     Пользователь: Что делаешь?
     Программа: Программирую
-    
+
 """
 
-questions_and_answers = {}
+questions_and_answers = {"Как дела?": "Хорошо!", "Что делаешь?": "Программирую"}
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+
+def ask_user():
+    while True:
+        user_say = input("Привет спроси у меня 'Как дела?' или 'Что делаешь?': ")
+        if user_say.capitalize() in questions_and_answers:
+            print(f"Ответ: {questions_and_answers[user_say.capitalize()]}")
+        else:
+            user_say
+
+
 if __name__ == "__main__":
-    ask_user(questions_and_answers)
+    question = ask_user()
+    print(question)
