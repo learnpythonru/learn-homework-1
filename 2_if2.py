@@ -15,7 +15,7 @@
 
 """
 
-def main(string_1: str, string_2: str):
+def main(string_1: str, string_2: str) -> int:
     if not isinstance(string_1, str) or not isinstance(string_2, str):
         return 0
     elif string_1 == string_2:

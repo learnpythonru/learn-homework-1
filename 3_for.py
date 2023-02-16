@@ -28,7 +28,7 @@ def sum_of_sales_uniq_good(sales: list) -> str:
     for good in sales:
         name = good["product"]
         total_sale = sum(good["items_sold"])
-        print(f"{name} продавался {total_sale} раз.")
+        return f"{name} продавался {total_sale} раз."
 
 
 def avg_sales_uniq_good(sales: list) -> str:
@@ -36,7 +36,7 @@ def avg_sales_uniq_good(sales: list) -> str:
     for good in sales:
         name = good["product"]
         avg_sale = round(sum(good["items_sold"]) / len(good["items_sold"]))
-        print(f"{name} продавался {avg_sale} раз в месяц.")
+        return f"{name} продавался {avg_sale} раз в месяц."
 
 
 def total_sales_all_goods(sales: list) -> str:
@@ -44,7 +44,7 @@ def total_sales_all_goods(sales: list) -> str:
     total_sales = 0
     for good in sales:
         total_sales += sum(good["items_sold"])
-    print(f"Суммарное количество продаж: {total_sales}")
+    return f"Суммарное количество продаж: {total_sales}"
 
 
 def avg_sales_of_all_goods(sales: list) -> str:
@@ -55,7 +55,7 @@ def avg_sales_of_all_goods(sales: list) -> str:
         total_sales += sum(good["items_sold"])
         count_periods_of_sale += len(good["items_sold"])
     averege = round(total_sales/count_periods_of_sale)
-    print(f"Среднее количество продаж всех товаров {averege} в месяц")
+    return f"Среднее количество продаж всех товаров {averege} в месяц"
 
 
 def main():       
