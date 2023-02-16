@@ -15,13 +15,21 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {"привет" : "Привет",
+                         "как дела" : "Хорошо",
+                         "пока" : "Ну пока!",
+                         "что делаешь" : "Учу Питон"
+                        }
 
-def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+
+def ask_user(answers_dict: dict):
+    while (question := (input("Введите вопрос: ")).lower() != "пока"):        
+        if question in answers_dict:
+            print(answers_dict[question])
+        else:
+            print("Моя твоя не понимать!")
+    print("Ну пока!")
+
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)
