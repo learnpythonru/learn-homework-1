@@ -23,16 +23,12 @@ questions_and_answers = {"привет" : "Привет",
 
 
 def ask_user(answers_dict: dict):
-    flag = True
-    while flag:
-        question = (input("Введите вопрос: ")).lower()
-        if question == "пока":
-            flag = False
-            print("Ну пока!")
-        elif question in answers_dict:
+    while (question := (input("Введите вопрос: ")).lower() != "пока"):        
+        if question in answers_dict:
             print(answers_dict[question])
         else:
             print("Моя твоя не понимать!")
+    print("Ну пока!")
 
 
 if __name__ == "__main__":
