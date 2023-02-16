@@ -11,12 +11,9 @@
 
 
 def hello_user():
-    flag = True
-    while flag:
-      command = input("Как дела? ")
-      if command.lower() == "хорошо":
-        flag = False
-
+    while (input("Как дела? ")).lower() != "хорошо":
+      input("Как дела? ")
+    
     
 if __name__ == "__main__":
     hello_user()
