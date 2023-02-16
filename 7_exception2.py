@@ -13,28 +13,26 @@
     
 """
 
+def try_change_type(object, target_type: type):
+    try:
+        return abs(target_type(object))
+    except (ValueError, TypeError):
+        return None
+
+
 def discounted(price: float, discount: float, max_discount: int=20) -> float:
     try:
-        price = float(abs(price))        
-    except (ValueError, TypeError):
-        return ("Не могу преобразовать цену в число!")
-
-    try:        
-        discount = float(abs(discount))
-    except (ValueError, TypeError):
-        return ("Не могу преобразовать скидку в число!")
-
-    try:    
-        max_discount = int(abs(max_discount))
-    except (ValueError, TypeError):
-        return "Не могу преобразовать max скидку в число"
-
-    if max_discount >= 100:
-        raise ValueError('Слишком большая максимальная скидка')
-    if discount >= max_discount:
-        return price
-    else:
-        return price - (price * discount / 100)
+        price = try_change_type(price, float)
+        discount = try_change_type(discount, float)
+        max_discount = try_change_type(max_discount, int)
+        if max_discount >= 100:
+            raise ValueError('Слишком большая максимальная скидка')
+        if discount >= max_discount:
+            return price
+        else:
+            return price - (price * discount / 100)
+    except (TypeError, ValueError):
+        return "Не могу преобразовать значение в число"
 
 
 if __name__ == "__main__":
