@@ -10,17 +10,12 @@
     
 """
 
-def hello_user():
-    flag = True
-    while flag:
+def hello_user():    
       try:
-          command = input("Как дела? ")
-          if command.lower() == "хорошо":
-              flag = False
+        while (command := input("Как дела? ").lower() != "хорошо"):
+          input("Как дела? ")          
       except KeyboardInterrupt:
-        print("\nПока!")
-        break
-
+        print("\nПока!")        
     
 if __name__ == "__main__":
     hello_user()
