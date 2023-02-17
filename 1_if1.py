@@ -25,8 +25,6 @@ def main(age):
         return "Вы должны работать"
 
 age = int(input("Введите возраст: "))
-what_to_do = main(age)
-print(what_to_do)
 
 if __name__ == "__main__":
     main(age)

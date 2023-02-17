@@ -25,7 +25,7 @@ def discounted(price, discount, max_discount=20):
       else:
           return price - (price * discount / 100)
     except (ValueError, TypeError):
-        print('Некорректные аргументы')
+        return 'Некорректные аргументы'
     
 if __name__ == "__main__":
     print(discounted(100, 2))
