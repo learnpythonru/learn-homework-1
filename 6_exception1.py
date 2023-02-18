@@ -17,8 +17,8 @@ def hello_user(user_say):
     try:
         while True:
 
-         if user_say.lower() == 'хорошо':
-            break
+            if user_say.lower() == 'хорошо':
+                break
 
         else:
             user_say = input('Как дела? ')
