@@ -1,57 +1,54 @@
-"""
-Домашнее задание №1
-
-Использование библиотек: ephem
-
-* Установите модуль ephem
-* Добавьте в бота команду /planet, которая будет принимать на вход
-  название планеты на английском, например /planet Mars
-* В функции-обработчике команды из update.message.text получите
-  название планеты (подсказка: используйте .split())
-* При помощи условного оператора if и ephem.constellation научите
-  бота отвечать, в каком созвездии сегодня находится планета.
-
-"""
 import logging
-
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO,
-                    filename='bot.log')
+import settings
+import ephem
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
-
+logging.basicConfig(filename="bot.log", level = logging.INFO)
 
 def greet_user(update, context):
-    text = 'Вызван /start'
-    print(text)
-    update.message.reply_text(text)
-
+    print('Вызван /start')
+    update.message.reply_text('Привет пользователь')
 
 def talk_to_me(update, context):
-    user_text = update.message.text
+    user_text = update.message.text 
     print(user_text)
-    update.message.reply_text(text)
 
+    p = ["Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+    if user_text in p: 
+        update.message.reply_text("Введите дату")
+        b = update.message.text 
+        print(b)
+        if user_text == "Mercury":
+            f = ephem.Mercury(b)
+        elif user_text == "Venus":
+            f = ephem.Venus(b)
+        elif user_text == "Mars":
+            f = ephem.Mars(b)
+        elif user_text == "Jupiter":
+            f = ephem.Jupiter(b)
+        elif user_text == "Saturn":
+            f = ephem.Saturn(b)
+        elif user_text == "Uranus":
+            f = ephem.Uranus(b)
+        elif user_text == "Neptune":
+            f = ephem.Neptune(b)
+        constellation = ephem.constellation(f)
+        update.message.reply_text(constellation)
+    else:
+        update.message.reply_text(user_text)
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
+    logging.info("Бот стартовал")
     mybot.start_polling()
     mybot.idle()
-
 
 if __name__ == "__main__":
     main()
