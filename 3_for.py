@@ -6,7 +6,7 @@
 
 * Дан список словарей с данными по колличеству проданных телефонов
   [
-    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
+    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
   ]
@@ -16,12 +16,33 @@
 * Посчитать и вывести среднее количество продаж всех товаров
 """
 
-def main():
+a = [{'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
+     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
+     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]}]
+
+
+def main(d):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    list1 = []
+    list2 = []
+    for i in range(len(d)):
+        m1 = sum(d[i].get('items_sold'))
+        print(f"product {d[i].get('product')} количетсво продаж: {m1}")
+        list1.append(m1)
+        list2.append(len(d[i].get('items_sold')))
+        m2 = sum(d[i].get('items_sold'))/len(d[i].get('items_sold'))
+        print(f"product {d[i].get('product')} среднее количество продаж: {int(m2)}")
+    else:
+        m3 = sum(list1)
+        print(f"Общее количество продаж: {m3}")
+        m4 = m3 / sum(list2)
+        print(f"Cреднее количество продаж всех товаров: {int(m4)}")
+
+
 if __name__ == "__main__":
-    main()
+    b = main(a)
+
+
