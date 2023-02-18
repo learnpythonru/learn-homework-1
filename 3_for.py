@@ -56,8 +56,8 @@ def print_sum_sale_avg_per_phone(phone_sales):
         print(f'Среднее количество продаж для товара {sale["product"]} : {sum_avg}')
         # Среднее количество продаж всех товаров
         avg_sale_per_phone += sum_avg
-        avg_sale_per_phone = avg_sale_per_phone / len(phone_sales)
-        avg_sale_per_phone = round(avg_sale_per_phone)
+    avg_sale_per_phone = avg_sale_per_phone / len(phone_sales)
+    avg_sale_per_phone = round(avg_sale_per_phone)
     print(f'Среднее количество продаж всех товаров: {avg_sale_per_phone}')
 
 
