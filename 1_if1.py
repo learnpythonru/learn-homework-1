@@ -14,12 +14,33 @@
 
 """
 
+def years(age):
+    res = ''
+    if age < 7:
+        res = 'детский сад'
+    elif age < 18:
+        res = 'школа'
+    elif age < 65:
+        res = 'работа'
+    else:
+        res = 'пенсия'
+    return res
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age = input('Введите ваш возраст: ')
+    while True:
+        if age.isdigit():
+            age = int(age)
+            occ = years(age)
+            print('Вашим основным занятием является - ' + occ)
+            break
+        else:
+            age = input('Введите ваш возраст  цифрами: ')
 
 if __name__ == "__main__":
     main()

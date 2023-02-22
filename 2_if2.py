@@ -15,6 +15,20 @@
 
 """
 
+def strstr(str1, str2):
+    res = 0
+    if type(str1) == str and type(str2) == str:
+        if len(str1) == len(str2):
+            res = 1
+        elif str2 == 'learn':
+            res = 3
+        elif len(str1) > len(str2):
+            res = 2
+        else:
+            res = 4
+
+    return res
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
@@ -22,5 +36,16 @@ def main():
     """
     pass
     
+def main():
+    """
+    Эта функция вызывается автоматически при запуске скрипта в консоли
+    """
+    print(strstr(1, 'qwerty'))
+    print(strstr('qwerty', 'qwer'))
+    print(strstr('qwerty', 'learn'))
+    print(strstr('qwerty', 'qwerty'))
+    print(strstr('qwer', 'qwerty'))
+
+
 if __name__ == "__main__":
     main()
