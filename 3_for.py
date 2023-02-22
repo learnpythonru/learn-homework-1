@@ -16,12 +16,31 @@
 * Посчитать и вывести среднее количество продаж всех товаров
 """
 
+
+def list_phone(lst):
+    return sum(lst) / len(lst)
+
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
-    
+    phones = [
+    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
+    {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
+    {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
+  ]
+    phones_scores= []
+    for phone in phones:
+        print('суммарное количество продаж ' + phone['product'] + ' - ' + str(sum(phone['items_sold'])))
+        phones_scores.extend(phone['items_sold'])
+        print('среднее количество продаж ' + phone['product'] + ' - ' + str(list_phone(phone['items_sold'])))
+        phones_scores.extend(phone['items_sold'])
+        
+    print('среднee количество продаж всех товаров ' + '    - ' + str(list_phone(phones_scores)))
+    print('суммарное количество продаж всех товаров ' + ' - ' + str(sum(phones_scores)))
+
+
 if __name__ == "__main__":
     main()
