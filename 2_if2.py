@@ -27,8 +27,7 @@ def main(str_1, str_2):
             return 3
         elif len(str_1) > len(str_2):
             return 2
-    else:
-        return 0
+    return 0
 
 str_1, str_2 = '123', 2
 print(main(str_1, str_2))
