@@ -15,8 +15,8 @@ def hello_user():
     Замените pass на ваш код
     """
     while True:
-        dialog = input('Как дела? ')
-        if dialog == 'Хорошо':
+        user_responce = input('Как дела? ')
+        if user_responce == 'Хорошо':
             break
         
 

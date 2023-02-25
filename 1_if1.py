@@ -16,7 +16,7 @@
 age1 = int(input('Укажите ваш возраст: '))
 
 
-def just_do_it(age):
+def get_status_by_age(age):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
@@ -35,5 +35,5 @@ def just_do_it(age):
 
 
 if __name__ == "__main__":
-    wad = just_do_it(age1)
+    wad = get_status_by_age(age1)
     print(wad)

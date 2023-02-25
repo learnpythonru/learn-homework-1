@@ -33,11 +33,10 @@ def summa(items_sold):
     return sum_phone
 
  
+
+
 def avg(items_sold):
-    s = 0
-    for item in items_sold:
-        s += item
-    avg = s / len(items_sold)
+    avg = summa(items_sold) / len(items_sold)
     return avg
 
 
