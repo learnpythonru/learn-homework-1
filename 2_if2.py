@@ -20,16 +20,26 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    def srings(one,two):
-        if one == type(str) and two == type(str):
+    def line_comp(str1,str2):
+
+        print(type(str1,str2))
+        if type(str1) and type(str2) != str:
             return 0
-        if one == two:
-            return 1
-        if len(one) > len(two):
-            return 2
-        if one != two and one == "learn":
-            return 3
-    print strings('jkljsdf', 'sd')
+
+
+
+
+        # if str1 == str2 and type(str1) and type(str2) == str:
+        #     return 1
+
+        # if str1 != str2 and len(str(str1)) > len(str(str2)):
+        #     return 2
+
+        # if str1 != str2 and str2 == 'learn':
+        #     return 3
+
+    conclusion = line_comp("2","2")
+    print(conclusion)
 
 if __name__ == "__main__":
     main()
