@@ -22,24 +22,34 @@ def main():
     """
     def line_comp(str1,str2):
 
-        print(type(str1,str2))
+# не строки
         if type(str1) and type(str2) != str:
             return 0
 
+# строки одинаковые
+        if str1 == str2:
+            return 1
 
+# строки разные и первая длиннее
+        if str1 != str2 and len(str(str1)) > len(str(str2)):
+            return 2
+# строки разные и вторая строка 'learn'
+        if str1 != str2 and str2 == 'learn':
+            return 3
 
-
-        # if str1 == str2 and type(str1) and type(str2) == str:
-        #     return 1
-
-        # if str1 != str2 and len(str(str1)) > len(str(str2)):
-        #     return 2
-
-        # if str1 != str2 and str2 == 'learn':
-        #     return 3
-
-    conclusion = line_comp("2","2")
+    conclusion = line_comp(1,1)
     print(conclusion)
+
+    conclusion = line_comp('asd','asd')
+    print(conclusion)
+
+    conclusion = line_comp('asыы','asd')
+    print(conclusion)
+
+    conclusion = line_comp('asыы','learn')
+    print(conclusion)
+
+
 
 if __name__ == "__main__":
     main()
