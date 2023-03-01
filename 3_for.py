@@ -29,25 +29,23 @@ phones = [
 # for phone in phones:
 #     print(f'Суммарное количество продаж для {phone["product"]}: {sum_count_sold(phone["items_sold"])}')
 
+# Cуммарное количество продаж для каждого товара
 # Функцию sum_count_sold(), можно заменить на готовую функцию sum()
 for phone in phones:
     print(f'Суммарное количество продаж для {phone["product"]}: {sum(phone["items_sold"])}')
 
+sum_all_solds = 0
 # среднее количество продаж для каждого товара
 for phone in phones:
     avg_count_sold = int(sum(phone["items_sold"]) / len(phone["items_sold"]))
     print(f'Cреднее количество продаж для {phone["product"]}: {avg_count_sold}')
 
-sum_all_solds = 0
-avg_all_solds = 0
+    # суммарное количество продаж всех товаров
+    sum_all_solds += sum(phone["items_sold"])
 
-# for phone in phones:
-#     # суммарное количество продаж всех товаров
-#     sum_all_solds += sum(["items_sold"])
-#     # среднее количество продаж всех товаров
-#     avg_all_solds = int(sum_all_solds / len(phones))
+# среднее количество продаж всех товаров
+avg_all_solds = int(sum_all_solds / len(phones))
 
-print(f'Суммарное количество продаж всех товаров: {sum_all_solds}')
-print(f'Cреднее количество продаж всех товаров: {avg_all_solds}')
-
-# if __name__ == "__main__":
+if __name__ == "__main__":
+    print(f'Суммарное количество продаж всех товаров: {sum_all_solds}')
+    print(f'Cреднее количество продаж всех товаров: {avg_all_solds}')
