@@ -1,29 +1,41 @@
-def line_comp(str1,str2):
+"""
+
+Домашнее задание №1
+
+Условный оператор: Сравнение строк
+
+* Написать функцию, которая принимает на вход две строки
+* Проверить, является ли то, что передано функции, строками.
+  Если нет - вернуть 0
+* Если строки одинаковые, вернуть 1
+* Если строки разные и первая длиннее, вернуть 2
+* Если строки разные и вторая строка 'learn', возвращает 3
+* Вызвать функцию несколько раз, передавая ей разные праметры
+  и выводя на экран результаты
+
+"""
+def line_comp(str1, str2):
+
+    if isinstance(str1, str) or isinstance(str2, str):
+
+        # строки одинаковые
+        if str1 == str2:
+            return 1
+
+        # строки разные и первая длиннее
+        elif str1 != str2 and len(str1) > len(str2):
+            return 2
+
+        # строки разные и вторая строка "learn"
+        elif str1 != str2 and str2 == 'learn':
+            return 3
 
     # не строки
-    if isinstance(str1,int) and isinstance(str2,int):
+    else:
         return 0
 
-    # строки одинаковые
-    elif str1 == str2:
-        return 1
-
-    # строки разные и первая длиннее
-    elif str1 != str2 and len(str1) > len(str2):
-        return 2
-
-    # строки разные и вторая строка 'learn'
-    elif str1 != str2 and str2 == 'learn':
-        return 3
-
-def main():
-    if __name__ == "__main__":
-        main()
-
-print(f'Не строки: {line_comp(1,22)}')
-
-print(f'строки одинаковые: {line_comp("asd","asd")}')
-
-print(f'строки разные и первая длиннее: {line_comp("asds","asd")}')
-
-print(f'строки разные и вторая строка "learn": {line_comp("asd","learn")}')
+if __name__ == "__main__":
+    print(f'Не строки: {line_comp([2, 3, 1], 2.23)}')
+    print(f'строки одинаковые: {line_comp("asd", "asd")}')
+    print(f'строки разные и первая длиннее: {line_comp("asds", "asd")}')
+    print(f'строки разные и вторая строка "learn": {line_comp("asd", "learn")}')
