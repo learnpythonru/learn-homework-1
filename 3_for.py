@@ -19,18 +19,8 @@ phones = [
     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
 ]
-# #суммарное количество продаж для каждого товара - эту функцию оставлю для справки
-# def sum_count_sold(solds):
-#     sum_sold = 0
-#     for sold in solds:
-#         sum_sold += sold
-#     return sum_sold
-
-# for phone in phones:
-#     print(f'Суммарное количество продаж для {phone["product"]}: {sum_count_sold(phone["items_sold"])}')
 
 # Cуммарное количество продаж для каждого товара
-# Функцию sum_count_sold(), можно заменить на готовую функцию sum()
 for phone in phones:
     print(f'Суммарное количество продаж для {phone["product"]}: {sum(phone["items_sold"])}')
 
