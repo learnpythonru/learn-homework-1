@@ -14,5 +14,6 @@ def hello_user():
         user_say = input(f'Как дела? ')
         if user_say == 'Хорошо':
             break
+
 if __name__ == "__main__":
     hello_user()
