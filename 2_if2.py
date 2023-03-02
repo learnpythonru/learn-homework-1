@@ -14,7 +14,7 @@
   и выводя на экран результаты
 
 """
-def line_comp(str1, str2):
+def line_comparison(str1, str2):
 
     if isinstance(str1, str) or isinstance(str2, str):
 
@@ -35,7 +35,7 @@ def line_comp(str1, str2):
         return 0
 
 if __name__ == "__main__":
-    print(f'Не строки: {line_comp([2, 3, 1], 2.23)}')
-    print(f'строки одинаковые: {line_comp("asd", "asd")}')
-    print(f'строки разные и первая длиннее: {line_comp("asds", "asd")}')
-    print(f'строки разные и вторая строка "learn": {line_comp("asd", "learn")}')
+    print(f'Не строки: {line_comparison([2, 3, 1], 2.23)}')
+    print(f'строки одинаковые: {line_comparison("asd", "asd")}')
+    print(f'строки разные и первая длиннее: {line_comparison("asds", "asd")}')
+    print(f'строки разные и вторая строка "learn": {line_comparison("asd", "learn")}')
