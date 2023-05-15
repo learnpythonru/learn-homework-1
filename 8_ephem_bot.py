@@ -13,6 +13,7 @@
 
 """
 import logging
+import ephem, datetime
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -37,17 +38,34 @@ def greet_user(update, context):
 
 
 def talk_to_me(update, context):
+
     user_text = update.message.text
     print(user_text)
     update.message.reply_text(user_text)
 
 
+def planet(update, context):
+    date_now = datetime.datetime.now().strftime('%y/%m/%d')
+    user_text = update.message.text.split()[-1].lower()
+    if user_text == 'mars':
+        mars = ephem.Mars(date_now)
+        constellation = ephem.constellation(mars)
+        print(constellation)
+        update.message.reply_text(constellation)
+    else:
+        print('Введите /planet mars')
+        update.message.reply_text('Введите "/planet mars"')
+
+
+
 def main():
     # mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", use_context=True)
+    mybot = Updater("6215682763:AAGGyH7VAvzHpVdkfIsidsWYJgVkXSLvJ3M", use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", planet))
+
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
