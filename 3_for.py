@@ -6,7 +6,7 @@
 
 * Дан список словарей с данными по колличеству проданных телефонов
   [
-    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
+    {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
   ]
@@ -17,11 +17,24 @@
 """
 
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
+
+    phones_sold = [
+        {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
+        {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
+        {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
+    ]
+    sum_price_sold = 0
+    sum_item_sold = 0
+
+    for phone in phones_sold:
+        sum_price_sold += sum(phone['items_sold'])
+        sum_item_sold += len(phone['items_sold'])
+        print(len(phone['items_sold']))
+        print(round(sum(phone['items_sold']) / len(phone['items_sold']), 2))
+
+    print(sum_price_sold / sum_item_sold)
+
+
+
 if __name__ == "__main__":
     main()
