@@ -12,29 +12,18 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
-import logging
-import ephem, datetime
+# import logging
+import ephem, datetime, settings
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-
-# logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
-#                     level=logging.INFO,
-#                     filename='bot.log')
-
-
-# PROXY = {
-#     'proxy_url': 'socks5://t1.learn.python.ru:1080',
-#     'urllib3_proxy_kwargs': {
-#         'username': 'learn',
-#         'password': 'python'
-#     }
-# }
 
 
 def greet_user(update, context):
     text = 'Вызван /start'
     print(text)
     update.message.reply_text(text)
+    update.message.reply_text('Введите /planet и название планеты (Mercury, Venus, Mars, Jupiter, '
+                              'Saturn, Uranus, Neptune)')
 
 
 def talk_to_me(update, context):
@@ -43,24 +32,32 @@ def talk_to_me(update, context):
     print(user_text)
     update.message.reply_text(user_text)
 
-
 def planet(update, context):
+
     date_now = datetime.datetime.now().strftime('%y/%m/%d')
-    user_text = update.message.text.split()[-1].lower()
-    if user_text == 'mars':
-        mars = ephem.Mars(date_now)
-        constellation = ephem.constellation(mars)
+    # date_now = ephem.now()
+    user_text = update.message.text.split()[-1].capitalize()
+    dict_planets = {'Mercury': ephem.Mercury,
+                    'Venus': ephem.Venus,
+                    'Mars': ephem.Mars,
+                    'Jupiter': ephem.Jupiter,
+                    'Saturn': ephem.Saturn,
+                    'Uranus': ephem.Uranus,
+                    'Neptune': ephem.Neptune}
+    if user_text in dict_planets:
+        constellation = ephem.constellation(dict_planets[user_text](date_now))
         print(constellation)
         update.message.reply_text(constellation)
+
     else:
         print('Введите /planet mars')
-        update.message.reply_text('Введите "/planet mars"')
+        update.message.reply_text(f'Введите "/planet {dict_planets}"')
 
 
 
 def main():
-    # mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
-    mybot = Updater("6215682763:AAGGyH7VAvzHpVdkfIsidsWYJgVkXSLvJ3M", use_context=True)
+
+    mybot = Updater(settings.API_KEY , use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
