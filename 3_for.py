@@ -20,8 +20,9 @@ product_sales = [
     {'product': 'Xiaomi Mi11', 'items_sold': [317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
   ]
-# как указать что функция возвращает 2 сиска?
-def sales_list_analysis(sales:list)-> list:
+
+
+def sales_list_analysis(sales:list)-> tuple(list, list):
     """
     Функция принимет список словарией с продажами товара,
     считает значения по заданию, возвращает 2 списка
