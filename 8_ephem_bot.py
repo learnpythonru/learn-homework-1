@@ -14,9 +14,7 @@
 """
 # import logging
 import ephem, datetime, settings
-
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-
 
 def greet_user(update, context):
     text = 'Вызван /start'
@@ -44,15 +42,10 @@ def planet(update, context):
                     'Saturn': ephem.Saturn,
                     'Uranus': ephem.Uranus,
                     'Neptune': ephem.Neptune}
-    if user_text in dict_planets:
-        constellation = ephem.constellation(dict_planets[user_text](date_now))
-        print(constellation)
-        update.message.reply_text(constellation)
 
-    else:
-        print('Введите /planet mars')
-        update.message.reply_text(f'Введите "/planet {dict_planets}"')
-
+    constellation = ephem.constellation(dict_planets[user_text](date_now))
+    print(constellation)
+    update.message.reply_text(constellation)
 
 
 def main():
@@ -62,7 +55,6 @@ def main():
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", planet))
-
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
