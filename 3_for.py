@@ -16,18 +16,47 @@
 * Посчитать и вывести среднее количество продаж всех товаров
 """
 
+phones = [
+    {'product': 'iPhone 12', 'items_sold': [
+        363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
+    {'product': 'Xiaomi Mi11', 'items_sold': [
+        317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
+    {'product': 'Samsung Galaxy 21', 'items_sold': [
+        343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
+]
 
-def products_sales():
-    phones = [
-        {'product': 'iPhone 12', 'items_sold': [
-            363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]},
-        {'product': 'Xiaomi Mi11', 'items_sold': [
-            317, 267, 290, 431, 211, 354, 276, 526, 141, 453, 510, 316]},
-        {'product': 'Samsung Galaxy 21', 'items_sold': [
-            343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
-    ]
+
+def count_products_sales(phones_sold):
     phones_sum_sold = 0
-    for phone in phones['']
+    for sold in phones_sold:
+        phones_sum_sold += sold
+    return phones_sum_sold
+
+
+def count_products_sales_avg(phones_sold):
+    phones_sum_sold = 0
+    for sold in phones_sold:
+        phones_sum_sold += sold
+    return phones_sum_sold / len(phones_sold)
+
 
 if __name__ == "__main__":
-    main()
+    product_sum = 0
+    for one_product in phones:
+        product = count_products_sales(one_product['items_sold'])
+        print(
+            f"Суммарное количество продаж для товара {one_product['product']}: {int(product)}")
+        product_sum += product
+
+    print(
+        f"Суммарное количество продаж всех товаров: {int(product_sum)}")
+
+    product_avg_sum = 0
+    for one_product in phones:
+        product_avg = count_products_sales_avg(one_product['items_sold'])
+        print(
+            f"Среднее количество продаж для товара {one_product['product']}: {int(product_avg)}")
+        product_avg_sum += product_avg
+
+    print(
+        f"Среднее количество продаж всех товаров: {int(product_avg_sum / len(phones))}")
