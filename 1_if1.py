@@ -21,7 +21,7 @@ def main():
     В ней надо заменить pass на ваш код
     """
 
-    def your_need(age):
+    def you_need(age):
         a = {tuple(range(1, 3)): 'Вам нужно учиться в детском саду',
              tuple(range(3, 18)): 'Вам нужно учиться в школе',
              tuple(range(18, 21)): 'Вам нужно учиться в ВУЗе',
@@ -29,7 +29,7 @@ def main():
 
         print([value for key, value in a.items() if age in key][0])
 
-    your_need(int(input('Введите ваш возраст: \n')))
+    you_need(int(input('Введите ваш возраст: \n')))
 
 
 if __name__ == "__main__":
