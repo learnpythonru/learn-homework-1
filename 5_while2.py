@@ -12,16 +12,23 @@
 
     Пользователь: Что делаешь?
     Программа: Программирую
-    
-"""
 
-questions_and_answers = {}
+"""
+import datetime
+
+questions_and_answers = {
+    'Как дела?': 'Хорошо!',
+    'Что делаешь?': 'Программирую',
+    'Пойдём гулять?': 'Пойдём',
+    'Сколько время?': datetime.datetime.now()
+}
+
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    while True:
+        user_question = input('Введите вопрос: ')
+        print(answers_dict.get(user_question, 'не знаю'))
+
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)
