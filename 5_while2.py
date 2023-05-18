@@ -15,13 +15,21 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {"Как дела?": "Хорошо!",
+                         "Что делаешь?": "Программирую"}
+
 
 def ask_user(answers_dict):
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+    name_mate = input(
+        "Введите имя вашего собеседника: ")
+    while True:
+        question = input("Введите вопрос: ")
+        if question in answers_dict:
+            print(f"{name_mate}: {answers_dict[question]}")
+        else:
+            print(
+                f"{name_mate}: Я не знаю ответ на данный вопрос, задайте другой вопрос")
+
+
 if __name__ == "__main__":
     ask_user(questions_and_answers)
