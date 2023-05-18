@@ -19,25 +19,25 @@ import numpy as np
 """
 
 
-def sum_sales_for_each_product(lst):
-    for i in lst:
-        print(f'Cуммарное количество продаж товара: "{i["product"]}" составляет {sum(i["items_sold"])} шт.')
+def sum_sales_for_each_product(lsts):
+    for lst in lsts:
+        print(f'Cуммарное количество продаж товара: "{lst["product"]}" составляет {sum(lst["items_sold"])} шт.')
 
 
-def avg_sales_for_each_product(lst):
-    for i in lst:
-        print(f'Среднее количество продаж товара: "{i["product"]}" составляет '
-              f'{round(np.average(i["items_sold"]))} шт.')
+def avg_sales_for_each_product(lsts):
+    for lst in lsts:
+        print(f'Среднее количество продаж товара: "{lst["product"]}" составляет '
+              f'{round(np.average(lst["items_sold"]))} шт.')
 
 
-def sum_sales_for_all_product(lst):
-    print(f'Суммарное количество продаж товаров: "{", ".join([i["product"] for i in lst])}" составляет '
-          f'{sum([sum(i["items_sold"]) for i in lst])} шт.')
+def sum_sales_for_all_product(lsts):
+    print(f'Суммарное количество продаж товаров: "{", ".join([lst["product"] for lst in lsts])}" составляет '
+          f'{sum([sum(lst["items_sold"]) for lst in lsts])} шт.')
 
 
-def avg_sales_for_all_product(lst):
-    print(f'Среднее количество продаж товаров: "{", ".join([i["product"] for i in lst])}" составляет '
-          f'{round(np.average([np.average(i["items_sold"]) for i in lst]))} шт.')
+def avg_sales_for_all_product(lsts):
+    print(f'Среднее количество продаж товаров: "{", ".join([lst["product"] for lst in lsts])}" составляет '
+          f'{round(np.average([np.average(lst["items_sold"]) for lst in lsts]))} шт.')
 
 
 def main():

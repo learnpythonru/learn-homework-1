@@ -22,12 +22,12 @@ def main():
     """
 
     def you_need(age):
-        a = {tuple(range(1, 3)): 'Вам нужно учиться в детском саду',
-             tuple(range(3, 18)): 'Вам нужно учиться в школе',
-             tuple(range(18, 21)): 'Вам нужно учиться в ВУЗе',
-             tuple(range(21, 80)): 'Вам нужно работать'}
+        dict_have_to_do = {tuple(range(1, 3)): 'Вам нужно учиться в детском саду',
+                           tuple(range(3, 18)): 'Вам нужно учиться в школе',
+                           tuple(range(18, 21)): 'Вам нужно учиться в ВУЗе',
+                           tuple(range(21, 80)): 'Вам нужно работать'}
 
-        print([value for key, value in a.items() if age in key][0])
+        print([value for key, value in dict_have_to_do.items() if age in key][0])
 
     you_need(int(input('Введите ваш возраст: \n')))
 
