@@ -40,10 +40,12 @@ def name_planet(update, context):
     planet = planet[-1].capitalize()
     print(planet)
     date_today = datetime.datetime.now()
-    planet_type = getattr(ephem, planet)
-    planet_type = planet_type(date_today)
-    print(planet_type)
-    update.message.reply_text(f"Планета {planet} находится сегодня в созвездии {ephem.constellation(planet_type)[-1]}")
+    planets = ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Sun', 'Moon']
+    if planet in planets:
+        planet_type = getattr(ephem, planet)
+        planet_type = planet_type(date_today)
+        print(planet_type)
+        update.message.reply_text(f"Планета {planet} находится сегодня в созвездии {ephem.constellation(planet_type)[-1]}")
 
 
 def talk_to_me(update, context):
