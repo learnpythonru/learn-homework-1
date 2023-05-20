@@ -30,7 +30,7 @@ def main():
     elif string_1 != string_2 and string_2 == 'learn':
         return 3
     else:
-        return 'another variant'
+        return 'Неизвестные данные'
 
 if __name__ == "__main__":
     main()

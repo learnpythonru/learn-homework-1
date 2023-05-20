@@ -30,12 +30,17 @@ def main():
     sum_item_sold = 0
 
     for phone in phones_sales:
-        sum_price_sold += sum(phone['items_sold'])
-        sum_item_sold += len(phone['items_sold'])
-        print(len(phone['items_sold']))
-        print(round(sum(phone['items_sold']) / len(phone['items_sold']), 0))
+        sum_price_sold += sum(items_sold(phone))
+        sum_item_sold += len(items_sold(phone))
+        print(len(items_sold(phone)))
+        print(round(sum(items_sold(phone)) / len(items_sold(phone)), 0))
 
     print(round(sum_price_sold / sum_item_sold), 0)
+
+
+def items_sold(phone):
+    return phone['items_sold']
+
 
 if __name__ == "__main__":
     main()
