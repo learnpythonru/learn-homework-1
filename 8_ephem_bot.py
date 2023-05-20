@@ -15,40 +15,51 @@
 import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import ephem
+import os
+import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
-
-
 def greet_user(update, context):
     text = 'Вызван /start'
     print(text)
-    update.message.reply_text(text)
+    user_name = update.message.chat.first_name
+    update.message.reply_text(
+        f"Здравствуй, {user_name}")
+    
+
+def name_planet(update, context):
+    planet = update.message.text.split()
+    planet = planet[-1].capitalize()
+    print(planet)
+    date_today = datetime.datetime.now()
+    planet_type = getattr(ephem, planet)
+    planet_type = planet_type(date_today)
+    print(planet_type)
+    update.message.reply_text(f"Планета {planet} находится сегодня в созвездии {ephem.constellation(planet_type)[-1]}")
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(os.environ['TOKEN'])
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", name_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-
+    logging.info("Бот запущен")
     mybot.start_polling()
     mybot.idle()
 
