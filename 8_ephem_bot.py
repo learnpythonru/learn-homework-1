@@ -36,15 +36,11 @@ def greet_user(update, context):
     
 
 def name_planet(update, context):
-    planet = update.message.text.split()
-    planet = planet[-1].capitalize()
-    print(planet)
+    planet = update.message.text.split()[-1].capitalize()
     date_today = datetime.datetime.now()
-    planets = ['Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Sun', 'Moon']
-    if planet in planets:
+    if planet in [name for _0, _1, name in ephem._libastro.builtin_planets()]:
         planet_type = getattr(ephem, planet)
         planet_type = planet_type(date_today)
-        print(planet_type)
         update.message.reply_text(f"Планета {planet} находится сегодня в созвездии {ephem.constellation(planet_type)[-1]}")
 
 
