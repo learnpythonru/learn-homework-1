@@ -15,12 +15,20 @@
     neptune,     pluto,     sun,     moon
 """
 import logging
-import settings
+import settings as settings
 import ephem
 from datetime import datetime
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(filename="bot.log", level=logging.INFO)
+
+def planet_in_constellation_v2(planet:str)->str:
+    planets = ['mercury', 'venus', 'mars', 'jupiter', 'saturn',
+                'uranus', 'neptune', 'pluto', 'sun', 'moon']
+    if planet.lower() in planets:
+        e_planet = getattr(ephem, f'{planet.capitalize()}')
+        return ephem.constellation(e_planet(datetime.today()))[1]
+    
 
 
 def planet_in_constellation(planet:str)->str:
@@ -54,7 +62,7 @@ def planet_constellation(update, context):
    # print(message_text)
    #print(str(message_text).lower())
     if message_text in ['mercury', "venus", "mars", "jupiter", "saturn", "uranus",  "neptune", "pluto", "sun", "moon"]:
-        update.message.reply_text(message_text.capitalize() + " in " + planet_in_constellation(message_text))
+        update.message.reply_text(message_text.capitalize() + " in " + planet_in_constellation_v2(message_text))
     else:
         update.message.reply_text("Попробуйте \n /planet Mercury \n /planet Venus \n /planet Mars \
                                   \n /planet Jupiter \n /planet Saturn \n /planet Uranus \n /planet Neptune \
