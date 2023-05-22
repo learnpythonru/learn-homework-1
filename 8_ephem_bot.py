@@ -46,10 +46,11 @@ def constellation_planet(update, context):
         'neptune': ephem.Neptune
     }
     planet = update.message.text.split()[1].lower()
+    con_planet = ephem.constellation(planets_name[planet](date.today()))
 
     if planet in planets_name:
         update.message.reply_text(
-            f'Планета {planet.capitalize()} находится в созведии {ephem.constellation(planets_name[planet](date.today()))}'
+            f'Планета {planet.capitalize()} находится в созведии {con_planet[1]} ({con_planet[0]})'
         )
 
 
