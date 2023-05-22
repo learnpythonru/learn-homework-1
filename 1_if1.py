@@ -14,10 +14,8 @@
 
 """
 
-from typing import Optional
 
-
-def define_occupation_by_age(age: int) -> Optional[str]:
+def define_occupation_by_age(age: int) -> str:
     """
     Function get user age and define their expected occupation
     """

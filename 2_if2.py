@@ -17,7 +17,7 @@
 
 
 def compare_strings(string_1: str, string_2: str) -> int:
-    if not all([isinstance(string_1, str), isinstance(string_2, str)]):
+    if not isinstance(string_1, str) or not isinstance(string_2, str):
         return 0
     elif string_1 == string_2:
         return 1
