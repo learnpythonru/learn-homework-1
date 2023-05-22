@@ -27,9 +27,9 @@ def main():
                            tuple(range(18, 21)): 'Вам нужно учиться в ВУЗе',
                            tuple(range(21, 80)): 'Вам нужно работать'}
 
-        print([value for key, value in dict_have_to_do.items() if age in key][0])
+        return [value for key, value in dict_have_to_do.items() if age in key][0]
 
-    you_need(int(input('Введите ваш возраст: \n')))
+    print(you_need(int(input('Введите ваш возраст: \n'))))
 
 
 if __name__ == "__main__":
