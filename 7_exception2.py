@@ -14,16 +14,28 @@
 """
 
 def discounted(price, discount, max_discount=20):
-    try:
-        price = float(price)
-        discount = float(discount)
-        max_discount = int(max_discount)
-    except (ValueError, TypeError):
-        return 'ValueError or TypeError'
 
-    price = abs(price)
-    discount = abs(discount)
-    max_discount = abs(max_discount)
+    try:
+        price = abs(float(price))
+    except ValueError:
+        return f'ValueError {price}'
+    except TypeError:
+        return f'TypeError {price}'
+
+    try:
+        discount = abs(float(discount))
+    except ValueError:
+        return f'ValueError {discount}'
+    except TypeError:
+        return f'TypeError {discount}'
+
+    try:
+        max_discount = abs(int(max_discount))
+    except ValueError:
+        return f'ValueError {max_discount}'
+    except TypeError:
+        return f'TypeError {max_discount}'
+
     if max_discount >= 100:
         raise ValueError('Слишком большая максимальная скидка')
     if discount >= max_discount:

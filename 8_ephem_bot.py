@@ -17,8 +17,8 @@ import ephem, datetime, settings
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 def greet_user(update, context):
+
     text = 'Вызван /start'
-    print(text)
     update.message.reply_text(text)
     update.message.reply_text('Введите /planet и название планеты (Mercury, Venus, Mars, Jupiter, '
                               'Saturn, Uranus, Neptune)')
@@ -27,7 +27,6 @@ def greet_user(update, context):
 def talk_to_me(update, context):
 
     user_text = update.message.text
-    print(user_text)
     update.message.reply_text(user_text)
 
 def planet(update, context):
@@ -44,7 +43,6 @@ def planet(update, context):
                     'Neptune': ephem.Neptune}
 
     constellation = ephem.constellation(dict_planets[user_text](date_now))
-    print(constellation)
     update.message.reply_text(constellation)
 
 

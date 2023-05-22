@@ -19,16 +19,16 @@ def main():
     age = int(input('Input age: '))
 
     if age < 2:
-        print('small')
+        return 'small'
     elif 2 <= age <= 6:
-        print('kindergarten')
+        return 'kindergarten'
     elif 6 < age <= 18:
-        print('school')
+        return 'school'
     elif 18 < age < 23:
-        print('university')
+        return 'university'
     else:
-        print('JOB!!!')
+        return 'JOB!!!'
 
 
 if __name__ == "__main__":
-    main()
+    print(main())

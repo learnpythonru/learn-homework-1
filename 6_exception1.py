@@ -11,10 +11,9 @@
 """
 
 def hello_user():
-    try:
-        text = input('Как дела?: ')
-    except KeyboardInterrupt:
-        return
+
+    text = ''
+
     while text.strip().capitalize() != 'Хорошо':
         try:
             text = input('Как дела?: ')

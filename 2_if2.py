@@ -17,19 +17,20 @@
 
 def main():
 
-    text_1, text_2 = input(), input()
+    text_1 = input('Input first string: ')
+    text_2 = input('Input second string: ')
 
     if not text_1.isalpha() and not text_2.isalpha():
-        print(0)
+        return 0
     elif text_1 == text_2:
-        print(1)
+        return 1
     elif len(text_1) > len(text_2):
-        print(2)
+        return 2
     elif text_1 != text_2 and text_2 == 'learn':
-        print(3)
+        return 3
     else:
-        print('another variant')
+        return 'another variant'
 
 
 if __name__ == "__main__":
-    main()
+    print(main())
