@@ -44,9 +44,9 @@ def main():
         phone_sold_avg = int(phone['sum_sold'] / len(phone['items_sold']))
         phones_sum += phone['sum_sold']
         print(
-            f"Суммарное количество продаж {phone['product']}: {phone['sum_sold']}")
+            f"Суммарный объем продаж {phone['product']}: {phone['sum_sold']}")
         print(
-            f"Среднее количество продаж {phone['product']}: {phone_sold_avg}", end='\n\n')
+            f"Средний объем продаж {phone['product']}: {phone_sold_avg}", end='\n\n')
     print(f"Всего телефонов продано: {phones_sum}")
     phones_avg = int(phones_sum / len(phones))
     print(f"В среднем телефонов продано: {phones_avg}")
