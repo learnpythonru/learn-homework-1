@@ -1,9 +1,9 @@
-def discounted(price, discount, max_discount=20):
+def discounted(price: int | str, discount: int | str, max_discount: int | str =20) -> float:
 
     try:
-        price = abs(float(price))
-        discount = abs(float(discount))
-        max_discount = abs(int(max_discount))
+        price: float = abs(float(price))
+        discount: float = abs(float(discount))
+        max_discount: int = abs(int(max_discount))
     except ValueError or TypeError:
         return 'Неверное значение!'
     else:
