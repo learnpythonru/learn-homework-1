@@ -21,14 +21,14 @@ def main():
     В ней надо заменить pass на ваш код
     """
 
-    def you_need(age):
-        if 1 <= age < 6:
+    def you_need(your_age):
+        if 1 <= your_age < 6:
             return 'Вам нужно учиться в детском саду'
-        elif 6 <= age < 18:
+        elif 6 <= your_age < 18:
             return 'Вам нужно учиться в школе'
-        elif 18 <= age < 21:
+        elif 18 <= your_age < 21:
             return 'Вам нужно учиться в ВУЗе'
-        elif 21 <= age < 80:
+        elif 21 <= your_age < 80:
             return 'Вам нужно работать'
         else:
             return 'Вам нужно отдыхать'
