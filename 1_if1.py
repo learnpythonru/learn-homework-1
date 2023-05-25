@@ -22,14 +22,18 @@ def main():
     """
 
     def you_need(age):
-        a = {tuple(range(1, 3)): 'Вам нужно учиться в детском саду',
-             tuple(range(3, 18)): 'Вам нужно учиться в школе',
-             tuple(range(18, 21)): 'Вам нужно учиться в ВУЗе',
-             tuple(range(21, 80)): 'Вам нужно работать'}
+        if 1 <= age < 6:
+            return 'Вам нужно учиться в детском саду'
+        elif 6 <= age < 18:
+            return 'Вам нужно учиться в школе'
+        elif 18 <= age < 21:
+            return 'Вам нужно учиться в ВУЗе'
+        elif 21 <= age < 80:
+            return 'Вам нужно работать'
+        else:
+            return 'Вам нужно отдыхать'
 
-        print([value for key, value in a.items() if age in key][0])
-
-    you_need(int(input('Введите ваш возраст: \n')))
+    print(you_need(int(input('Введите ваш возраст: \n'))))
 
 
 if __name__ == "__main__":
