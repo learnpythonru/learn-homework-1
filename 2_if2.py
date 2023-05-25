@@ -17,17 +17,15 @@
 
 
 def strings(str1, str2):
-    if isinstance(str1, str) and isinstance(str2, str):
-        if str1 == str2:
-            return 1
-        else:
-            if len(str1) > len(str2) and str2 != 'learn':
-                return 2
-            elif str2.lower() == 'learn':
-                return 3
-            return f'Для строк "{str1}" и "{str2}" нет вывода'
-
-    return 0
+    if not isinstance(str1, str) or not isinstance(str2, str):
+        return 0
+    elif str1 == str2:
+        return 1
+    elif len(str1) > len(str2) and str2 != 'learn':
+        return 2
+    elif str2.lower() == 'learn':
+        return 3
+    return f'Для строк "{str1}" и "{str2}" нет вывода'
 
 
 def main():
