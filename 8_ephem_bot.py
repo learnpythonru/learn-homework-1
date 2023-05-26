@@ -1,4 +1,5 @@
 import logging
+import string
 import ephem
 import settings
 
@@ -21,15 +22,11 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 
 
 def greet_user(update, context):
-    text = 'Вызван /start'
-    print(text)
-    update.message.reply_text(text)
+    update.message.reply_text('Вызван /start')
 
 
 def talk_to_me(update, context):
-    user_text = update.message.text
-    print(user_text)
-    update.message.reply_text(user_text)
+    update.message.reply_text(update.message.text)
 
 
 def constel(update, context):
@@ -59,10 +56,32 @@ def constel(update, context):
             'плутон': ephem.Pluto,
         }
 
-    print('Вызван /planet')
     position = planets[planet_key](datetime.today().strftime('%Y/%m/%d'))
     const = ephem.constellation(position)[1]
     update.message.reply_text(f'{planet_key.title()} is in {const} today.')
+
+
+def word_counter(update, context):
+
+    res: str = ''
+
+    for i in update.message.text:
+        if i in string.punctuation:
+            res += ' '
+        else:
+            res += i
+
+    message_length: int = len(res.split()) - 1
+
+    if message_length < 1:
+        update.message.reply_text("Недостаточно слов для подсчета, введите текст: ")
+    else:
+        if message_length in range(11, 21) or str(message_length)[-1] in '056789':
+            update.message.reply_text(f"{message_length} слов")
+        elif str(message_length)[-1] == '1':
+            update.message.reply_text(f"{message_length} слово")
+        else:
+            update.message.reply_text(f"{message_length} слова")
 
 
 def main():
@@ -74,6 +93,7 @@ def main():
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(CommandHandler("planet", constel))
+    dp.add_handler(CommandHandler("wordcount", word_counter))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     logging.info('Бот запущен')
