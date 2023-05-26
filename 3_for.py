@@ -20,8 +20,9 @@ def main(phones_db: list[dict]) -> str:
         print(f"{phone['product']} sold: {total_sales_by_brand} pcs.")
         print(f"{phone['product']} average month sales: {avg_sales} pcs.")
 
-    print(f'Total sales: {sales_pcs} pcs.')
-    print(f'Total average sales: {sales_pcs // total_avg_sales} pcs.')
+    res1: str = f'Total sales: {sales_pcs} pcs.'
+    res2: str = f'Total average sales: {sales_pcs // total_avg_sales} pcs.'
+    return print(res1, res2, sep='\n')
 
 
 if __name__ == "__main__":
