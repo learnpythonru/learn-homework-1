@@ -19,7 +19,7 @@ def define_occupation_by_age(age: int) -> str:
     """
     Function get user age and define their expected occupation
     """
-    if 0 <= age < 7:
+    if age < 7:
         return 'учиться в детском саду'
     elif 7 <= age < 17:
         return 'учиться в школе'
@@ -27,7 +27,7 @@ def define_occupation_by_age(age: int) -> str:
         return 'учиться в ВУЗе'
     elif 24 <= age < 65:
         return 'работать'
-    elif 65 <= age <= 120:
+    elif 65 <= age:
         return 'отдыхать (быть пенсионером)'
 
 
