@@ -1,5 +1,3 @@
-import random
-
 """
 
 Домашнее задание №1
@@ -16,28 +14,18 @@ import random
     Программа: Программирую
 
 """
-import time
 
-questions_and_answers = {'как дела': ('Отлично!!!', 'Хорошо)', 'Так себе('), 'кто ты': ('ИИ', 'Не знаю', 'Программа'),
-                         'что делаешь': ('Программирую', 'Ничего', 'Секрет'),
-                         'как тебя зовут': ('У меня много имен', 'Секрет')}
+questions_and_answers = {'как дела': 'Отлично!!!', 'кто ты': 'ИИ',
+                         'что делаешь': 'Программирую',
+                         'как тебя зовут': 'Секрет'}
 
 
 def ask_user(answers_dict):
     while True:
-        time.sleep(0.7)
         question = input('Введите вопрос:\nUser: ').strip().lower()
-        if question in questions_and_answers:
-            print(f'AI: {random.choice(questions_and_answers[question])}')
-        elif question.lower() in ['хватит', 'стоп', 'stop']:
+        if question.lower() in ['хватит', 'стоп', 'stop']:
             break
-        else:
-            time.sleep(0.7)
-            print('Такого вопроса нет в общей базе')
-            time.sleep(1)
-            print('Придумайте свой ответ на этот вопрос')
-            time.sleep(1)
-            questions_and_answers[question] = (input('Введите ответ на вопрос:\nUser: '.strip()),)
+        print(answers_dict.get(question, 'Не знаю ответ на этот вопрос'))
 
 
 if __name__ == "__main__":
