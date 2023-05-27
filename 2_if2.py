@@ -20,17 +20,25 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    string_1, string_2 = input('Введите данные:'), input('Введите данные:')
-    if not string_1.isalpha() and not string_2.isalpha():
-        return 0
-    elif string_1 == string_2:
-        return 1
-    elif string_1 == string_2 and len(string_1) > len(string_2):
-        return 2
-    elif string_1 != string_2 and string_2 == 'learn':
-        return 3
-    else:
-        return 'another variant'
+
+    def strings(str1, str2):
+        if not isinstance(str1, str) or not isinstance(str2, str):
+            return 0
+        elif str1 == str2:
+            return 1
+        elif len(str1) > len(str2) and str2 != 'learn':
+            return 2
+        elif str2.lower() == 'learn':
+            return 3
+        return f'Для строк "{str1}" и "{str2}" нет вывода'
+
+    def main():
+        print(strings('hello', 1))
+        print(strings('hello', 'world'))
+        print(strings('qwerty', '123'))
+        print(strings('learn', 'learn'))
+        print(strings('learn_python', 'learn'))
+        print(strings(None, None))
 
 if __name__ == "__main__":
     main()

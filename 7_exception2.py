@@ -17,21 +17,30 @@ def discounted(price, discount, max_discount=20):
     """
     Замените pass на ваш код
     """
+    import sys
+
     try:
-        price = float(price)
-        discount = float(discount)
-        max_discount = int(max_discount)
-        price = abs(price)
-        discount = abs(discount)
-        max_discount = abs(max_discount)
-        if max_discount >= 100:
-            raise ValueError('Слишком большая максимальная скидка')
-        if discount >= max_discount:
-            return price
-        else:
-            return price - (price * discount / 100)
+        price = abs(float(price))
     except (ValueError, TypeError):
-        return 'eRRor'
+        return f'Произошла ошибка {sys.exc_info()[0]}. Проверьте корректность введенной цены товара {price=}.'
+
+    try:
+        discount = abs(float(discount))
+    except (ValueError, TypeError):
+        return f'Произошла ошибка {sys.exc_info()[0]}. Проверьте корректность введенной скидки на товар {discount=}.'
+
+    try:
+        max_discount = abs(int(max_discount))
+    except (ValueError, TypeError):
+        return f'Произошла ошибка {sys.exc_info()[0]}. Проверьте корректность введенной максимальной ' \
+               f'скидки на товар {max_discount=}.'
+
+    if max_discount >= 100:
+        raise ValueError("Слишком большая максимальная скидка")
+    if discount >= max_discount:
+        return price
+    else:
+        return price - (price * discount / 100)
 
 if __name__ == "__main__":
     print(discounted(100, 2))

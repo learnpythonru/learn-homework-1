@@ -19,16 +19,17 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    age = int(input('Введите ваш возраст: '))
-    if 0 <= age < 7:
-        print('Детский сад')
-    elif 7 <= age < 18:
-        print('Школа')
-    elif 18 <= age < 22:
-        print('ВУЗ')
-    else:
-        print('Работать')
+    def intelect_age(age):
+        if 0 <= age < 7:
+            return 'Детский сад'
+        elif 7 <= age < 18:
+            return 'Школа'
+        elif 18 <= age < 22:
+            return 'ВУЗ'
+        else:
+            return 'Работать, никакой пенсии!!!'
 
+    intelect_age(int(input('Введите ваш возраст: ')))
 
 if __name__ == "__main__":
     main()
