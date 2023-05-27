@@ -30,7 +30,7 @@ def sum_sales_for_all_products(lsts):
 
 
 def avg_sales_for_all_products(lsts):
-    return round(sum_sales_for_all_product(lsts) / len(lsts))
+    return round(sum_sales_for_all_products(lsts) / len(lsts))
 
 def main():
     sales = [
