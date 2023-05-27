@@ -12,24 +12,23 @@
   ValueError и TypeError, если приведение типов не сработало.
 
 """
-import sys
 
 
 def discounted(price, discount, max_discount=20):
     try:
         price = abs(float(price))
-    except (ValueError, TypeError):
-        return f'Произошла ошибка {sys.exc_info()[0]}. Проверьте корректность введенной цены товара {price=}.'
+    except (ValueError, TypeError) as _ex:
+        return f'Произошла ошибка {_ex}. Проверьте корректность введенной цены товара {price=}.'
 
     try:
         discount = abs(float(discount))
-    except (ValueError, TypeError):
-        return f'Произошла ошибка {sys.exc_info()[0]}. Проверьте корректность введенной скидки на товар {discount=}.'
+    except (ValueError, TypeError) as _ex:
+        return f'Произошла ошибка {_ex}. Проверьте корректность введенной скидки на товар {discount=}.'
 
     try:
         max_discount = abs(int(max_discount))
-    except (ValueError, TypeError):
-        return f'Произошла ошибка {sys.exc_info()[0]}. Проверьте корректность введенной максимальной ' \
+    except (ValueError, TypeError) as _ex:
+        return f'Произошла ошибка {_ex}. Проверьте корректность введенной максимальной ' \
                f'скидки на товар {max_discount=}.'
 
     if max_discount >= 100:
