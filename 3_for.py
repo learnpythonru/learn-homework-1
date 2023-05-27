@@ -25,11 +25,11 @@ def avg_sales_for_each_product(lsts):
     return [round(sum(lst["items_sold"])/len(lst["items_sold"])) for lst in lsts]
 
 
-def sum_sales_for_all_product(lsts):
+def sum_sales_for_all_products(lsts):
     return sum(sum_sales_for_each_product(lsts))
 
 
-def avg_sales_for_all_product(lsts):
+def avg_sales_for_all_products(lsts):
     return round(sum_sales_for_all_product(lsts) / len(lsts))
 
 def main():
@@ -46,10 +46,10 @@ def main():
         print(f'Среднее количество продаж товара: "{sales[i]["product"]}" составляет {avg_sales_for_each_product(sales)[i]} шт.')
     print('_' * 75)
 
-    print(f'Суммарное количество продаж товаров: "{", ".join([sale["product"] for sale in sales])}" составляет {sum_sales_for_all_product(sales)} шт.')
+    print(f'Суммарное количество продаж товаров: "{", ".join([sale["product"] for sale in sales])}" составляет {sum_sales_for_all_products(sales)} шт.')
     print('_' * 75)
 
-    print(f'Среднее количество продаж товаров: "{", ".join([sale["product"] for sale in sales])}" составляет {avg_sales_for_all_product(sales)} шт.')
+    print(f'Среднее количество продаж товаров: "{", ".join([sale["product"] for sale in sales])}" составляет {avg_sales_for_all_products(sales)} шт.')
 
 
 if __name__ == "__main__":
