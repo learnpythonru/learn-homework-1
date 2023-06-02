@@ -16,18 +16,14 @@
 
 
 def activity_by_age(age):
-    if 0 <= age <= 7:
+    if age <= 7:
         return 'Вы в детском садике'
-    elif 7 < age <= 17:
+    elif age <= 17:
         return 'Вы учитесь в школе'
     else:
         return 'Вы в ВУЗе или работаете'
 
 
-def main():
+if __name__ == "__main__":
     age = abs(int(input('Введите ваш возраст: ')))
     print(activity_by_age(age))
-
-
-if __name__ == "__main__":
-    main()
