@@ -14,20 +14,22 @@
 """
 import logging
 
+import ephem, pprint
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import settings
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
+# PROXY = {
+#     'proxy_url': 'socks5://t1.learn.python.ru:1080',
+#     'urllib3_proxy_kwargs': {
+#         'username': 'learn',
+#         'password': 'python'
+#     }
+# }
 
 
 def greet_user(update, context):
@@ -39,14 +41,45 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+    
+planet_name = {
+        'Mercury': ephem.Mercury(),
+        'Venus': ephem.Venus(),
+        'Mars': ephem.Mars(),
+        'Jupiter': ephem.Jupiter(),
+        'Saturn': ephem.Saturn(),
+        'Uranus': ephem.Uranus(),
+        'Neptune': ephem.Neptune(),
+        'Pluto': ephem.Pluto()
+    }
+
+def get_constellation(update, context):
+    user_input = context.args[0].capitalize()    
+
+    try:
+        planet_name[user_input]      
+    except KeyError:
+        if user_input == 'Earth':
+            update.message.reply_text('Earth is not in any constellation')
+        else:
+            update.message.reply_text(f'{user_input} is not a planet of solar system')
+
+    planet_name[user_input].compute()
+    constellation_name = ephem.constellation(planet_name[user_input])[1]
+    # print(constellation_name, constellation_name[1])
+    # constellation_name = update.message.text.split()
+    print(f'{planet_name[user_input].name} is currently in the constellation of {constellation_name}')
+    update.message.reply_text(f'{planet_name[user_input].name} is currently in the constellation of {constellation_name}')
+    
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", get_constellation))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
