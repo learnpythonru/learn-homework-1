@@ -42,10 +42,8 @@ def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
     update.message.reply_text(user_text)
-
-def get_constellation(update, context):
-    user_input = context.args[0].capitalize()    
-    planet_name = {
+    
+planet_name = {
         'Mercury': ephem.Mercury(),
         'Venus': ephem.Venus(),
         'Mars': ephem.Mars(),
@@ -55,6 +53,9 @@ def get_constellation(update, context):
         'Neptune': ephem.Neptune(),
         'Pluto': ephem.Pluto()
     }
+
+def get_constellation(update, context):
+    user_input = context.args[0].capitalize()    
 
     try:
         planet_name[user_input]      
