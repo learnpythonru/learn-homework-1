@@ -19,7 +19,20 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+age = int(input())
+# test
+def distribution(age): 
+    if 2 <= age <= 6:
+        return 'Kindergarten Education'
+    elif  6 < age <= 17:
+        return 'School Education'
+    elif 18 <= age <= 22:
+        return 'Institute Education'
+    else:
+        return 'Come to work'
+
+result = distribution(age) 
+print(result)
 
 if __name__ == "__main__":
     main()
