@@ -1,5 +1,7 @@
 import logging
-import string
+import operator
+import re
+import pymorphy2
 import ephem
 import settings
 import random
@@ -9,7 +11,7 @@ from datetime import datetime, date
 
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO,
+                    level=logging.DEBUG,
                     filename='bot.log')
 
 
@@ -23,17 +25,15 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 
 
 def greet_user(update, context):
-    update.message.reply_text('Вызван /start')
+    return update.message.reply_text('Вызван /start')
 
 
 def talk_to_me(update, context):
-    update.message.reply_text(update.message.text)
+    return update.message.reply_text(update.message.text)
 
 
 def constel(update, context):
-
-    planet_key: str = update.message.text.lower().split()[-1]
-
+    planet_key: str = ''.join(context.args).lower()
     planets: dict = {
             'mercury': ephem.Mercury,
             'venus': ephem.Venus,
@@ -56,54 +56,37 @@ def constel(update, context):
             'нептун': ephem.Neptune,
             'плутон': ephem.Pluto,
         }
-
     position = planets[planet_key](datetime.today().strftime('%Y/%m/%d'))
     const = ephem.constellation(position)[1]
-    update.message.reply_text(f'{planet_key.title()} is in {const} today.')
+    return update.message.reply_text(f'{planet_key.title()} is in {const} today.')
 
 
 def word_counter(update, context):
-
-    res: str = ''
-
-    for i in update.message.text:
-        if i in string.punctuation:
-            res += ' '
-        else:
-            res += i
-
-    message_length: int = len(res.split()) - 1
-
-    if message_length < 1:
-        update.message.reply_text("Недостаточно слов для подсчета, введите текст: ")
-    else:
-        if message_length in range(11, 21) or str(message_length)[-1] in '056789':
-            update.message.reply_text(f"{message_length} слов")
-        elif str(message_length)[-1] == '1':
-            update.message.reply_text(f"{message_length} слово")
-        else:
-            update.message.reply_text(f"{message_length} слова")
+    length = len(' '.join(context.args).split())
+    morph = pymorphy2.MorphAnalyzer()
+    words = morph.parse('слово')[0]
+    string = words.make_agree_with_number(length).word
+    answer = f'{length} {string}'
+    return update.message.reply_text(answer)
 
 
 def next_full_moon(update, context):
-    user_text: str = ' '.join(update.message.text.strip().split()[1:])
+    user_text: str = ''.join(context.args)
     if user_text == '':
-        nfm = ephem.next_full_moon(datetime.today())
-        update.message.reply_text(f"Ближайшее полнолуние {nfm}")
+        nfm: ephem.Date = ephem.next_full_moon(datetime.today())
+        return update.message.reply_text(f"Ближайшее полнолуние {nfm}")
     else:
         try:
             date_moon: datetime.date = date.fromisoformat(user_text)
             nfm: ephem.Date = ephem.next_full_moon(date_moon)
             answer: str = f"Ближайшее полнолуние от даты {date_moon} - {nfm}"
-
-        except ValueError as ve:
-            print(ve)
-            answer: str = f"Введите дату в формате ГГГГ-ММ-ДД"
+        except ValueError:
+            answer: str = "Введите дату в формате ГГГГ-ММ-ДД"
         return update.message.reply_text(answer)
 
 
 def city_game(update, context):
-    user_text: str = update.message.text[8:].strip().lower()
+    user_text: str = ''.join(context.args).lower()
     game_lst: list = [
         'абаза', 'абакан', 'абдулино', 'абинск', 'агидель', 'агрыз', 'адыгейск', 'азнакаево', 'азов', 'ак-довурак', 'аксай', 'алагир', 'алапаевск', 'алатырь', 'алдан', 'алейск', 'александров', 'александровск', 'александровск-сахалинский', 'алексеевка', 'алексин', 'алзамай', 'алупка', 'алушта', 'альметьевск', 'амурск', 'анадырь', 'анапа', 'ангарск', 'андреаполь', 'анжеро-судженск', 'анива', 'апатиты', 'апрелевка', 'апшеронск', 'арамиль', 'аргун', 'ардатов', 'ардон', 'арзамас', 'аркадак', 'армавир', 'армянск', 'арсеньев', 'арск', 'артём', 'артёмовск', 'артёмовский', 'архангельск', 'асбест', 'асино', 'астрахань', 'аткарск', 'ахтубинск', 'ачинск', 'аша',
         'бабаево', 'бабушкин', 'бавлы', 'багратионовск', 'байкальск', 'баймак', 'бакал', 'баксан', 'балабаново', 'балаково', 'балахна', 'балашиха', 'балашов', 'балей', 'балтийск', 'барабинск', 'барнаул', 'барыш', 'батайск', 'бахчисарай', 'бежецк', 'белая калитва', 'белая холуница', 'белгород', 'белебей', 'белинский', 'белово', 'белогорск', 'белозерск', 'белокуриха', 'беломорск', 'белорецк', 'белореченск', 'белоусово', 'белоярский', 'белый', 'белёв', 'бердск', 'березники', 'берёзовский', 'беслан', 'бийск', 'бикин', 'билибино', 'биробиджан', 'бирск', 'бирюсинск', 'бирюч', 'благовещенск', 'благодарный', 'бобров', 'богданович', 'богородицк', 'богородск', 'боготол', 'богучар', 'бодайбо', 'бокситогорск', 'болгар', 'бологое', 'болотное', 'болохово', 'болхов', 'большой камень', 'бор', 'борзя', 'борисоглебск', 'боровичи', 'боровск', 'бородино', 'братск', 'бронницы', 'брянск', 'бугульма', 'бугуруслан', 'будённовск', 'бузулук', 'буинск', 'буй', 'буйнакск', 'бутурлиновка',
@@ -137,7 +120,7 @@ def city_game(update, context):
 
         ]
     if user_text not in game_lst:
-        update.message.reply_text('Нет такого города в нашем списке!')
+        return update.message.reply_text('Нет такого города в нашем списке!')
     else:
         next_turn_letter: str = user_text[-1]
         answer: list = [i for i in game_lst if i.startswith(next_turn_letter) and i != user_text]
@@ -151,39 +134,49 @@ def city_game(update, context):
 
 
 def calc(update, context):
-    user_text: str = update.message.text[6:].strip()
-    var1, var2 = '', ''
-
-    for i in range(len(user_text)):
-        if not user_text[i].isdigit():
-            break
-        else:
-            var1 += user_text[i]
-
-    for i in range(len(user_text)-1, -1, -1):
-        if not user_text[i].isdigit():
-            break
-        else:
-            var2 += user_text[i]
-
-    res: list = list(map(int, [var1, (var2)[::-1]]))
-    oper: str = ''.join(set(user_text) - set(var1+var2))
-
-    if len(res) != 2:
-        return 'Работаю пока только с двумя элементами'
-    else:
-        try:
-            oper_dct: dict = {
-                '+': sum(res),
-                '-': res[0] - res[1],
-                '/': res[0] / res[1],
-                '*': res[0] * res[1]
-                }
-
-            answer: str = oper_dct.get(oper, 'Данная операция не поддерживается')
-        except ZeroDivisionError:
-            answer: str = 'Делить на ноль НЕЛЬЗЯ!'
-        return update.message.reply_text(answer)
+    # Словарь для операторов
+    operators = {
+        '+': operator.add,
+        '-': operator.sub,
+        '*': operator.mul,
+        '/': operator.truediv,
+    }
+    input_string = ''.join(context.args)
+    # Удаляем пробелы из выражения
+    expression = re.sub(r'\s', '', input_string)
+    # Проверяем на вхождение неверных операторов
+    errors = ('//', '**', '/*', '*/')
+    for error in errors:
+        if error in expression:
+            return update.message.reply_text('Ошибка в выражении')
+    # Делим выражение на слагаемые
+    summands = re.findall(r'-?\d+(?:\.\d+)?(?:[/\*]-?\d+(?:\.\d+)?)*', expression)
+    result = 0
+    try:
+        # Вычисляем значение каждого слагаемого
+        for summand in summands:
+            # Разбиваем слагаемое на токены
+            tokens = re.findall(r'-?\d+(?:\.\d+)?|\S', summand)
+            # Переменная для подсчета промежуточных результатов
+            last_result = None
+            # Обработчик первого множителя
+            is_calc = False
+            # Считаем произведение каждого найденного токена
+            for token in tokens:
+                try:
+                    multiplier = float(token)
+                except ValueError:
+                    oper = token
+                    continue
+                if is_calc:
+                    last_result = operators[oper](float(last_result), multiplier)
+                else:
+                    last_result = multiplier
+                is_calc = True
+            result += last_result
+    except ZeroDivisionError:
+        return update.message.reply_text('На ноль делить НЕЛЬЗЯ!')
+    return update.message.reply_text(result)
 
 
 def main():
