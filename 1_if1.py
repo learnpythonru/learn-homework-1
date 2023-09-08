@@ -32,4 +32,3 @@ if __name__ == "__main__":
     age = int(input('Введите возраст '))
     stage = main(age)
     print(f'Пользователь должен: {stage}')
-    print(f'Пользователь должен: {stage}')
