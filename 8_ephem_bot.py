@@ -13,6 +13,9 @@
 
 """
 import logging
+import ephem
+from datetime import datetime
+import setting
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -21,13 +24,6 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     filename='bot.log')
 
 
-PROXY = {
-    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-    'urllib3_proxy_kwargs': {
-        'username': 'learn',
-        'password': 'python'
-    }
-}
 
 
 def greet_user(update, context):
@@ -39,14 +35,39 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
+
+
+def galaxy(update, context):
+    planet_list = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+    mistake = 'Введите название планеты'
+    planet = (update.message.text).split()
+    if len(planet) == 2:
+        your_planet = planet[1]
+        if your_planet in planet_list:
+            date = datetime.now()
+            planet_func=getattr(ephem, your_planet)(date)
+            your_galaxy = ephem.constellation(planet_func)
+            print(your_galaxy)
+            update.message.reply_text(your_galaxy[1])
+        else:
+            print(mistake)
+            update.message.reply_text(mistake)
+    else:
+        print(mistake)
+        update.message.reply_text(mistake)
+
+        
+    print(planet)
+    
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(setting.API_KEY)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", galaxy))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
