@@ -13,12 +13,22 @@
     
 """
 
-def discounted(price, discount, max_discount=20)
-    """
-    Замените pass на ваш код
-    """
-    pass
-    
+def discounted(price, discount, max_discount=20):   
+  try:
+    if max_discount <= 20:
+      total_price = price - (price * discount / 100)
+      return total_price
+  except TypeError:
+      try:                                                 # Есть вопрос!!! надо ли для защиты
+        price = float(price)                               # Для защиты от дурака сделать тут функцию
+        discount = float(discount)                         # abs()? просто по условию я отцательных не увидел
+        max_discount = int(max_discount)                   # Но есть ощущение что это было бы правильно
+        total_price = price - (price * discount / 100)
+        return total_price
+      except ValueError:
+        if price.isalpha() or discount.isalpha() or max_discount.isalpha():
+          return 'Не подходящий тип данных!'
+   
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))
