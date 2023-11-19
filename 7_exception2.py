@@ -10,15 +10,21 @@
 * Первые два нужно приводить к вещественному числу при помощи float(),
   а третий - к целому при помощи int() и перехватывать исключения
   ValueError и TypeError, если приведение типов не сработало.
-    
+
 """
 
-def discounted(price, discount, max_discount=20)
+def discounted(price, discount, max_discount=20):
     """
     Замените pass на ваш код
     """
-    pass
-    
+    try:
+        price = abs(float(price))
+        discount = abs(float(discount))
+        max_discount = abs(int(max_discount))
+        return price, discount, max_discount
+    except (ValueError, TypeError):
+        print('Ошибка приведения')
+
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))
