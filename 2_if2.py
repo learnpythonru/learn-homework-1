@@ -21,11 +21,10 @@ def main(str1, str2):
     В ней надо заменить pass на ваш код
     """
 
-    if type(str1) == str and type(str2) == str:
-        result = 0
+    if isinstance(str1, str) and isinstance(str2, str):
         if str1 == str2:
             result = 1
-        elif str1 != str2:
+        elif str1 > str2:
             result = 2
         elif str2 == 'learn':
             result = 3
@@ -35,4 +34,4 @@ def main(str1, str2):
     print(result)
 
 if __name__ == "__main__":
-    main('World', 'learn')
+    main('World', 2)
