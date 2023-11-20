@@ -34,10 +34,9 @@ def sum_sold(lst):
     print('Cуммарное количество продаж всех товаров ', s)
 
 def avrge_sold(lst):
-    
+    count = 0
+    a = 0
     for i in lst:
-        count = 0
-        a = 0
         avrge = round((sum(i['items_sold'])/len(i['items_sold'])),2)
         a += avrge
         count += 1
