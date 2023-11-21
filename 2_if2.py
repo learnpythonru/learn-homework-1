@@ -16,23 +16,24 @@
 """
 
 
-def string_comparison():
-    text_1 = input("Введите первую строку: ")
-    text_2 = input("Введите вторую строку: ")
+def string_comparison(text_1, text_2):
     if not (isinstance(text_1, str) or isinstance(text_1, str)):
-        return print(0)
+        return 0
     if (text_1) == (text_2):
-        return print(1)
+        return 1
     if len(text_1) > len(text_2):
-        return print(2)
+        return 2
     if text_2 == "learn":
-        return print(3)
+        return 3
 
 
 def main():
     total = int(input("Укажите количество проверок: "))
     for _ in range(total):
-        string_comparison()
+        text_1 = input("Введите первую строку: ")
+        text_2 = input("Введите вторую строку: ")
+        result = string_comparison(text_1, text_2)
+        print(result)
 
 
 if __name__ == "__main__":

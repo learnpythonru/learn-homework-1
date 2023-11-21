@@ -27,6 +27,10 @@ def ask_user(answers_dict):
     user_ask = input("Введите ваш вопрос: ")
     if user_ask in questions_and_answers:
         print(questions_and_answers[user_ask])
+    else:
+        print(f"Ответ на данный вопрос отсутствует.\n"
+              f"Попробуйте задать вопрос из списка: {list(questions_and_answers.keys())}")
+        return ask_user(answers_dict)
 
 
 if __name__ == "__main__":

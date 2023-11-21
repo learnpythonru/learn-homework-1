@@ -15,20 +15,21 @@
 """
 
 
-def user_age():
-    age = int(input("Укажите ваш возраст: "))
+def user_age(age):
     answer = ""
     if 0 < age <= 6:
         answer = "Вы должны учиться в детском саду."
     elif 7 <= age <= 17:
-        answer = "Вы должны учиться в школе."3
+        answer = "Вы должны учиться в школе."
     else:
         answer = "Вы должны учиться в ВУЗе или работать."
-    return print(answer)
+    return answer
 
 
 def main():
-    user_age()
+    age = int(input("Укажите ваш возраст: "))
+    result = user_age(age)
+    print(result)
 
 
 if __name__ == "__main__":
