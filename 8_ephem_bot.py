@@ -36,32 +36,34 @@ logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
 
 def greet_user(update, context):
     text = 'Вызван /start'
-    print(text)
+    # print(text)
+    logging.info(text)
     update.message.reply_text('Hello')
 
 def planet(update, context):
     text = '/planet'
-    print(text)
+
     update.message.reply_text('Enter planet in English')
 
 
 def talk_to_me(update, context):
     user_text = update.message.text
-    print(user_text)
+    logging.info(user_text)
     update.message.reply_text(user_text)
 
 def get_planet(update, context):
     date_now = datetime.date.today()
-    lst_planet = {'Mercury': ephem.Mercury, 'Venus': ephem.Venus, 'Mars': ephem.Mars,
-                  'Jupiter': ephem.Jupiter, 'Saturn': ephem.Saturn, 'Uranus': ephem.Uranus,
-                  'Neptune': ephem.Neptune, 'Pluto': ephem.Pluto}
-    user_text = update.message.text
+    lst_planet = {'Mercury': ephem.Mercury, 'Venus': ephem.Venus, 'Mars': ephem.Mars, 'Jupiter': ephem.Jupiter, 'Saturn': ephem.Saturn, 'Uranus': ephem.Uranus, 'Neptune': ephem.Neptune, 'Pluto': ephem.Pluto,
+                  'Меркурий': ephem.Mercury, 'Венера': ephem.Venus, 'Марс': ephem.Mars, 'Юпитер': ephem.Jupiter, 'Сатурн': ephem.Saturn, 'Уран': ephem.Uranus, 'Нептун': ephem.Neptune, 'Плутон': ephem.Pluto}
+    user_text: str = update.message.text
+    user_text = user_text.capitalize()
+
     if user_text in lst_planet:
-        m = lst_planet[user_text]
-        print(user_text)
-        update.message.reply_text(ephem.constellation(m(date_now)))
+        planet = lst_planet[user_text]
+        planet_answ = ephem.constellation(planet(date_now))
+        update.message.reply_text(planet_answ[1])
     else:
-        print(user_text)
+        logging.info(user_text)
         update.message.reply_text('Nope, try again')
 
 

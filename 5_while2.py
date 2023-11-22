@@ -27,8 +27,7 @@ def ask_user(answers_dict):
         if question in answers_dict:
             break
         print('Спроси что-то другое')
-    if question in answers_dict:
-        print(answers_dict[question])
+    print(answers_dict[question])
 
 
 questions_and_answers = {'Как дела': 'Хорошо!', 'Что делаешь?': 'Программирую', 'Пойдешь в кино?': 'Нет, я работаю', 'Какие планы на выходные?': 'Учиться'}
