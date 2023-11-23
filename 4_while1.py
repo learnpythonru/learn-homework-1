@@ -15,8 +15,8 @@ def hello_user() -> None:
     Замените pass на ваш код
     """
     answer = None
-    while answer != 'Хорошо':
-        answer = input('Как дела?\n').strip()
+    while answer != "Хорошо":
+        answer = input("Как дела?\n").strip()
     return
 
 

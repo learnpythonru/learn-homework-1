@@ -23,10 +23,10 @@ def ask_user(answers_dict):
     Замените pass на ваш код
     """
     num_questions = len(answers_dict)
-    print(f'У вас есть {num_questions} попыток задать вопрос')
+    print(f"У вас есть {num_questions} попыток задать вопрос")
     while num_questions:
-        question = input('Задайте вопрос роботу:\n').strip().lower()
-        answer = answers_dict.get(question, '')
+        question = input("Задайте вопрос роботу:\n").strip().lower()
+        answer = answers_dict.get(question, "")
         print(answer)
         num_questions -= 1
 

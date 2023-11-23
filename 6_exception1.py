@@ -16,11 +16,11 @@ def hello_user() -> None:
     Замените pass на ваш код
     """
     answer = None
-    while answer != 'Хорошо':
+    while answer != "Хорошо":
         try:
-            answer = input('Как дела?\n').strip()
+            answer = input("Как дела?\n").strip()
         except KeyboardInterrupt:
-            print('\nПока!')
+            print("\nПока!")
             break
     return
 

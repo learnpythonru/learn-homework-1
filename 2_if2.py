@@ -21,11 +21,11 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    print(func(1,'1'))
-    print(func('1','1'))
-    print(func('11','1'))
-    print(func('11','learn'))
-    print(func('111111','learn'))
+    print(func(1, "1"))
+    print(func("1", "1"))
+    print(func("11", "1"))
+    print(func("11", "learn"))
+    print(func("111111", "learn"))
 
 
 def func(first: str, second: str) -> int:
@@ -33,7 +33,7 @@ def func(first: str, second: str) -> int:
         return 0
     elif first == second:
         return 1
-    elif second == 'learn':
+    elif second == "learn":
         return 3
     elif len(first) > len(second):
         return 2

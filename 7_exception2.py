@@ -28,10 +28,12 @@ def discounted(price, discount, max_discount=20):
     try:
         max_discount = abs(float(max_discount))
     except (ValueError, TypeError):
-        print(f'Для параметра "max_discount" передан некорректный тип данных {max_discount}')
+        print(
+            f'Для параметра "max_discount" передан некорректный тип данных {max_discount}'
+        )
         return
     if max_discount >= 100:
-        raise ValueError('Слишком большая максимальная скидка')
+        raise ValueError("Слишком большая максимальная скидка")
     if discount >= max_discount:
         return price
     else:

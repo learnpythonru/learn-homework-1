@@ -20,20 +20,20 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    age = int(input('Введите ваш возраст пожалуйста: ').strip())
+    age = int(input("Введите ваш возраст пожалуйста: ").strip())
     what_to_do = choice_of_occupation(age)
     print(what_to_do)
 
 
 def choice_of_occupation(age: int) -> str:
     if age <= 6:
-        occupation = 'учиться в детском саду'
+        occupation = "учиться в детском саду"
     elif 6 < age <= 17:
-        occupation = 'учиться в школе'
+        occupation = "учиться в школе"
     elif 17 < age <= 22:
-        occupation = 'учиться в ВУЗе'
+        occupation = "учиться в ВУЗе"
     else:
-        occupation = 'работать'
+        occupation = "работать"
     return occupation
 
 

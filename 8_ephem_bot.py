@@ -17,19 +17,21 @@ import logging
 import sys
 
 import ephem
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
 
 from secret import TOKEN
 
-logging.basicConfig(format='%(asctime)s - %(levelname)s - %(name)s - %(message)s',
-                    level=logging.INFO,
-                    stream=sys.stdout)
+logging.basicConfig(
+    format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+    level=logging.INFO,
+    stream=sys.stdout,
+)
 logger = logging.getLogger(__name__)
 
 
 def greet_user(update, context):
-    logger.info('Вызван /start')
-    update.message.reply_text(f'Привет, {update.message.from_user.first_name}')
+    logger.info("Вызван /start")
+    update.message.reply_text(f"Привет, {update.message.from_user.first_name}")
 
 
 def talk_to_me(update, context):
@@ -37,27 +39,33 @@ def talk_to_me(update, context):
 
 
 def where_is_planet(update, context):
-    planet_names = [p[2] for p in ephem._libastro.builtin_planets() if p[1] == 'Planet' and p[2] not in ('Sun', 'Moon')]
+    planet_names = [
+        p[2]
+        for p in ephem._libastro.builtin_planets()
+        if p[1] == "Planet" and p[2] not in ("Sun", "Moon")
+    ]
     planet_name = update.message.text.split()[1].title()
     if planet_name not in planet_names:
-        update.message.reply_text(f'Not find planet {planet_name}. '
-                                  f'Select one from the options {", ".join(planet_names)}')
+        update.message.reply_text(
+            f"Not find planet {planet_name}. "
+            f'Select one from the options {", ".join(planet_names)}'
+        )
     planet = ephem.__dict__[planet_name](datetime.date.today())
-    update.message.reply_text(', '.join(ephem.constellation(planet)))
+    update.message.reply_text(", ".join(ephem.constellation(planet)))
 
 
 def main():
-    logger.info('The bot has started')
+    logger.info("The bot has started")
     my_bot = Updater(TOKEN)
 
     dp = my_bot.dispatcher
-    dp.add_handler(CommandHandler('start', greet_user))
-    dp.add_handler(CommandHandler('planet', where_is_planet))
+    dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", where_is_planet))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     my_bot.start_polling()
     my_bot.idle()  # зацикливает бота
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
