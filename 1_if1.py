@@ -17,17 +17,16 @@
 
 def main():
     """Главная функция"""
+    age = int(input("Введите свой возраст: "))
+    if age < 6:
+        print("Вас ждет детский садик")
+    elif age <= 18 and age >= 6:
+        print("Вас ждет школа")
+    elif age > 18 and age < 23:
+        print("Вас ждет университет")
+    else:
+        print("Идите работать")
 
-
-age = int(input("Введите свой возраст: "))
-if age < 6:
-    print("Вас ждет детский садик")
-elif age >= 6 or age <= 18:
-    print("Вас ждет школа")
-elif age > 18 or age < 23:
-    print("Вас ждет университет")
-else:
-    print("Идите работать")
 
 
 
