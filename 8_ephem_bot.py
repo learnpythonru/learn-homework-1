@@ -42,11 +42,11 @@ def greet_user(update, context):
 
 def planet(update, context):
     text = '/planet'
-
     update.message.reply_text('Enter planet in English')
 
 
 def talk_to_me(update, context):
+    # Получает сообщение от сервера Телеграм. Контекст - непонятно
     user_text = update.message.text
     logging.info(user_text)
     update.message.reply_text(user_text)
@@ -72,7 +72,9 @@ def main():
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("planet", planet))
+    dp.add_handler(CommandHandler('start', greet_user))
     dp.add_handler(MessageHandler(Filters.text, get_planet))
+    dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
     mybot.idle()
