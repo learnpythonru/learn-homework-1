@@ -17,26 +17,24 @@
 
 
 def main(first_line, second_line):
-    if not isinstance(first_line, str) and isinstance(second_line, str):
+    if not isinstance(first_line, str) or not isinstance(second_line, str):
         return 0
-    elif len(first_line) == len(second_line):
+    elif first_line == second_line:
         return 1
     elif len(first_line) > len(second_line):
-        if "learn" in second_line:
+        if "learn" == second_line:
             return 3
         else:
             return 2
-    elif len(first_line) < len(second_line):
-        if "learn" in second_line:
-            return 3
-        else:
-            return ("такой комбинации не описано")
-    
+    elif "learn" == second_line:
+        return 3
+    return "такой комбинации не существует"
 
-    
+  
 if __name__ == "__main__":
     print(main("привет", "мир"))
-    print(main("привет", "прощай"))
+    print(main("привет", "привет"))
     print(main("привет", "солнышкоооо"))
     print(main(1, "ghbdtn"))
     print(main("hfhfhрррр", "learn"))
+    print(main("hfbh", 5.32))
