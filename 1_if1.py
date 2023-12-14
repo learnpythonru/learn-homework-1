@@ -17,7 +17,6 @@
 
 def main():
     age_num = int(input("Введите свой возраст "))
-        #age_num_error = "Введите положительное число"
     if age_num >= 1 and age_num <=6:
         print(f'Ваш возраст {age_num}. Вы должны быть в детском саду!')
     if age_num >= 7 and age_num <=18:
@@ -28,8 +27,8 @@ def main():
         print(f'Ваш возраст {age_num}. Вы должны работать!')
     if age_num >= 66 and age_num <=100:
         print(f'Ваш возраст {age_num}. Поздравляем, самое время отдохнуть!')
-    else:
-        raise ValueError("Введите число в промежутке от 1 до 100")
+    #else:
+        #raise ValueError("Введите число в промежутке от 1 до 100")
     
 if __name__ == "__main__":
     main()
