@@ -14,31 +14,20 @@
   и выводя на экран результаты
 
 """
+def main(a, b):
+    if type(a) is not str and type(b) is not str:
+        print(0)
+    if a == b:
+        print(1)
+    if len(a) != len(b) and len(a) > len(b):
+        print(2)
+    if a != b and b == "learn":
+        print(3)
+    
+main("450","10")
+main(5, 7)
+main("дада","нетнет")
+main(0,-1)    
 
-
-string_first = input("Как дела? ")
-string_second = input("Есть новогоднее настроение? ")
-
-print(type((string_first)))
-print(type((string_second)))
-
-len_string_first = len(string_first)
-len_string_second = len(string_second)
-
-print(len_string_first)
-print(len_string_second)
-
-def main():
-    count = 1
-    while count <= 4:
-        if type((string_first)) is not str and type((string_second)) is not str:
-            print(0)
-        if string_first == string_second:
-            print(1)
-        if string_first != string_second and len_string_first > len_string_second:
-            print(2)
-        if string_first != string_second and string_second == "learn":
-            print(3)
-        count += 1  
 if __name__ == "__main__":
     main()
