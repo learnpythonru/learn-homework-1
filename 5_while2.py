@@ -15,14 +15,15 @@
     
 """
 
-questions_and_answers = [{"Как дела?": "Хорошо!", "Что делаешь?": "Программирую", "Ты молодец?": "Да"}]
+questions_and_answers = {
+   "Как дела?": "Хорошо!", 
+   "Что делаешь?": "Программирую", 
+   "Кто молодец?": "Ты"
+   }
 
-def ask_user(answers_dict):
-  answers_dict = input("Введите вопрос: ")
-  if answers_dict in questions_and_answers:
-    print(answers_dict)
-  else:
-    print("Тогда надо пойти покушать")
-#answers_dict    
+def ask_user(question):
+    question = input("Введите вопрос: ")
+    print(questions_and_answers.get(question))
+    
 if __name__ == "__main__":
     ask_user(questions_and_answers)

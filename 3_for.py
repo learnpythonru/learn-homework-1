@@ -24,9 +24,8 @@ sales = [
     {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
 ]
 
-for product in sales:
-    sum(sales['items_sold'])
-    #sum(sales{'items_sold'})
+for calc_sales in sales:
+      sum(sales['items_sold'])
 
 def main():
     
