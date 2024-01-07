@@ -22,8 +22,14 @@ questions_and_answers = {
    }
 
 def ask_user(question):
-    question = input("Введите вопрос: ")
-    print(questions_and_answers.get(question))
+    x = 1
+    while x <= 3:
+        question = input("Введите вопрос: ")
+        print(questions_and_answers.get(question))
+        if question == "Нет":
+            print("Завершение программы")
+            break
+        x += 1
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)
