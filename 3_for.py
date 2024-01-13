@@ -17,6 +17,7 @@
 """
 
 from pprint import pprint
+from statistics import mean
 
 sales = [
     {'product': 'iPhone 12', 'items_sold': [363, 500, 224, 358, 480, 476, 470, 216, 270, 388, 312, 186]}, 
@@ -25,9 +26,31 @@ sales = [
 ]
 
 def main():
-    for total_sales_sum in sales:
-        total_sales_sum = sum(sales[0]['items_sold'])
-        print("Количество продаж ", sales[0]['product'], " = ", total_sales_sum)
+    for count_sales in sales:
+        sales_sum = sum(count_sales.get('items_sold'))
+        average_value = mean(count_sales.get('items_sold'))
+        total_sales_sum = sum(int(str.join(count_sales['items_sold'])))
+        print(f'Суммарное количество продаж {count_sales.get('product')}: ', sales_sum)
+        print(f'Среднее количество продаж {count_sales.get('product')}: ', average_value)
+        print(total_sales_sum)
+        
 
 if __name__ == "__main__":
     main()
+
+classes = [
+    {'name': '3А', 'scores': [3,4,4,5,2]},
+    {'name': '3Б', 'scores': [5,5,3,2,2]},
+    {'name': '3В', 'scores': [4,5,3,5,4]},
+]
+
+def count_average(students_scores):
+    scores_sum = 0
+    for score in students_scores:
+        scores_sum += score
+    scores_avg = scores_sum / len(students_scores)
+    return scores_avg
+
+for one_class in classes:
+    class_score_avg = count_average(one_class['scores'])
+    print(f"Средняя оценка для класса {one_class['name']}: {class_score_avg}")
