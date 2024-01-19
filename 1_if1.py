@@ -14,12 +14,21 @@
 
 """
 
-def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
 
+def main():
+    age_num = int(input("Введите свой возраст "))
+    if age_num >= 1 and age_num <=6:
+        print(f'Ваш возраст {age_num}. Вы должны быть в детском саду!')
+    if age_num >= 7 and age_num <=18:
+        print(f'Ваш возраст {age_num}. Вы должны учиться в школе!')
+    if age_num >= 19 and age_num <=23:
+        print(f'Ваш возраст {age_num}. Вы должны учиться в университете!')
+    if age_num >= 24 and age_num <=65:
+        print(f'Ваш возраст {age_num}. Вы должны работать!')
+    if age_num >= 66 and age_num <=100:
+        print(f'Ваш возраст {age_num}. Поздравляем, самое время отдохнуть!')
+    else:
+        raise ValueError("Введите число в промежутке от 1 до 100")
+    
 if __name__ == "__main__":
     main()
