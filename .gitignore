@@ -121,3 +121,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.vscode
+pyproject.toml
+poetry.lock
+settings.py
