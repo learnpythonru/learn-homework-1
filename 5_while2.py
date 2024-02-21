@@ -15,13 +15,18 @@
     
 """
 
-questions_and_answers = {}
+questions_and_answers = {"Как дела?": "Хорошо!", "Что делаешь?": "Программирую", "Сколько тебе лет?": 33, "Кто ты?": "Язык программирования", "Как тебя зовут?": "Python"}
 
 def ask_user(answers_dict):
     """
     Замените pass на ваш код
     """
-    pass
+    user_answer = input("Введите Ваш вопрос ")
+    while questions_and_answers.get(user_answer) == None:
+    	input("Введите Ваш вопрос ")
+    print(questions_and_answers.get(user_answer))
+    
+    #не понял, для чего вообще тут цикл while, поэтому написал программу так
     
 if __name__ == "__main__":
     ask_user(questions_and_answers)

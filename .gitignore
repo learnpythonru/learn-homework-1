@@ -121,3 +121,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+8_ephem_bot.py
+testing.py
+settings.py
+*.log
+.vscode/
+.idea/
+.venv/
+env/
+.DS_Store
+__pycache__/
