@@ -26,7 +26,7 @@ questions_and_answers = {
 
 def ask_user(answers_dict: dict):
     while True:
-        question = input('Задайте вопрос (для выхода напишите q) ')
+        question = input('Задайте вопрос (для выхода напишите q)\n')
         if question in answers_dict:
             print(answers_dict[question])
         elif question == 'q':

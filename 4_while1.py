@@ -13,7 +13,7 @@
 
 def hello_user():
     while True:
-        user_answer = input('Как дела? ')
+        user_answer = input('Как дела?\n')
         if user_answer == 'Хорошо':
             break
 
