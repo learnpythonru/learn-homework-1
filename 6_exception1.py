@@ -14,7 +14,9 @@
 def hello_user():
     while True:
         try:
-            input('Как дела?\n')
+            user_answer = input('Как дела?\n')
+            if user_answer == 'Хорошо':
+                break
         except KeyboardInterrupt:
             print('\nПока')
             break
