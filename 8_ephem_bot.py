@@ -38,23 +38,40 @@ def talk_to_me(update, context):
 
 
 def get_planet_constellation(update, context):
-    user_text = update.message.text.split()[1]
-    print(user_text)
-    if user_text == 'Mercury':
-        constellation = ephem.constellation(ephem.Mercury(date.today()))
-    elif user_text == "Venus":
-        constellation = ephem.constellation(ephem.Venus(date.today()))
-    elif user_text == 'Mars':
-        constellation = ephem.constellation(ephem.Mars(date.today()))
-    elif user_text == "Jupiter":
-        constellation = ephem.constellation(ephem.Jupiter(date.today()))
-    elif user_text == "Saturn":
-        constellation = ephem.constellation(ephem.Jupiter(date.today()))
-    elif user_text == "Uranus":
-        constellation = ephem.constellation(ephem.Uranus(date.today()))
-    elif user_text == "Neptune":
-        constellation = ephem.constellation(ephem.Neptune(date.today()))
-    update.message.reply_text(f"Сегодня {user_text} в созвездии {constellation[1]}")
+    planet_list = [
+        'Mercury',
+        'Venus',
+        'Mars',
+        'Jupiter',
+        'Saturn',
+        'Uranus',
+        'Neptune',
+    ]
+
+    splited_text = update.message.text.split()
+    if len(splited_text) < 2:
+        update.message.reply_text("Вы не ввели название планеты")
+    else:
+        edited_text = splited_text[1].lower()
+        print(edited_text)
+        if edited_text == 'mercury':
+            planet = ephem.Mercury(date.today())
+        elif edited_text == 'venus':
+            planet = ephem.Venus(date.today())
+        elif edited_text == 'mars':
+            planet = ephem.Mars(date.today())
+        elif edited_text == 'jupiter':
+            planet = ephem.Jupiter(date.today())
+        elif edited_text == 'saturn':
+            planet = ephem.Jupiter(date.today())
+        elif edited_text == 'uranus':
+            planet = ephem.Uranus(date.today())
+        elif edited_text == 'neptune':
+            planet = ephem.Neptune(date.today())
+        else:
+            update.message.reply_text(f"{edited_text} не является планетой. Введите планету из списка {planet_list}")
+
+        update.message.reply_text(f"Сегодня {edited_text.capitalize()} в созвездии {ephem.constellation(planet)[1]}")
 
 
 def main():
