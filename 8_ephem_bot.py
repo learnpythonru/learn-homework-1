@@ -51,6 +51,8 @@ def get_planet_constellation(update, context):
     splited_text = update.message.text.split()
     if len(splited_text) < 2:
         update.message.reply_text("Вы не ввели название планеты")
+    elif len(splited_text) > 2:
+        update.message.reply_text("Введите название одной планеты")
     else:
         edited_text = splited_text[1].lower()
         print(edited_text)
