@@ -14,12 +14,22 @@
 
 """
 
+def define_activity(age):
+    if age < 4:
+        return 'Вы еще слишком малы'
+    elif age < 7:
+        return 'Вы учитесь в детском саду'
+    elif age < 18:
+        return 'Вы учитесь в школе'
+    elif age < 24:
+        return 'Вы учитесь в ВУЗе'
+    else:
+        return 'Вы уже работаете'
+    
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    age = int(input('Введите Ваш возраст: '))
+    user_activity = define_activity(age)
+    print(user_activity)
 
 if __name__ == "__main__":
     main()

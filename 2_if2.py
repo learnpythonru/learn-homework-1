@@ -15,12 +15,24 @@
 
 """
 
+def string_checking(str1, str2):
+    if not(isinstance(str1, str) and isinstance(str2, str)):
+        return 0
+    if str1 == str2:
+        return 1
+    if str1 != str2 and str2 == 'learn':
+        return 3
+    elif len(str1) > len(str2):
+        return 2
+    else:
+        return -1
+
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
-    
+    print(string_checking('italy','italy'))
+    print(string_checking('denmark', 'poland'))
+    print(string_checking('russia', 'learn'))
+    print(string_checking(7, 'python')) 
+   
+   
 if __name__ == "__main__":
     main()
